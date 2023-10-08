@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Code &#8212; pNNE  documentation</title>
+    <title>Contact &#8212; pNNE  documentation</title>
   
   
   
@@ -41,11 +41,10 @@
     <script src="../_static/documentation_options.js?v=8a448e45"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'code/code';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contact/contact';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contact" href="../contact/contact.html" />
-    <link rel="prev" title="Welcome to pNNE" href="../home/home.html" />
+    <link rel="prev" title="Code" href="../code/code.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -111,7 +110,7 @@
       <div class="navbar-item">
    
 
-<a class="navbar-brand logo" href="https://pnnehome.github.io">
+<a class="navbar-brand logo" href="https://nnehome.github.io">
   
   
   
@@ -125,7 +124,7 @@
     <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
-    <p class="title logo__title">pNNE</p>
+    <p class="title logo__title">NNE</p>
   
 </a></div>
     
@@ -151,15 +150,15 @@
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../code/code.html">
                          Code
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../contact/contact.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                          Contact
                       </a>
                     </li>
@@ -223,15 +222,15 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../code/code.html">
                          Code
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../contact/contact.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                          Contact
                       </a>
                     </li>
@@ -292,7 +291,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Code</li>
+    <li class="breadcrumb-item active" aria-current="page">Contact</li>
   </ul>
 </nav>
 </div>
@@ -309,108 +308,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="code">
-<span id="id1"></span><h1>Code<a class="headerlink" href="#code" title="Link to this heading">#</a></h1>
+  <section id="contact">
+<span id="id1"></span><h1>Contact<a class="headerlink" href="#contact" title="Link to this heading">#</a></h1>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>You can find the Matlab files <a href="https://github.com/pnnehome/code_matlab" target="_blank">here</a> (still in beta version).</p>
-<p>Below are documentation for each file. We suggest you first read the example in <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">Welcome to pNNE</span></a>, which is an easier way to get an idea of how the code works.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>Current settings on the range of data accepted by pNNE:</p>
-<p>*Current settings are relatively restrictive as pNNE is still in beta stage. We can change these settings in the next version of pNNE if there are requests to do so. Please contact us if you want to see a setting broadened.</p>
-<ul class="simple">
-<li><p><span class="brown-text">Sample size</span>: n ≥ 1000 number of consumers (or search sessions).</p></li>
-<li><p><span class="brown-text">Number of options</span> per consumer: 15 ≤ J ≤ 35.</p></li>
-<li><p>Number of <span class="brown-text">product attributes</span>: 2 ≤ p ≤ 8. Number of consumer attributes:  0 ≤ c ≤ 5. Number of advertising attributes:  0 ≤ a ≤ 2.</p></li>
-<li><p><span class="brown-text">Buy rate</span> (fraction of consumers who didn’t buy outside good) is between 0.5% and 50%.</p></li>
-<li><p><span class="brown-text">Search rate</span> (fraction of consumers who went beyond the free search) is between 1% and 70%.</p></li>
-<li><p><span class="brown-text">Average number of searches</span> per consumer is between 1 and 4.</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code></p>
-<p>This file stores the trained neural net as well as some settings.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">nne</span></code>: a structure that stores the trained neural net, as well as some settings used in training, such as the largest number of product attributes allowed, the smallest sample size allowed, the range of search model parameters considered, etc.</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code></p>
-<p>The main function to apply pNNE to your data.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx, se=false, checks=true)</span>
-</pre></div>
-</div>
-<p>Inputs:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">nne</span></code>: as described before, from trained_nne.mat.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: nJ by 2 matrix.  Y(J*(i-1)+j, 1) indicates whether consumer i searched option j. Y(J*(i-1)+j, 2) indicates whether consumer i bought option j.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>: nJ by p matrix. Xp(J*(i-1)+j, :) stores the product attributes of option j for consumer i.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code>: nJ by a matrix. Xa(J*(i-1)+j, :) stores the marketing attributes of option j for consumer i.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>: n by c matrix. Xc(i, :) stores the consumer attributes of consumer i.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code>: nJ by 1 vector.  consumer_idx(J*(i-1)+1:J*i) = i.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">se=false</span></code>: optional input. Set to true to calculate bootstrap standard errors.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">checks=true</span></code>: optional input. Set to false to omit all sanity checks.</p></li>
-</ul>
-<p>Outputs:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">result</span></code>: a table listing parameters and their estimates. If se=false, it has an additional column of standard errors.</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">moments.m</span></code></p>
-<p>This function is used by nne_estimate.m. The function computes summary moments from data. These summary moments
-are then fed into the neural net as inputs.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">regress_coef.m</span></code></p>
-<p>This function is used by moments.m. The function does ridge linear, logit, and multinomial logit regressions.
-These regressions are applied to the data to produce some of the summary moments.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">mseLayer.m</span></code></p>
-<p>This function is a custom neural net layer used by our trained neural net. It is basically the same as
-Matlab’s built-in regressionLayer.m, except that it has some minor customization to better suit pNNE training.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">search_stat.m</span></code></p>
-<p>This function calculates some summary statistics of the data. It is used by nne_estimate.m to perform
-a part of the data saneity checks.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">curve.mat</span></code></p>
-<p>This file stores the relation describing how log search cost affects reservation utility.</p>
-<ul class="simple">
-<li><p>curve: a table that stores a grid of log search cost and corresponding reservation utility.</p></li>
-</ul>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">search_model.m</span></code></p>
-<p>The function that codes the search model. This function is used in training but not in estimation.
-We provide it for reference purpose. It is also useful if you want to conduct Monte Carlo experiments.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Y = search_model(par, curve, Xp, Xa, Xc, consumer_idx)</span>
-</pre></div>
-</div>
-<p>Inputs:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">par</span></code>: vector of parameter value. First a+1 entries are α. Next c+1 entries are η. Last p entries are β.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">curve</span></code>: as described before, from curve.mat.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>, Xa, Xc, and consumer_idx: as described before.</p></li>
-</ul>
-<p>Outputs</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: as described above. Simulated search and purchase choices.</p></li>
-</ul>
+<p>Yanhao ‘Max’ Wei, Marshall School of Business, University of Southern California</p>
+<p>Zhenling Jiang, Wharton School, University of Pennsylvania</p>
 </section>
 
 
