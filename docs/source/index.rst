@@ -15,7 +15,7 @@
     Code <code/code>
     Contact <contact/contact>
 
-Welcome to pNNE
+Welcome to NNE
 ===============
 
 |
