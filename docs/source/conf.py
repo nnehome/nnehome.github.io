@@ -36,8 +36,8 @@ html_logo = '_static/logo.png'
 html_theme_options = {
     "navbar_persistent":[],
     "logo": {
-        "link": "https://pnnehome.github.io",
-        "text": "pNNE"
+        "link": "https://nnehome.github.io",
+        "text": "NNE"
     },
     "show_prev_next": False
 }
