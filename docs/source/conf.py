@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'pNNE'
+project = 'NNE'
 copyright = "2023, Yanhao 'Max' Wei, Zhenling Jiang"
 author = "Yanhao 'Max' Wei, Zhenling Jiang"
 
