@@ -4,7 +4,7 @@
 
 .. _home:
 
-Welcome to pNNE
+Welcome to NNE
 ===============
 
 |
