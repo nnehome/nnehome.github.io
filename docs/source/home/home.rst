@@ -11,15 +11,57 @@ Welcome to NNE
 
 This website describes the neural net estimator (NNE) to estimate structural models, as proposed 
 in `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_. It provides a computationally-light alternative to simulated maximum likelihood 
-or simulated method of moments. NNE is especially suitable for cases where many simulations are needed to 
-evaluate likelihood/moment functions.
+or simulated method of moments. Besides computational benefits, NNE is also robust to redundant or irrelevant moments.
+This is in contrast to SMM, where even with sufficiently many simulations, redundant moments are known to increase 
+finite-sample biases.
+Because of these benefits, NNE is especially suitable for cases where many simulations are needed to evaluate 
+likelihood/moment functions, as well as cases where there lacks clear guidance on what moments to use for estimation. 
+In these applications, NNE offers a computationally light alternative to obtain accurate and robust estimates. 
+Outside these applications, NNE may still be applied but may not show clear gains. We summarize main properties of 
+NNE and the suitable (and less suitable) applications in the table below. 
+
+**Summary of NNE**
+
+.. _main-properties-table:
+
+
+The main properties and suitable applications of the estimation method are summarized below:
+
+.. list-table:: 
+   :widths: 10 90
+   :header-rows: 1
+   :class: table-header-centered
+
+   * - 
+     - Main Properties
+   * - 1
+     - It requires no integration over unobservables in the structural econometric model; only requires the ability to simulate data using the econometric model.
+   * - 2
+     - It does not require the optimization over an (potentially non-smooth) objective function as in extremum estimators (e.g., SMLE, SMM, indirect inference).
+   * - 3
+     - It is more robust to redundant moments when compared to SMM/GMM.
+   * - 4
+     - It computes a measure of statistical accuracy (i.e., posterior variance) as a byproduct.
+
+.. list-table:: 
+   :widths: 50 50
+   :header-rows: 1
+   :class: table-header-centered
+
+   * - Suitable Applications
+     - Less Suitable Applications
+   * - Many simulations are needed to evaluate likelihood/moments. The SMLE/SMM objective is difficult to optimize. There lacks clear guidance on moment choice. Formulas of standard errors are not yet established.
+     - Close-form expressions are available for likelihood/moments. The main estimation burden comes from other than the simulations to evaluate likelihood/moments.
+   * - **Examples**: discrete choices with rich unobserved heterogeneity, sequential search, choices on networks.
+     - **Examples**: dynamic choice or games where the main burden is solving policy functions.
 
 |
 
 Overview of NNE
 ---------------
-We write down a structural model: ``y = g(x, ϵ; θ)``. The goal of estimation is to obtain the parameter :math:`{θ}` 
-after observing the covariates :math:`{x}` and outcome ``y: {y,x} → θ``.
+We write down a structural model: ``y = g(x, ϵ; θ)``, where :math:`{x}` denote the observed attributes,
+:math:`\epsilon` is the unobservable, and :math:`\theta` is the parameter. The goal of structural estimation is 
+to obtain the parameter :math:`θ` with observable :math:`{x}` and outcome :math:`y`: ``{y,x} → θ``.
 
 The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters. 
 The graph below provides an overview of NNE.
@@ -47,17 +89,12 @@ The graph below provides an overview of NNE.
    \end{cases}
    \end{align*}
 
-Notation:
- :math:`\boldsymbol{\theta}^{(\ell)}` drawn from a space :math:`\Theta`;
- :math:`\boldsymbol{y}_{i}=\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i};\boldsymbol{\theta})` a structural model;
- :math:`\boldsymbol{y}^{(\ell)}` simulated outcome;
- :math:`\boldsymbol{m}^{(\ell)}` simulated moments;
- :math:`\widehat{\boldsymbol{\theta}}` neural net prediction
+Notation: :math:`{\theta}^{(\ell)}` drawn from a space; :math:`\Theta`; :math:`{y}^{(\ell)}` simulated outcome; :math:`{m}^{(\ell)}` simulated moments; :math:`\widehat{\theta}` neural net prediction.
 
 
+**Four steps to apply NNE with ()**
 
-
-1. We draw parameter values :math:`\theta^{(l)}` uniformly from a parameter space :math:`\Theta`. Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples where we can use to learn the mapping from data to the "correct" parameter values.
+1. We draw parameter values :math:`\theta^{(l)}` uniformly from a parameter space :math:`\Theta`. Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples that we can use to learn the mapping from data to the "correct" parameter values.
 
 2. To make training easier, we can summarize the data :math:`\{y^{(l)}, x\}`  into data moments :math:`m^{(l)}`.
 
@@ -67,24 +104,23 @@ Notation:
 
 The neural net can output "standard errors" in addition to point estimates. We establish that this neural net estimator (NNE)
 converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large. 
-Besides the benefit of light computational cost, NNE is also robust to redundant moments, which is beneficial for cases where 
-there lacks clear guidance on moment choices from a theoretical perspective. 
 
 |
 
 Applying NNE
 ---------------
 
-While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate 
-how to use NNE. The accompanying Matlab code can be found on the `GitHub <https://github.com/nnehome/nne-matlab>`_ page. These codes can be used to replicate the Monte Carlo results 
-from `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_.
+While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate how to use NNE. 
+Below, we describe the two key functions ``nne_gen.m`` and ``nne_train.m`` to implement NNE. The other accompanying functions are described in the :ref:`code` page.
 
-We describe the key functions to implement NNE. 
+All Matlab codes can be found on the `GitHub <https://github.com/nnehome/nne-matlab>`_ page. 
+These codes can be used to replicate the Monte Carlo results from `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_.
+
 
 Generate training datasets
 ''''''''''''''''''''''''''
 
-``nne_gen.m``: This function implements steps (1) and (2) from above.
+``nne_gen.m``: This function implements steps (1) and (2) from the overview of NNE.
 
 
 .. code-block:: matlab
@@ -172,7 +208,7 @@ Generate training datasets
 
 Several key steps include:
 
-- Draw :math:`\theta^{(l)}` ``theta = unifrnd(lb, ub)``.
+- Draw :math:`\theta^{(l)}` ``theta = unifrnd(lb, ub)``. Ideally, the bounds to draw :math:`\theta^{(l)}` from should cover the true parameter value. When :math:`\Theta` does not cover the true value, NNE’s estimate can fall outside :math:`\Theta` and in the direction towards the true value. One should check whether NNE’s estimate is inside :math:`\Theta`. If not, then :math:`\Theta` likely does not contain the truth and needs to be adjusted.
 - Simulate outcome :math:`y^{(l)}` with function ``gen_seq_search()``, which takes parameter :math:`\theta^{(l)}` and error draw :math:`\epsilon^{(l)}`. This function is specific to sequential search and can be changed to other structural models.
 - Summarize the data :math:`\{y^{(l)},x\}` into data moments :math:`m^{(l)}` with function ``Moments()``. It can be adapted to generate moments in other applications.
 - We use 90% as training data and the rest 10% as testing data. The inputs are the moments while the labels are the corresponding correct parameters.
@@ -182,7 +218,7 @@ Several key steps include:
 Train a neural network
 ''''''''''''''''''''''
 
-``nne_train.m``: This function implements steps (3) and (4) from above.
+``nne_train.m``: This function implements steps (3) and (4) from the overview of NNE.
 
 .. code-block:: matlab
     :class: scrollable-code-block
