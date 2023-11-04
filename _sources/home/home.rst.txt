@@ -76,7 +76,7 @@ Applying NNE
 ---------------
 
 While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate 
-how to use NNE. The accompanying Matlab code can be found on the Code page. These codes can be used to replicate the Monte Carlo results 
+how to use NNE. The accompanying Matlab code can be found on the `GitHub <https://github.com/nnehome/nne-matlab>`_ page. These codes can be used to replicate the Monte Carlo results 
 from `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_.
 
 We describe the key functions to implement NNE. 
