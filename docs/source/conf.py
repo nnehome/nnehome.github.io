@@ -16,7 +16,8 @@ author = "Yanhao 'Max' Wei, Zhenling Jiang"
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
-    "sphinx_new_tab_link"
+    'sphinx_new_tab_link',
+    'sphinx_copybutton'
 ]
 
 templates_path = ['_templates']
