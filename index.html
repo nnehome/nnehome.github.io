@@ -292,48 +292,54 @@ document.write(`
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>This website provides a pre-trained estimator for consumer search model.</p>
-<p>The estimator is built as pNNE (pre-trained neural net estimator). The idea is to allocate the bulk of work to pre-training. So an end user can estimate the structural econometric model as easy as a reduced-form model.</p>
-<p>Below is a brief overview how to apply pNNE to your search data. Click “code” tab above for Matlab code files.</p>
+<p>This website describes the neural net estimator (NNE) to estimate structural models, as proposed
+in Wei and Jiang (2023). It provides a computationally-light alternative to simulated maximum likelihood
+or simulated method of moments. NNE is especially suitable for cases where many simulations are needed to
+evaluate likelihood/moment functions.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>The main function to execute estimation is <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code>, as shown below.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx)</span>
-</pre></div>
-</div>
-<p>The required inputs: (i) <code class="docutils literal notranslate"><span class="pre">nne</span></code> stores the trained neural net and some pre-defined settings, available from the file <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>, and (ii)  <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_index</span></code> store your data.</p>
-<p>The output: <code class="docutils literal notranslate"><span class="pre">result</span></code> is a table storing the parameter estimate of a standard consumer search model.</p>
-<p>Below shows an example. The total execution time is 0.78 sec on a laptop, including overheads such as some data sanity checks.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;  load(&#39;trained_nne.mat&#39;, &#39;nne&#39;)</span>
-<span class="go">&gt;&gt;  tic</span>
-<span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx);</span>
-<span class="go">toc</span>
-<span class="go">Elapsed time is 0.784314 seconds.</span>
-<span class="go">&gt;&gt; result</span>
-<span class="go">result = 8×2 table</span>
-<span class="go">    name           val</span>
-<span class="go"> ----------      -------</span>
-<span class="go"> &quot;\alpha_0&quot;      -6.4546</span>
-<span class="go"> &quot;\alpha_1&quot;     -0.11333</span>
-<span class="go"> &quot;\eta_0&quot;          5.929</span>
-<span class="go"> &quot;\eta_1&quot;      -0.048687</span>
-<span class="go"> &quot;\eta_2&quot;        0.22004</span>
-<span class="go"> &quot;\eta_3&quot;       0.052894</span>
-<span class="go"> &quot;\beta_1&quot;       0.25836</span>
-<span class="go"> &quot;\beta_2&quot;      -0.53811</span>
-</pre></div>
-</div>
-<p>The rest of this page gives more details on the search model, how to format data (<code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_index</span></code>), and how to get standard errors.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<section id="the-search-model">
-<h2>1) The search model<a class="headerlink" href="#the-search-model" title="Link to this heading">#</a></h2>
-<p>The econometric model to be estimated is a standard sequential search model. Each consumer faces J products (or options). She decides which options to search and which option to buy. Searching a product incurs a search cost but also reveals some utility for the product.</p>
-<p>A typical setting for the model is consumer search online, where a “consumer” is a “search session.” A consumer is shown a list of products. Clicking a product for more information is a search. After searching, the consumer may buy one product or an outside good. The list page usually shows some product attributes (e.g., review rating) that affect consumer utility for products. In addition, there may be some consumer attributes (e.g., past spending, visit time) that affect consumer outside utility. There may also be advertising attributes (e.g., ranking in the list) that affect search costs.</p>
-<p>There are three sets of parameters: <span class="math notranslate nohighlight">\(\beta\)</span> describes how product attributes affect utility,  <span class="math notranslate nohighlight">\(\eta\)</span> describes how consumer attributes affect outside utility, and <span class="math notranslate nohighlight">\(\alpha\)</span> describes how advertising attributes affect search costs.</p>
-<p>A free search is endowed, to accommodate most data where consumer searches at least once.</p>
+<section id="overview-of-nne">
+<h2>Overview of NNE<a class="headerlink" href="#overview-of-nne" title="Link to this heading">#</a></h2>
+<p>We write down a structural model: <span class="math notranslate nohighlight">\({y = g(x, ϵ; θ)}\)</span>. The goal of estimation is to obtain the parameter <span class="math notranslate nohighlight">\({θ}\)</span>
+after observing the covariates <span class="math notranslate nohighlight">\({x}\)</span> and outcome <span class="math notranslate nohighlight">\({y: {y,x} → θ}\)</span>.</p>
+<p>The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters.
+The graph below provides an overview of NNE.</p>
+<div class="math notranslate nohighlight" id="equation-neural-net-training">
+<span class="eqno">(1)<a class="headerlink" href="#equation-neural-net-training" title="Link to this equation">#</a></span>\[\begin{split}\begin{align*}
+\text{train a } \text{neural net } f(\cdot)
+\begin{cases}
+\boldsymbol{\theta}^{(1)} \xrightarrow{\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i}^{(1)};\boldsymbol{\theta}^{(1)})} &amp; \{\boldsymbol{y}_{i}^{(1)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(1)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(1)} \\
+\boldsymbol{\theta}^{(2)} &amp; \{\boldsymbol{y}_{i}^{(2)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(2)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(2)} \\
+\vdots &amp; \vdots \\
+\boldsymbol{\theta}^{(L)} &amp; \{\boldsymbol{y}_{i}^{(L)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(L)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(L)}
+\end{cases}
+\end{align*}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-neural-net-application">
+<span class="eqno">(2)<a class="headerlink" href="#equation-neural-net-application" title="Link to this equation">#</a></span>\[\begin{align*}
+\text{apply } f(\cdot) \text{on real data}
+\begin{cases}
+\{\underbrace{\boldsymbol{y}_{i},\boldsymbol{x}_{i}}_{\text{real data}}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m} \xrightarrow{\text{neural net}} \underbrace{\widehat{\boldsymbol{\theta}}}_{\text{estimate}}
+\end{cases}
+\end{align*}\]</div>
+<dl class="simple">
+<dt>Notation:</dt><dd><p><span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(\ell)}\)</span> drawn from a space <span class="math notranslate nohighlight">\(\Theta\)</span>;
+<span class="math notranslate nohighlight">\(\boldsymbol{y}_{i}=\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i};\boldsymbol{\theta})\)</span> a structural model;
+<span class="math notranslate nohighlight">\(\boldsymbol{y}^{(\ell)}\)</span> simulated outcome;
+<span class="math notranslate nohighlight">\(\boldsymbol{m}^{(\ell)}\)</span> simulated moments;
+<span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\theta}}\)</span> neural net prediction</p>
+</dd>
+</dl>
+<ol class="arabic simple">
+<li><p>We draw parameter values <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> uniformly from a parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>. Using the structural model, we can generate the outcome <span class="math notranslate nohighlight">\(y^{(l)}\)</span> under <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span>. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples where we can use to learn the mapping from data to the “correct” parameter values.</p></li>
+<li><p>To make training easier, we can summarize the data <span class="math notranslate nohighlight">\(\{y^{(l)}, x\}\)</span>  into data moments <span class="math notranslate nohighlight">\(m^{(l)}\)</span>.</p></li>
+<li><p>The neural net takes the data moments as input and predicts the parameter value underlying that dataset.</p></li>
+<li><p>Once the neural net is trained, we plug in the real data moments to obtain NNE estimates <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>.</p></li>
+</ol>
+<p>The neural net can output “standard errors” in addition to point estimates. We establish that this neural net estimator (NNE)
+converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large.
+Besides the benefit of light computational cost, NNE is also robust to redundant moments, which is beneficial for cases where
+there lacks clear guidance on moment choices from a theoretical perspective.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>

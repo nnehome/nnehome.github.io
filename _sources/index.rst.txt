@@ -20,59 +20,66 @@ Welcome to NNE
 
 |
 
-This website provides a pre-trained estimator for consumer search model.
-
-The estimator is built as pNNE (pre-trained neural net estimator). The idea is to allocate the bulk of work to pre-training. So an end user can estimate the structural econometric model as easy as a reduced-form model.
-
-Below is a brief overview how to apply pNNE to your search data. Click "code" tab above for Matlab code files.
-
-|
-
-The main function to execute estimation is ``nne_estimate.m``, as shown below.
-
-.. code-block:: console
-
-   result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx)
-
-The required inputs: (i) ``nne`` stores the trained neural net and some pre-defined settings, available from the file ``trained_nne.mat``, and (ii)  ``Xp``, ``Xa``, ``Xc``, ``Y``, and ``consumer_index`` store your data.
-
-The output: ``result`` is a table storing the parameter estimate of a standard consumer search model.
-
-Below shows an example. The total execution time is 0.78 sec on a laptop, including overheads such as some data sanity checks.
-
-.. code-block:: console
-
-   >>  load('trained_nne.mat', 'nne')
-   >>  tic 
-   result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx);
-   toc
-   Elapsed time is 0.784314 seconds.
-   >> result
-   result = 8×2 table
-       name           val            
-    ----------      -------
-    "\alpha_0"      -6.4546
-    "\alpha_1"     -0.11333
-    "\eta_0"          5.929
-    "\eta_1"      -0.048687
-    "\eta_2"        0.22004
-    "\eta_3"       0.052894
-    "\beta_1"       0.25836
-    "\beta_2"      -0.53811
-
-The rest of this page gives more details on the search model, how to format data (``Xp``, ``Xa``, ``Xc``, ``Y``, and ``consumer_index``), and how to get standard errors.
+This website describes the neural net estimator (NNE) to estimate structural models, as proposed 
+in Wei and Jiang (2023). It provides a computationally-light alternative to simulated maximum likelihood 
+or simulated method of moments. NNE is especially suitable for cases where many simulations are needed to 
+evaluate likelihood/moment functions.
 
 |
 
-1) The search model
--------------------
-The econometric model to be estimated is a standard sequential search model. Each consumer faces J products (or options). She decides which options to search and which option to buy. Searching a product incurs a search cost but also reveals some utility for the product.
+Overview of NNE
+---------------
+We write down a structural model: :math:`{y = g(x, ϵ; θ)}`. The goal of estimation is to obtain the parameter :math:`{θ}` 
+after observing the covariates :math:`{x}` and outcome :math:`{y: {y,x} → θ}`.
 
-A typical setting for the model is consumer search online, where a "consumer" is a "search session." A consumer is shown a list of products. Clicking a product for more information is a search. After searching, the consumer may buy one product or an outside good. The list page usually shows some product attributes (e.g., review rating) that affect consumer utility for products. In addition, there may be some consumer attributes (e.g., past spending, visit time) that affect consumer outside utility. There may also be advertising attributes (e.g., ranking in the list) that affect search costs. 
+The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters. 
+The graph below provides an overview of NNE.
 
-There are three sets of parameters: :math:`\beta` describes how product attributes affect utility,  :math:`\eta` describes how consumer attributes affect outside utility, and :math:`\alpha` describes how advertising attributes affect search costs.
+.. math::
+   :label: neural-net-training
 
-A free search is endowed, to accommodate most data where consumer searches at least once.
+   \begin{align*}
+   \text{train a } \text{neural net } f(\cdot)
+   \begin{cases}
+   \boldsymbol{\theta}^{(1)} \xrightarrow{\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i}^{(1)};\boldsymbol{\theta}^{(1)})} & \{\boldsymbol{y}_{i}^{(1)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(1)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(1)} \\
+   \boldsymbol{\theta}^{(2)} & \{\boldsymbol{y}_{i}^{(2)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(2)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(2)} \\
+   \vdots & \vdots \\
+   \boldsymbol{\theta}^{(L)} & \{\boldsymbol{y}_{i}^{(L)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(L)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(L)}
+   \end{cases}
+   \end{align*}
+
+.. math::
+   :label: neural-net-application
+
+   \begin{align*}
+   \text{apply } f(\cdot) \text{on real data}
+   \begin{cases}
+   \{\underbrace{\boldsymbol{y}_{i},\boldsymbol{x}_{i}}_{\text{real data}}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m} \xrightarrow{\text{neural net}} \underbrace{\widehat{\boldsymbol{\theta}}}_{\text{estimate}}
+   \end{cases}
+   \end{align*}
+
+Notation:
+ :math:`\boldsymbol{\theta}^{(\ell)}` drawn from a space :math:`\Theta`;
+ :math:`\boldsymbol{y}_{i}=\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i};\boldsymbol{\theta})` a structural model;
+ :math:`\boldsymbol{y}^{(\ell)}` simulated outcome;
+ :math:`\boldsymbol{m}^{(\ell)}` simulated moments;
+ :math:`\widehat{\boldsymbol{\theta}}` neural net prediction
+
+
+
+
+1. We draw parameter values :math:`\theta^{(l)}` uniformly from a parameter space :math:`\Theta`. Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples where we can use to learn the mapping from data to the "correct" parameter values.
+
+2. To make training easier, we can summarize the data :math:`\{y^{(l)}, x\}`  into data moments :math:`m^{(l)}`.
+
+3. The neural net takes the data moments as input and predicts the parameter value underlying that dataset.
+
+4. Once the neural net is trained, we plug in the real data moments to obtain NNE estimates :math:`\hat{\theta}`.
+
+The neural net can output "standard errors" in addition to point estimates. We establish that this neural net estimator (NNE)
+converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large. 
+Besides the benefit of light computational cost, NNE is also robust to redundant moments, which is beneficial for cases where 
+there lacks clear guidance on moment choices from a theoretical perspective. 
 
 |
 
