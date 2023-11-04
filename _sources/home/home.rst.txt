@@ -9,138 +9,275 @@ Welcome to NNE
 
 |
 
-This website provides a pre-trained estimator for consumer search model.
-
-The estimator is built as pNNE (pre-trained neural net estimator). The idea is to allocate the bulk of work to pre-training. So an end user can estimate the structural econometric model as easy as a reduced-form model.
-
-Below is a brief overview how to apply pNNE to your search data. Click "code" tab above for Matlab code files. 
-
-|
-
-The main function to execute estimation is ``nne_estimate.m``, as shown below.
-
-.. code-block:: console
-
-   result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx)
-
-The required inputs: (i) ``nne`` stores the trained neural net and some pre-defined settings, available from the file ``trained_nne.mat``, and (ii)  ``Xp``, ``Xa``, ``Xc``, ``Y``, and ``consumer_index`` store your data.
-
-The output: ``result`` is a table storing the parameter estimate of a standard consumer search model.
-
-Below shows an example. The total execution time is 0.78 sec on a laptop, including overheads such as some data sanity checks.
-
-.. code-block:: console
-
-   >>  load('trained_nne.mat', 'nne')
-   >>  tic 
-   result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx);
-   toc
-   Elapsed time is 0.784314 seconds.
-   >> result
-   result = 8×2 table
-       name           val            
-    ----------      -------
-    "\alpha_0"      -6.4546
-    "\alpha_1"     -0.11333
-    "\eta_0"          5.929
-    "\eta_1"      -0.048687
-    "\eta_2"        0.22004
-    "\eta_3"       0.052894
-    "\beta_1"       0.25836
-    "\beta_2"      -0.53811
-
-The rest of this page gives more details on the search model, how to format data (``Xp``, ``Xa``, ``Xc``, ``Y``, and ``consumer_index``), and how to get standard errors.
+This website describes the neural net estimator (NNE) to estimate structural models, as proposed 
+in Wei and Jiang (2023). It provides a computationally-light alternative to simulated maximum likelihood 
+or simulated method of moments. NNE is especially suitable for cases where many simulations are needed to 
+evaluate likelihood/moment functions.
 
 |
 
-1) The search model
--------------------
-The econometric model to be estimated is a standard sequential search model. Each consumer faces J products (or options). She decides which options to search and which option to buy. Searching a product incurs a search cost but also reveals some utility for the product.
+Overview of NNE
+---------------
+We write down a structural model: ``y = g(x, ϵ; θ)``. The goal of estimation is to obtain the parameter :math:`{θ}` 
+after observing the covariates :math:`{x}` and outcome ``y: {y,x} → θ``.
 
-A typical setting for the model is consumer search online, where a "consumer" is a "search session." A consumer is shown a list of products. Clicking a product for more information is a search. After searching, the consumer may buy one product or an outside good. The list page usually shows some product attributes (e.g., review rating) that affect consumer utility for products. In addition, there may be some consumer attributes (e.g., past spending, visit time) that affect consumer outside utility. There may also be advertising attributes (e.g., ranking in the list) that affect search costs. 
+The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters. 
+The graph below provides an overview of NNE.
 
-There are three sets of parameters: :math:`\beta` describes how product attributes affect utility,  :math:`\eta` describes how consumer attributes affect outside utility, and :math:`\alpha` describes how advertising attributes affect search costs.
+.. math::
+   :label: neural-net-training
 
-A free search is endowed, to accommodate most data where consumer searches at least once.
+   \begin{align*}
+   \text{train a neural net } f(\cdot) \quad
+   \begin{cases}
+   \boldsymbol{\theta}^{(1)} \xrightarrow{\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i}^{(1)};\boldsymbol{\theta}^{(1)})} & \{\boldsymbol{y}_{i}^{(1)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(1)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(1)} \\
+   \boldsymbol{\theta}^{(2)} \xrightarrow{\hspace{6em}} & \{\boldsymbol{y}_{i}^{(2)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\hspace{4em}} \boldsymbol{m}^{(2)} \xrightarrow{\hspace{4.3em}} \widehat{\boldsymbol{\theta}}^{(2)} \\
+   \vdots & \vdots \\
+   \boldsymbol{\theta}^{(L)} \xrightarrow{\hspace{6em}} & \{\boldsymbol{y}_{i}^{(L)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\hspace{4em}} \boldsymbol{m}^{(L)} \xrightarrow{\hspace{4em}} \widehat{\boldsymbol{\theta}}^{(L)}
+   \end{cases}
+   \end{align*}
 
-|
+.. math::
+   :label: neural-net-application
 
-2) Data format
------------------
+   \begin{align*}
+   \text{apply } f(\cdot) \text{on real data} \quad \quad
+   \begin{cases}
+   \{\underbrace{\boldsymbol{y}_{i},\boldsymbol{x}_{i}}_{\text{real data}}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m} \xrightarrow{\text{neural net}} \underbrace{\widehat{\boldsymbol{\theta}}}_{\text{estimate}}
+   \end{cases}
+   \end{align*}
 
-Oraganize data into five arrays: ``Xp``, ``Xa``, ``Xc``, ``Y``, and ``consumer_index``. Respectively: ``Xp`` stores product attributes; ``Xa`` stores advertising attributes; and ``Xc`` stores consumer attributes; ``Y`` stores search and purchase outcomes; ``consumer_index`` identifies consumers.
+Notation:
+ :math:`\boldsymbol{\theta}^{(\ell)}` drawn from a space :math:`\Theta`;
+ :math:`\boldsymbol{y}_{i}=\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i};\boldsymbol{\theta})` a structural model;
+ :math:`\boldsymbol{y}^{(\ell)}` simulated outcome;
+ :math:`\boldsymbol{m}^{(\ell)}` simulated moments;
+ :math:`\widehat{\boldsymbol{\theta}}` neural net prediction
 
-In the example below, there are n=10,000 consumers (or search sessions) and each consumer has J=20 options for search. There are 2 product attributes, 1 advertising attribute, and 3 consumer attributes.
 
-.. code-block:: console
 
-   >>  whos Xp Xa Xc Y consumer_idx
 
-       Name               Size             Bytes         Class      Attributes
+1. We draw parameter values :math:`\theta^{(l)}` uniformly from a parameter space :math:`\Theta`. Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples where we can use to learn the mapping from data to the "correct" parameter values.
 
-       Xa                200000x1         1600000        double 
-       Xc                 10000x3          240000        double 
-       Xp                200000x2         3200000        double              
-       consumer_idx      200000x1         1600000        double              
-       Y                 200000x2         3200000        double 
+2. To make training easier, we can summarize the data :math:`\{y^{(l)}, x\}`  into data moments :math:`m^{(l)}`.
 
-Below previews the first rows of  ``Xp``, ``Xa``, ``Y``, and ``consumer_index``. Variable ``Y`` has two columns; the 1st column indicates search and 2nd column indicates purchase. We see that the first consumer searched option 1, 3, 4, and 8. She bought option 3.
+3. The neural net takes the data moments as input and predicts the parameter value underlying that dataset.
 
-``Xc``, not displayed here, has only 10,000 rows, same as the number of consumers.
+4. Once the neural net is trained, we plug in the real data moments to obtain NNE estimates :math:`\hat{\theta}`.
 
-If data did not feature advertising attributes, we'd let ``Xa`` be 200000 by 0 (i.e., empty). If no consumer attributes, we'd let ``Xc`` be 10000 by 0.
-
-.. code-block:: console
-
-   >>  table(consumer_idx, Y, Xp, Xa)
-   ans = 200000×4 table
-    consumer_idx      Y             Xp          Xa
-    ____________    ______    ______________    __
-           1        1    0    4      0.67743    0 
-           1        0    0    5       1.1052    0 
-           1        1    1    1     -0.24542    0 
-           1        1    0    5      0.78452    0 
-           1        0    0    4      0.10519    0 
-           1        0    0    5     0.068463    0 
-           1        0    0    4      0.35691    1 
-           1        1    0    5      0.61307    0 
-           1        0    0    3       1.1809    1 
-           1        0    0    5      0.91391    0 
-           1        0    0    5     0.054537    0 
-           1        0    0    3       1.0015    0 
-           1        0    0    5      0.73938    0 
-           1        0    0    3    -0.020808    0 
-           1        0    0    5      0.23587    0 
-           1        0    0    5      0.43236    1 
-           1        0    0    5    -0.040968    0 
-           1        0    0    5       0.4916    0 
-           1        0    0    2      0.96498    0 
-           1        0    0    2      0.46767    0 
-           2        1    0    3      0.72159    1 
-           2        0    0    5     -0.39847    0 
-           2        0    0    5      0.73669    1 
-         :            :             :           : 
+The neural net can output "standard errors" in addition to point estimates. We establish that this neural net estimator (NNE)
+converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large. 
+Besides the benefit of light computational cost, NNE is also robust to redundant moments, which is beneficial for cases where 
+there lacks clear guidance on moment choices from a theoretical perspective. 
 
 |
 
-3) Bootstrap standard errors
-----------------------------
-The nne_estimate function has standard error calculation built in. Simply add ``"se = true"`` option as shown below. The output will include an additional column of standard errors. The calculation bootstraps 50 samples so execution time will be longer, but it can take advantage of parallel computing toolbox if installed.
+Applying NNE
+---------------
 
-.. code-block:: console
+While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate 
+how to use NNE. The accompanying Matlab code can be found on the Code page. These codes can be used to replicate the Monte Carlo results 
+from Wei and Jiang (2023).
 
-    >> result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx, se = true);
-    >> result
-    result = 8×3 table
+We describe the key functions to implement NNE. 
 
-       name          val          se   
-    __________    _________    ________
-    "\alpha_0"      -6.4546    0.071848
-    "\alpha_1"     -0.11333    0.044997
-    "\eta_0"          5.929    0.061318
-    "\eta_1"      -0.048687    0.011513
-    "\eta_2"        0.22004    0.029282
-    "\eta_3"       0.052894    0.023437
-    "\beta_1"       0.25836    0.004951
-    "\beta_2"      -0.53811    0.011032
+Generate training datasets
+''''''''''''''''''''''''''
 
+``nne_gen.m``: This function implements steps (1) and (2) from above.
+
+
+.. code-block:: matlab
+    :class: scrollable-code-block
+
+    %% set up
+
+    clear; 
+    seed = 1; 
+    type = 4; % denotes the type of moments in the Moments() function
+
+    tic;
+
+    rng(seed)
+
+    L = 10000; % number of simulations
+
+    set_up % generate a search dataset, save in data.mat
+
+    load('data.mat')
+
+    % table with (normalized) search cost and reservation utility
+    curve = importdata('tableData.csv'); 
+
+    %% simulate
+
+    input = cell(L,1);
+    label = cell(L,1);
+
+    for l = 1:L
+
+        theta = unifrnd(lb, ub);
+
+        [yd, yt] = gen_seq_search(pos, z, consumer_id, theta, ...
+            randn(length(consumer_id),1), randn(length(unique(consumer_id)),1), curve);
+
+        % keep non-outlier informative draws 
+        [buy_rate, search_rate] = Statistics(yd, yt, pos, consumer_id, false);
+
+        if buy_rate > 0 && buy_rate < 1 && search_rate > 0 && search_rate < 1
+
+            input{l} = Moments(pos, z, consumer_id, yd, yt, type);
+            label{l} = theta;
+
+        end
+
+    end
+
+    % remove empty cells (outliers)
+    input = input(~cellfun('isempty',input));
+    label = label(~cellfun('isempty',label));
+
+    input = cell2mat(input);
+    label = cell2mat(label);
+
+    %% save 
+
+    n = size(input,1);
+
+    input_train = input(1:floor(n*0.9),:);
+    label_train = label(1:floor(n*0.9),:);
+
+    input_test = input(floor(n*0.9)+1:n,:);
+    label_test = label(floor(n*0.9)+1:n,:);
+
+    %% generate simulated real data (for Monte Carlo)
+
+    [yd, yt] = gen_seq_search(pos, z, consumer_id, theta_true, ...
+        randn(length(consumer_id),1), randn(length(unique(consumer_id)),1), curve);
+
+    input_sim_real = Moments(pos, z, consumer_id, yd, yt, type);
+    label_sim_real = theta_true;
+
+    %% save training set and seed
+    toc;
+
+    time_gen = toc/60;
+
+    save('training_set.mat', 'input_train', 'label_train', 'input_test', 'label_test', ...
+                            'input_sim_real', 'label_sim_real', 'label_name', ß'time_gen')
+
+    state = rng;
+    save('RNGstate.mat','state')
+
+
+Several key steps include:
+
+- Draw :math:`\theta^{(l)}` ``theta = unifrnd(lb, ub)``.
+- Simulate outcome :math:`y^{(l)}` with function ``gen_seq_search()``, which takes parameter :math:`\theta^{(l)}` and error draw :math:`\epsilon^{(l)}`. This function is specific to sequential search and can be changed to other structural models.
+- Summarize the data :math:`\{y^{(l)},x\}` into data moments :math:`m^{(l)}` with function ``Moments()``. It can be adapted to generate moments in other applications.
+- We use 90% as training data and the rest 10% as testing data. The inputs are the moments while the labels are the corresponding correct parameters.
+- For the Monte Carlo estimation, we also generate a simulated “real” data under assumed parameter ``theta_true``. The simulated “real” data moments are calculated using function ``Moments()``.
+
+
+Train a neural network
+''''''''''''''''''''''
+
+``nne_train.m``: This function implements steps (3) and (4) from above.
+
+.. code-block:: matlab
+    :class: scrollable-code-block
+
+    %% settings
+
+    clear; 
+    L = 10000; 
+    num_nodes=64;
+    tic;
+
+    load('RNGstate.mat')
+    rng(state)
+
+    learn_standard_error = true;
+    batch_size = 500;
+
+    %% read data
+
+    load('training_set.mat')
+
+    L_train = size(input_train, 1);
+    L_test  = size(input_test, 1);
+
+    dim_in  = size(input_train, 2);
+    K = size(label_train, 2);
+
+    if learn_standard_error
+        dim_out = 2*K;        
+
+        label_train = [label_train, zeros(L_train, K)];
+        label_test  = [label_test,  zeros(L_test, K)]; 
+
+    else
+        dim_out = K;
+    end
+
+
+    %% training
+
+    opts = trainingOptions( 'adam', ...
+                            'ExecutionEnvironment','cpu',...
+                            'LearnRateSchedule','piecewise', ...
+                            'LearnRateDropFactor', 0.1, ...
+                            'LearnRateDropPeriod', 200, ...
+                            'InitialLearnRate' , 0.01, ...
+                            'GradientThreshold', 1,...
+                            'MaxEpochs', 300, ...
+                            'Shuffle','every-epoch',...
+                            'MiniBatchSize', batch_size,...
+                            'L2Regularization', 0, ...
+                            'Plots','none', ...
+                            'Verbose', true, ...
+                            'ValidationData', {input_test, label_test}, ...
+                            'ValidationFrequency', 100);
+    
+
+    layers = [
+                featureInputLayer(dim_in, 'Normalization', 'rescale-symmetric')
+                fullyConnectedLayer(num_nodes)
+                reluLayer
+                fullyConnectedLayer(dim_out)
+                normalRegressionLayer('simple', ~ learn_standard_error)
+             ];
+
+    [net, info] = trainNetwork(input_train, label_train, layers, opts);
+
+    %% summary
+
+    err = PredSummary(input_test, label_test, label_name, net, 'figure', 0, 'table', 1);  
+
+    %% obtain NNE estimate
+
+    temp = predict(net, input_sim_real, 'acceleration', 'none');
+    theta = temp(1:K);
+
+    if learn_standard_error
+        se = PositiveTransform(temp(K+1:2*K));
+    end
+
+    toc;
+    time_train = toc/60;
+
+    out = [theta, se, L, info.FinalValidationLoss, time_gen, time_train];
+
+    csvwrite(sprintf('theta_L%d_nodes%d.csv', L, num_nodes), out);
+
+Several key steps include:
+
+- We can ask NNE to output standard errors by setting ``learn_standard_error = true;``. It will double the dimensionality of the NNE output by including both the point estimates and the standard errors.
+  
+- Train the neural net with function: ``[net, info] = trainNetwork(input_train, label_train, layers, opts);``
+
+  - ``layers`` defines the network structure (e.g., number of layers and nodes)
+  - ``opts`` defines the training specification (e.g., number of epochs and batch size)
+  - The loss function is defined in ``normalRegressionLayer``, which depends on whether neural net needs to learn standard errors.
+
+- For the Monte Carlo estimation, obtain estimates for the simulated “real” data with function: ``predict(net, input_sim_real, 'acceleration', 'none');`` where ``net`` denotes the trained neural network.

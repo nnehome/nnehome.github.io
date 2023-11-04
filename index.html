@@ -31,7 +31,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=b4b06768" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=36b58c3a" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -157,13 +157,6 @@
                       </a>
                     </li>
                 
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="contact/contact.html">
-                         Contact
-                      </a>
-                    </li>
-                
   </ul>
 </nav></div>
       
@@ -226,13 +219,6 @@ document.write(`
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="code/code.html">
                          Code
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="contact/contact.html">
-                         Contact
                       </a>
                     </li>
                 
@@ -301,23 +287,23 @@ evaluate likelihood/moment functions.</p>
 </div>
 <section id="overview-of-nne">
 <h2>Overview of NNE<a class="headerlink" href="#overview-of-nne" title="Link to this heading">#</a></h2>
-<p>We write down a structural model: <span class="math notranslate nohighlight">\({y = g(x, ϵ; θ)}\)</span>. The goal of estimation is to obtain the parameter <span class="math notranslate nohighlight">\({θ}\)</span>
-after observing the covariates <span class="math notranslate nohighlight">\({x}\)</span> and outcome <span class="math notranslate nohighlight">\({y: {y,x} → θ}\)</span>.</p>
+<p>We write down a structural model: <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">g(x,</span> <span class="pre">ϵ;</span> <span class="pre">θ)</span></code>. The goal of estimation is to obtain the parameter <span class="math notranslate nohighlight">\({θ}\)</span>
+after observing the covariates <span class="math notranslate nohighlight">\({x}\)</span> and outcome <code class="docutils literal notranslate"><span class="pre">y:</span> <span class="pre">{y,x}</span> <span class="pre">→</span> <span class="pre">θ</span></code>.</p>
 <p>The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters.
 The graph below provides an overview of NNE.</p>
 <div class="math notranslate nohighlight" id="equation-neural-net-training">
 <span class="eqno">(1)<a class="headerlink" href="#equation-neural-net-training" title="Link to this equation">#</a></span>\[\begin{split}\begin{align*}
-\text{train a } \text{neural net } f(\cdot)
+\text{train a neural net } f(\cdot) \quad
 \begin{cases}
 \boldsymbol{\theta}^{(1)} \xrightarrow{\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i}^{(1)};\boldsymbol{\theta}^{(1)})} &amp; \{\boldsymbol{y}_{i}^{(1)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(1)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(1)} \\
-\boldsymbol{\theta}^{(2)} &amp; \{\boldsymbol{y}_{i}^{(2)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(2)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(2)} \\
+\boldsymbol{\theta}^{(2)} \xrightarrow{\hspace{6em}} &amp; \{\boldsymbol{y}_{i}^{(2)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\hspace{4em}} \boldsymbol{m}^{(2)} \xrightarrow{\hspace{4.3em}} \widehat{\boldsymbol{\theta}}^{(2)} \\
 \vdots &amp; \vdots \\
-\boldsymbol{\theta}^{(L)} &amp; \{\boldsymbol{y}_{i}^{(L)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(L)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(L)}
+\boldsymbol{\theta}^{(L)} \xrightarrow{\hspace{6em}} &amp; \{\boldsymbol{y}_{i}^{(L)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\hspace{4em}} \boldsymbol{m}^{(L)} \xrightarrow{\hspace{4em}} \widehat{\boldsymbol{\theta}}^{(L)}
 \end{cases}
 \end{align*}\end{split}\]</div>
 <div class="math notranslate nohighlight" id="equation-neural-net-application">
 <span class="eqno">(2)<a class="headerlink" href="#equation-neural-net-application" title="Link to this equation">#</a></span>\[\begin{align*}
-\text{apply } f(\cdot) \text{on real data}
+\text{apply } f(\cdot) \text{on real data} \quad \quad
 \begin{cases}
 \{\underbrace{\boldsymbol{y}_{i},\boldsymbol{x}_{i}}_{\text{real data}}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m} \xrightarrow{\text{neural net}} \underbrace{\widehat{\boldsymbol{\theta}}}_{\text{estimate}}
 \end{cases}
@@ -344,77 +330,204 @@ there lacks clear guidance on moment choices from a theoretical perspective.</p>
 <div class="line"><br /></div>
 </div>
 </section>
-<section id="data-format">
-<h2>2) Data format<a class="headerlink" href="#data-format" title="Link to this heading">#</a></h2>
-<p>Oraganize data into five arrays: <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_index</span></code>. Respectively: <code class="docutils literal notranslate"><span class="pre">Xp</span></code> stores product attributes; <code class="docutils literal notranslate"><span class="pre">Xa</span></code> stores advertising attributes; and <code class="docutils literal notranslate"><span class="pre">Xc</span></code> stores consumer attributes; <code class="docutils literal notranslate"><span class="pre">Y</span></code> stores search and purchase outcomes; <code class="docutils literal notranslate"><span class="pre">consumer_index</span></code> identifies consumers.</p>
-<p>In the example below, there are n=10,000 consumers (or search sessions) and each consumer has J=20 options for search. There are 2 product attributes, 1 advertising attribute, and 3 consumer attributes.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;  whos Xp Xa Xc Y consumer_idx</span>
+<section id="applying-nne">
+<h2>Applying NNE<a class="headerlink" href="#applying-nne" title="Link to this heading">#</a></h2>
+<p>While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate
+how to use NNE. The accompanying Matlab code can be found on the Code page. These codes can be used to replicate the Monte Carlo results
+from Wei and Jiang (2023).</p>
+<p>We describe the key functions to implement NNE.</p>
+<section id="generate-training-datasets">
+<h3>Generate training datasets<a class="headerlink" href="#generate-training-datasets" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>: This function implements steps (1) and (2) from above.</p>
+<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
 
-<span class="go">    Name               Size             Bytes         Class      Attributes</span>
+<span class="nb">clear</span><span class="p">;</span>
+<span class="n">seed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="nb">type</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c">% denotes the type of moments in the Moments() function</span>
 
-<span class="go">    Xa                200000x1         1600000        double</span>
-<span class="go">    Xc                 10000x3          240000        double</span>
-<span class="go">    Xp                200000x2         3200000        double</span>
-<span class="go">    consumer_idx      200000x1         1600000        double</span>
-<span class="go">    Y                 200000x2         3200000        double</span>
+<span class="nb">tic</span><span class="p">;</span>
+
+<span class="nb">rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span><span class="w"> </span><span class="c">% number of simulations</span>
+
+<span class="n">set_up</span><span class="w"> </span><span class="s">%</span><span class="w"> </span><span class="s">generate</span><span class="w"> </span><span class="s">a</span><span class="w"> </span><span class="s">search</span><span class="w"> </span><span class="s">dataset,</span><span class="w"> </span><span class="s">save</span><span class="w"> </span><span class="s">in</span><span class="w"> </span><span class="s">data.mat</span>
+
+<span class="nb">load</span><span class="p">(</span><span class="s">&#39;data.mat&#39;</span><span class="p">)</span>
+
+<span class="c">% table with (normalized) search cost and reservation utility</span>
+<span class="n">curve</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">importdata</span><span class="p">(</span><span class="s">&#39;tableData.csv&#39;</span><span class="p">);</span>
+
+<span class="c">%% simulate</span>
+
+<span class="nb">input</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cell</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cell</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">L</span>
+
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">unifrnd</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span><span class="w"> </span><span class="n">ub</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">[</span><span class="n">yd</span><span class="p">,</span><span class="w"> </span><span class="n">yt</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">gen_seq_search</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="nb">randn</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">consumer_id</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="nb">randn</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="nb">unique</span><span class="p">(</span><span class="n">consumer_id</span><span class="p">)),</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">curve</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c">% keep non-outlier informative draws</span>
+<span class="w">    </span><span class="p">[</span><span class="n">buy_rate</span><span class="p">,</span><span class="w"> </span><span class="n">search_rate</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Statistics</span><span class="p">(</span><span class="n">yd</span><span class="p">,</span><span class="w"> </span><span class="n">yt</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">buy_rate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">buy_rate</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">search_rate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">search_rate</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="w">        </span><span class="nb">input</span><span class="p">{</span><span class="n">l</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Moments</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">yd</span><span class="p">,</span><span class="w"> </span><span class="n">yt</span><span class="p">,</span><span class="w"> </span><span class="nb">type</span><span class="p">);</span>
+<span class="w">        </span><span class="n">label</span><span class="p">{</span><span class="n">l</span><span class="p">}</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="c">% remove empty cells (outliers)</span>
+<span class="nb">input</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="o">~</span><span class="nb">cellfun</span><span class="p">(</span><span class="s">&#39;isempty&#39;</span><span class="p">,</span><span class="nb">input</span><span class="p">));</span>
+<span class="n">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">label</span><span class="p">(</span><span class="o">~</span><span class="nb">cellfun</span><span class="p">(</span><span class="s">&#39;isempty&#39;</span><span class="p">,</span><span class="n">label</span><span class="p">));</span>
+
+<span class="nb">input</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cell2mat</span><span class="p">(</span><span class="nb">input</span><span class="p">);</span>
+<span class="n">label</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cell2mat</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
+
+<span class="c">%% save</span>
+
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">input_train</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">floor</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mf">0.9</span><span class="p">),:);</span>
+<span class="n">label_train</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">label</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">floor</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mf">0.9</span><span class="p">),:);</span>
+
+<span class="n">input_test</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">input</span><span class="p">(</span><span class="nb">floor</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,:);</span>
+<span class="n">label_test</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">label</span><span class="p">(</span><span class="nb">floor</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mf">0.9</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,:);</span>
+
+<span class="c">%% generate simulated real data (for Monte Carlo)</span>
+
+<span class="p">[</span><span class="n">yd</span><span class="p">,</span><span class="w"> </span><span class="n">yt</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">gen_seq_search</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">theta_true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">    </span><span class="nb">randn</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">consumer_id</span><span class="p">),</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="nb">randn</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="nb">unique</span><span class="p">(</span><span class="n">consumer_id</span><span class="p">)),</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">curve</span><span class="p">);</span>
+
+<span class="n">input_sim_real</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Moments</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">yd</span><span class="p">,</span><span class="w"> </span><span class="n">yt</span><span class="p">,</span><span class="w"> </span><span class="nb">type</span><span class="p">);</span>
+<span class="n">label_sim_real</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">theta_true</span><span class="p">;</span>
+
+<span class="c">%% save training set and seed</span>
+<span class="nb">toc</span><span class="p">;</span>
+
+<span class="n">time_gen</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">toc</span><span class="o">/</span><span class="mi">60</span><span class="p">;</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="s">&#39;training_set.mat&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;input_train&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;label_train&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;input_test&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;label_test&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;input_sim_real&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;label_sim_real&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;label_name&#39;</span><span class="p">,</span><span class="w"> </span>ß<span class="o">&#39;</span><span class="n">time_gen</span><span class="o">&#39;</span><span class="p">)</span>
+
+<span class="n">state</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rng</span><span class="p">;</span>
+<span class="nb">save</span><span class="p">(</span><span class="s">&#39;RNGstate.mat&#39;</span><span class="p">,</span><span class="s">&#39;state&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Below previews the first rows of  <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_index</span></code>. Variable <code class="docutils literal notranslate"><span class="pre">Y</span></code> has two columns; the 1st column indicates search and 2nd column indicates purchase. We see that the first consumer searched option 1, 3, 4, and 8. She bought option 3.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>, not displayed here, has only 10,000 rows, same as the number of consumers.</p>
-<p>If data did not feature advertising attributes, we’d let <code class="docutils literal notranslate"><span class="pre">Xa</span></code> be 200000 by 0 (i.e., empty). If no consumer attributes, we’d let <code class="docutils literal notranslate"><span class="pre">Xc</span></code> be 10000 by 0.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;  table(consumer_idx, Y, Xp, Xa)</span>
-<span class="go">ans = 200000×4 table</span>
-<span class="go"> consumer_idx      Y             Xp          Xa</span>
-<span class="go"> ____________    ______    ______________    __</span>
-<span class="go">        1        1    0    4      0.67743    0</span>
-<span class="go">        1        0    0    5       1.1052    0</span>
-<span class="go">        1        1    1    1     -0.24542    0</span>
-<span class="go">        1        1    0    5      0.78452    0</span>
-<span class="go">        1        0    0    4      0.10519    0</span>
-<span class="go">        1        0    0    5     0.068463    0</span>
-<span class="go">        1        0    0    4      0.35691    1</span>
-<span class="go">        1        1    0    5      0.61307    0</span>
-<span class="go">        1        0    0    3       1.1809    1</span>
-<span class="go">        1        0    0    5      0.91391    0</span>
-<span class="go">        1        0    0    5     0.054537    0</span>
-<span class="go">        1        0    0    3       1.0015    0</span>
-<span class="go">        1        0    0    5      0.73938    0</span>
-<span class="go">        1        0    0    3    -0.020808    0</span>
-<span class="go">        1        0    0    5      0.23587    0</span>
-<span class="go">        1        0    0    5      0.43236    1</span>
-<span class="go">        1        0    0    5    -0.040968    0</span>
-<span class="go">        1        0    0    5       0.4916    0</span>
-<span class="go">        1        0    0    2      0.96498    0</span>
-<span class="go">        1        0    0    2      0.46767    0</span>
-<span class="go">        2        1    0    3      0.72159    1</span>
-<span class="go">        2        0    0    5     -0.39847    0</span>
-<span class="go">        2        0    0    5      0.73669    1</span>
-<span class="go">      :            :             :           :</span>
-</pre></div>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
+<p>Several key steps include:</p>
+<ul class="simple">
+<li><p>Draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">=</span> <span class="pre">unifrnd(lb,</span> <span class="pre">ub)</span></code>.</p></li>
+<li><p>Simulate outcome <span class="math notranslate nohighlight">\(y^{(l)}\)</span> with function <code class="docutils literal notranslate"><span class="pre">gen_seq_search()</span></code>, which takes parameter <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> and error draw <span class="math notranslate nohighlight">\(\epsilon^{(l)}\)</span>. This function is specific to sequential search and can be changed to other structural models.</p></li>
+<li><p>Summarize the data <span class="math notranslate nohighlight">\(\{y^{(l)},x\}\)</span> into data moments <span class="math notranslate nohighlight">\(m^{(l)}\)</span> with function <code class="docutils literal notranslate"><span class="pre">Moments()</span></code>. It can be adapted to generate moments in other applications.</p></li>
+<li><p>We use 90% as training data and the rest 10% as testing data. The inputs are the moments while the labels are the corresponding correct parameters.</p></li>
+<li><p>For the Monte Carlo estimation, we also generate a simulated “real” data under assumed parameter <code class="docutils literal notranslate"><span class="pre">theta_true</span></code>. The simulated “real” data moments are calculated using function <code class="docutils literal notranslate"><span class="pre">Moments()</span></code>.</p></li>
+</ul>
 </section>
-<section id="bootstrap-standard-errors">
-<h2>3) Bootstrap standard errors<a class="headerlink" href="#bootstrap-standard-errors" title="Link to this heading">#</a></h2>
-<p>The nne_estimate function has standard error calculation built in. Simply add <code class="docutils literal notranslate"><span class="pre">&quot;se</span> <span class="pre">=</span> <span class="pre">true&quot;</span></code> option as shown below. The output will include an additional column of standard errors. The calculation bootstraps 50 samples so execution time will be longer, but it can take advantage of parallel computing toolbox if installed.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx, se = true);</span>
-<span class="go">&gt;&gt; result</span>
-<span class="go">result = 8×3 table</span>
+<section id="train-a-neural-network">
+<h3>Train a neural network<a class="headerlink" href="#train-a-neural-network" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>: This function implements steps (3) and (4) from above.</p>
+<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% settings</span>
 
-<span class="go">   name          val          se</span>
-<span class="go">__________    _________    ________</span>
-<span class="go">&quot;\alpha_0&quot;      -6.4546    0.071848</span>
-<span class="go">&quot;\alpha_1&quot;     -0.11333    0.044997</span>
-<span class="go">&quot;\eta_0&quot;          5.929    0.061318</span>
-<span class="go">&quot;\eta_1&quot;      -0.048687    0.011513</span>
-<span class="go">&quot;\eta_2&quot;        0.22004    0.029282</span>
-<span class="go">&quot;\eta_3&quot;       0.052894    0.023437</span>
-<span class="go">&quot;\beta_1&quot;       0.25836    0.004951</span>
-<span class="go">&quot;\beta_2&quot;      -0.53811    0.011032</span>
+<span class="nb">clear</span><span class="p">;</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+<span class="n">num_nodes</span><span class="p">=</span><span class="mi">64</span><span class="p">;</span>
+<span class="nb">tic</span><span class="p">;</span>
+
+<span class="nb">load</span><span class="p">(</span><span class="s">&#39;RNGstate.mat&#39;</span><span class="p">)</span>
+<span class="nb">rng</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+<span class="n">learn_standard_error</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">batch_size</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
+
+<span class="c">%% read data</span>
+
+<span class="nb">load</span><span class="p">(</span><span class="s">&#39;training_set.mat&#39;</span><span class="p">)</span>
+
+<span class="n">L_train</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">input_train</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">L_test</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">input_test</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">dim_in</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">input_train</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">K</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">label_train</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="n">learn_standard_error</span>
+<span class="w">    </span><span class="n">dim_out</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">K</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">label_train</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">label_train</span><span class="p">,</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">L_train</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="p">)];</span>
+<span class="w">    </span><span class="n">label_test</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">label_test</span><span class="p">,</span><span class="w">  </span><span class="nb">zeros</span><span class="p">(</span><span class="n">L_test</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="p">)];</span>
+
+<span class="k">else</span>
+<span class="w">    </span><span class="n">dim_out</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">K</span><span class="p">;</span>
+<span class="k">end</span>
+
+
+<span class="c">%% training</span>
+
+<span class="n">opts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">trainingOptions</span><span class="p">(</span><span class="w"> </span><span class="s">&#39;adam&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;ExecutionEnvironment&#39;</span><span class="p">,</span><span class="s">&#39;cpu&#39;</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;LearnRateSchedule&#39;</span><span class="p">,</span><span class="s">&#39;piecewise&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;LearnRateDropFactor&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;LearnRateDropPeriod&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;InitialLearnRate&#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;GradientThreshold&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;MaxEpochs&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;Shuffle&#39;</span><span class="p">,</span><span class="s">&#39;every-epoch&#39;</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;MiniBatchSize&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">batch_size</span><span class="p">,</span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;L2Regularization&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;Plots&#39;</span><span class="p">,</span><span class="s">&#39;none&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;Verbose&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;ValidationData&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">input_test</span><span class="p">,</span><span class="w"> </span><span class="n">label_test</span><span class="p">},</span><span class="w"> </span><span class="k">...</span>
+<span class="w">                        </span><span class="s">&#39;ValidationFrequency&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+
+
+<span class="n">layers</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="n">featureInputLayer</span><span class="p">(</span><span class="n">dim_in</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Normalization&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;rescale-symmetric&#39;</span><span class="p">)</span>
+<span class="w">            </span><span class="n">fullyConnectedLayer</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">)</span>
+<span class="w">            </span><span class="n">reluLayer</span>
+<span class="w">            </span><span class="n">fullyConnectedLayer</span><span class="p">(</span><span class="n">dim_out</span><span class="p">)</span>
+<span class="w">            </span><span class="n">normalRegressionLayer</span><span class="p">(</span><span class="s">&#39;simple&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">learn_standard_error</span><span class="p">)</span>
+<span class="w">         </span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">trainNetwork</span><span class="p">(</span><span class="n">input_train</span><span class="p">,</span><span class="w"> </span><span class="n">label_train</span><span class="p">,</span><span class="w"> </span><span class="n">layers</span><span class="p">,</span><span class="w"> </span><span class="n">opts</span><span class="p">);</span>
+
+<span class="c">%% summary</span>
+
+<span class="n">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">PredSummary</span><span class="p">(</span><span class="n">input_test</span><span class="p">,</span><span class="w"> </span><span class="n">label_test</span><span class="p">,</span><span class="w"> </span><span class="n">label_name</span><span class="p">,</span><span class="w"> </span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;figure&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;table&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c">%% obtain NNE estimate</span>
+
+<span class="n">temp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="n">input_sim_real</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;acceleration&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;none&#39;</span><span class="p">);</span>
+<span class="n">theta</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">K</span><span class="p">);</span>
+
+<span class="k">if</span><span class="w"> </span><span class="n">learn_standard_error</span>
+<span class="w">    </span><span class="n">se</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">PositiveTransform</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">K</span><span class="p">));</span>
+<span class="k">end</span>
+
+<span class="nb">toc</span><span class="p">;</span>
+<span class="n">time_train</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">toc</span><span class="o">/</span><span class="mi">60</span><span class="p">;</span>
+
+<span class="n">out</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">FinalValidationLoss</span><span class="p">,</span><span class="w"> </span><span class="n">time_gen</span><span class="p">,</span><span class="w"> </span><span class="n">time_train</span><span class="p">];</span>
+
+<span class="n">csvwrite</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&#39;theta_L%d_nodes%d.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">num_nodes</span><span class="p">),</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>Several key steps include:</p>
+<ul class="simple">
+<li><p>We can ask NNE to output standard errors by setting <code class="docutils literal notranslate"><span class="pre">learn_standard_error</span> <span class="pre">=</span> <span class="pre">true;</span></code>. It will double the dimensionality of the NNE output by including both the point estimates and the standard errors.</p></li>
+<li><p>Train the neural net with function: <code class="docutils literal notranslate"><span class="pre">[net,</span> <span class="pre">info]</span> <span class="pre">=</span> <span class="pre">trainNetwork(input_train,</span> <span class="pre">label_train,</span> <span class="pre">layers,</span> <span class="pre">opts);</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">layers</span></code> defines the network structure (e.g., number of layers and nodes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opts</span></code> defines the training specification (e.g., number of epochs and batch size)</p></li>
+<li><p>The loss function is defined in <code class="docutils literal notranslate"><span class="pre">normalRegressionLayer</span></code>, which depends on whether neural net needs to learn standard errors.</p></li>
+</ul>
+</li>
+<li><p>For the Monte Carlo estimation, obtain estimates for the simulated “real” data with function: <code class="docutils literal notranslate"><span class="pre">predict(net,</span> <span class="pre">input_sim_real,</span> <span class="pre">'acceleration',</span> <span class="pre">'none');</span></code> where <code class="docutils literal notranslate"><span class="pre">net</span></code> denotes the trained neural network.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
