@@ -31,3 +31,8 @@ code {
     font-family: "Consolas", monospace;
     color:dodgerblue
 }
+
+.scrollable-code-block {
+    max-height: 500px; /* adjust as necessary */
+    overflow-y: scroll;
+}
