@@ -14,7 +14,8 @@ author = "Yanhao 'Max' Wei, Zhenling Jiang"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc'
+    'sphinx.ext.autodoc',
+    'sphinx.ext.mathjax'
 ]
 
 templates_path = ['_templates']
