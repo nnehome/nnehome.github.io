@@ -36,3 +36,7 @@ code {
     max-height: 500px; /* adjust as necessary */
     overflow-y: scroll;
 }
+
+.table-header-centered th {
+    text-align: center;
+}

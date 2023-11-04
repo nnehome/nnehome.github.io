@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=36b58c3a" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=62e430d9" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -283,15 +283,68 @@ document.write(`
 </div>
 <p>This website describes the neural net estimator (NNE) to estimate structural models, as proposed
 in <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">Wei and Jiang (2023)</a>. It provides a computationally-light alternative to simulated maximum likelihood
-or simulated method of moments. NNE is especially suitable for cases where many simulations are needed to
-evaluate likelihood/moment functions.</p>
+or simulated method of moments. Besides computational benefits, NNE is also robust to redundant or irrelevant moments.
+This is in contrast to SMM, where even with sufficiently many simulations, redundant moments are known to increase
+finite-sample biases.
+Because of these benefits, NNE is especially suitable for cases where many simulations are needed to evaluate
+likelihood/moment functions, as well as cases where there lacks clear guidance on what moments to use for estimation.
+In these applications, NNE offers a computationally light alternative to obtain accurate and robust estimates.
+Outside these applications, NNE may still be applied but may not show clear gains. We summarize main properties of
+NNE and the suitable (and less suitable) applications in the table below.</p>
+<p><strong>Summary of NNE</strong></p>
+<p id="main-properties-table">The main properties and suitable applications of the estimation method are summarized below:</p>
+<table class="table-header-centered table">
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 90.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Main Properties</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>It requires no integration over unobservables in the structural econometric model; only requires the ability to simulate data using the econometric model.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>It does not require the optimization over an (potentially non-smooth) objective function as in extremum estimators (e.g., SMLE, SMM, indirect inference).</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>It is more robust to redundant moments when compared to SMM/GMM.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>It computes a measure of statistical accuracy (i.e., posterior variance) as a byproduct.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="table-header-centered table">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Suitable Applications</p></th>
+<th class="head"><p>Less Suitable Applications</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Many simulations are needed to evaluate likelihood/moments. The SMLE/SMM objective is difficult to optimize. There lacks clear guidance on moment choice. Formulas of standard errors are not yet established.</p></td>
+<td><p>Close-form expressions are available for likelihood/moments. The main estimation burden comes from other than the simulations to evaluate likelihood/moments.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Examples</strong>: discrete choices with rich unobserved heterogeneity, sequential search, choices on networks.</p></td>
+<td><p><strong>Examples</strong>: dynamic choice or games where the main burden is solving policy functions.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <section id="overview-of-nne">
 <h2>Overview of NNE<a class="headerlink" href="#overview-of-nne" title="Link to this heading">#</a></h2>
-<p>We write down a structural model: <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">g(x,</span> <span class="pre">ϵ;</span> <span class="pre">θ)</span></code>. The goal of estimation is to obtain the parameter <span class="math notranslate nohighlight">\({θ}\)</span>
-after observing the covariates <span class="math notranslate nohighlight">\({x}\)</span> and outcome <code class="docutils literal notranslate"><span class="pre">y:</span> <span class="pre">{y,x}</span> <span class="pre">→</span> <span class="pre">θ</span></code>.</p>
+<p>We write down a structural model: <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">g(x,</span> <span class="pre">ϵ;</span> <span class="pre">θ)</span></code>, where <span class="math notranslate nohighlight">\({x}\)</span> denote the observed attributes,
+<span class="math notranslate nohighlight">\(\epsilon\)</span> is the unobservable, and <span class="math notranslate nohighlight">\(\theta\)</span> is the parameter. The goal of structural estimation is
+to obtain the parameter <span class="math notranslate nohighlight">\(θ\)</span> with observable <span class="math notranslate nohighlight">\({x}\)</span> and outcome <span class="math notranslate nohighlight">\(y\)</span>: <code class="docutils literal notranslate"><span class="pre">{y,x}</span> <span class="pre">→</span> <span class="pre">θ</span></code>.</p>
 <p>The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters.
 The graph below provides an overview of NNE.</p>
 <div class="math notranslate nohighlight" id="equation-neural-net-training">
@@ -311,37 +364,29 @@ The graph below provides an overview of NNE.</p>
 \{\underbrace{\boldsymbol{y}_{i},\boldsymbol{x}_{i}}_{\text{real data}}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m} \xrightarrow{\text{neural net}} \underbrace{\widehat{\boldsymbol{\theta}}}_{\text{estimate}}
 \end{cases}
 \end{align*}\]</div>
-<dl class="simple">
-<dt>Notation:</dt><dd><p><span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(\ell)}\)</span> drawn from a space <span class="math notranslate nohighlight">\(\Theta\)</span>;
-<span class="math notranslate nohighlight">\(\boldsymbol{y}_{i}=\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i};\boldsymbol{\theta})\)</span> a structural model;
-<span class="math notranslate nohighlight">\(\boldsymbol{y}^{(\ell)}\)</span> simulated outcome;
-<span class="math notranslate nohighlight">\(\boldsymbol{m}^{(\ell)}\)</span> simulated moments;
-<span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\theta}}\)</span> neural net prediction</p>
-</dd>
-</dl>
+<p>Notation: <span class="math notranslate nohighlight">\({\theta}^{(\ell)}\)</span> drawn from a space; <span class="math notranslate nohighlight">\(\Theta\)</span>; <span class="math notranslate nohighlight">\({y}^{(\ell)}\)</span> simulated outcome; <span class="math notranslate nohighlight">\({m}^{(\ell)}\)</span> simulated moments; <span class="math notranslate nohighlight">\(\widehat{\theta}\)</span> neural net prediction.</p>
+<p><strong>Four steps to apply NNE with ()</strong></p>
 <ol class="arabic simple">
-<li><p>We draw parameter values <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> uniformly from a parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>. Using the structural model, we can generate the outcome <span class="math notranslate nohighlight">\(y^{(l)}\)</span> under <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span>. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples where we can use to learn the mapping from data to the “correct” parameter values.</p></li>
+<li><p>We draw parameter values <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> uniformly from a parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>. Using the structural model, we can generate the outcome <span class="math notranslate nohighlight">\(y^{(l)}\)</span> under <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span>. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples that we can use to learn the mapping from data to the “correct” parameter values.</p></li>
 <li><p>To make training easier, we can summarize the data <span class="math notranslate nohighlight">\(\{y^{(l)}, x\}\)</span>  into data moments <span class="math notranslate nohighlight">\(m^{(l)}\)</span>.</p></li>
 <li><p>The neural net takes the data moments as input and predicts the parameter value underlying that dataset.</p></li>
 <li><p>Once the neural net is trained, we plug in the real data moments to obtain NNE estimates <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>.</p></li>
 </ol>
 <p>The neural net can output “standard errors” in addition to point estimates. We establish that this neural net estimator (NNE)
-converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large.
-Besides the benefit of light computational cost, NNE is also robust to redundant moments, which is beneficial for cases where
-there lacks clear guidance on moment choices from a theoretical perspective.</p>
+converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="applying-nne">
 <h2>Applying NNE<a class="headerlink" href="#applying-nne" title="Link to this heading">#</a></h2>
-<p>While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate
-how to use NNE. The accompanying Matlab code can be found on the <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> page. These codes can be used to replicate the Monte Carlo results
-from <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">Wei and Jiang (2023)</a>.</p>
-<p>We describe the key functions to implement NNE.</p>
+<p>While the method is broadly applicable to many types of structural models, we use the consumer sequential search model to illustrate how to use NNE.
+Below, we describe the two key functions <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code> and <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code> to implement NNE. The other accompanying functions are described in the <a class="reference internal" href="code/code.html#code"><span class="std std-ref">Code</span></a> page.</p>
+<p>All Matlab codes can be found on the <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> page.
+These codes can be used to replicate the Monte Carlo results from <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">Wei and Jiang (2023)</a>.</p>
 <section id="generate-training-datasets">
 <h3>Generate training datasets<a class="headerlink" href="#generate-training-datasets" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>: This function implements steps (1) and (2) from above.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>: This function implements steps (1) and (2) from the overview of NNE.</p>
 <div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
 
 <span class="nb">clear</span><span class="p">;</span>
@@ -424,7 +469,7 @@ from <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm
 </div>
 <p>Several key steps include:</p>
 <ul class="simple">
-<li><p>Draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">=</span> <span class="pre">unifrnd(lb,</span> <span class="pre">ub)</span></code>.</p></li>
+<li><p>Draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">=</span> <span class="pre">unifrnd(lb,</span> <span class="pre">ub)</span></code>. Ideally, the bounds to draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> from should cover the true parameter value. When <span class="math notranslate nohighlight">\(\Theta\)</span> does not cover the true value, NNE’s estimate can fall outside <span class="math notranslate nohighlight">\(\Theta\)</span> and in the direction towards the true value. One should check whether NNE’s estimate is inside <span class="math notranslate nohighlight">\(\Theta\)</span>. If not, then <span class="math notranslate nohighlight">\(\Theta\)</span> likely does not contain the truth and needs to be adjusted.</p></li>
 <li><p>Simulate outcome <span class="math notranslate nohighlight">\(y^{(l)}\)</span> with function <code class="docutils literal notranslate"><span class="pre">gen_seq_search()</span></code>, which takes parameter <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> and error draw <span class="math notranslate nohighlight">\(\epsilon^{(l)}\)</span>. This function is specific to sequential search and can be changed to other structural models.</p></li>
 <li><p>Summarize the data <span class="math notranslate nohighlight">\(\{y^{(l)},x\}\)</span> into data moments <span class="math notranslate nohighlight">\(m^{(l)}\)</span> with function <code class="docutils literal notranslate"><span class="pre">Moments()</span></code>. It can be adapted to generate moments in other applications.</p></li>
 <li><p>We use 90% as training data and the rest 10% as testing data. The inputs are the moments while the labels are the corresponding correct parameters.</p></li>
@@ -433,7 +478,7 @@ from <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm
 </section>
 <section id="train-a-neural-network">
 <h3>Train a neural network<a class="headerlink" href="#train-a-neural-network" title="Link to this heading">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>: This function implements steps (3) and (4) from above.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>: This function implements steps (3) and (4) from the overview of NNE.</p>
 <div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% settings</span>
 
 <span class="nb">clear</span><span class="p">;</span>
