@@ -415,8 +415,8 @@ output:
 
 This function is a custom neural net layer which defines the loss function used in neural net training. It is used as the last layer of the neural net ``layers``. 
 ``forwardLoss`` function specifies the loss between predictions and the training targets. Two types of loss function can be used in NNE. 
-If ``learn_standard_error = false``, NNE uses the mean squared error loss (``C_1(f)`` in Eq 5 in the paper). If ``learn_standard_error = true``, NNE uses the cross-entropy 
-loss (``C_2(f)`` in Eq 6 in the paper). ``backwardLoss`` function specifies the derivative of the loss with respect to the predictions. When ``learn_standard_error = true``, 
+If ``learn_standard_error = false``, NNE uses the mean squared error loss (:math:`{C_1(f)}` in Eq 5 in the paper). If ``learn_standard_error = true``, NNE uses the cross-entropy 
+loss (:math:`{C_2(f)}` in Eq 6 in the paper). ``backwardLoss`` function specifies the derivative of the loss with respect to the predictions. When ``learn_standard_error = true``, 
 NNE predicts both the point estimates and the standard deviations. 
 
 .. code-block:: matlab
