@@ -115,8 +115,8 @@ All Matlab codes can be found on the `GitHub <https://github.com/nnehome/nne-mat
 These codes can be used to replicate the Monte Carlo results from `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_.
 
 
-Generate training datasets
-''''''''''''''''''''''''''
+Generate training datasets ``nne_gen.m``
+''''''''''''''''''''''''''''''''''''''''
 
 ``nne_gen.m``: This function implements steps (1) and (2) from the overview of NNE.
 
@@ -213,8 +213,8 @@ Several key steps include:
 - For the Monte Carlo estimation, we also generate a simulated “real” data under assumed parameter ``theta_true``. The simulated “real” data moments are calculated using function ``Moments()``.
 
 
-Train a neural network
-''''''''''''''''''''''
+Train a neural network ``nne_train.m``
+''''''''''''''''''''''''''''''''''''''
 
 ``nne_train.m``: This function implements steps (3) and (4) from the overview of NNE.
 

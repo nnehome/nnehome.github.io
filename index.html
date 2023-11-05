@@ -383,8 +383,8 @@ converges to limited-information Bayesian posterior when the number of training 
 Below, we describe the two key functions <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code> and <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code> to implement NNE. The other accompanying functions are described in the <a class="reference internal" href="code/code.html#code"><span class="std std-ref">Code</span></a> page.</p>
 <p>All Matlab codes can be found on the <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> page.
 These codes can be used to replicate the Monte Carlo results from <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">Wei and Jiang (2023)</a>.</p>
-<section id="generate-training-datasets">
-<h3>Generate training datasets<a class="headerlink" href="#generate-training-datasets" title="Link to this heading">#</a></h3>
+<section id="generate-training-datasets-nne-gen-m">
+<h3>Generate training datasets <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code><a class="headerlink" href="#generate-training-datasets-nne-gen-m" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>: This function implements steps (1) and (2) from the overview of NNE.</p>
 <div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
 
@@ -475,8 +475,8 @@ These codes can be used to replicate the Monte Carlo results from <a class="refe
 <li><p>For the Monte Carlo estimation, we also generate a simulated “real” data under assumed parameter <code class="docutils literal notranslate"><span class="pre">theta_true</span></code>. The simulated “real” data moments are calculated using function <code class="docutils literal notranslate"><span class="pre">Moments()</span></code>.</p></li>
 </ul>
 </section>
-<section id="train-a-neural-network">
-<h3>Train a neural network<a class="headerlink" href="#train-a-neural-network" title="Link to this heading">#</a></h3>
+<section id="train-a-neural-network-nne-train-m">
+<h3>Train a neural network <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code><a class="headerlink" href="#train-a-neural-network-nne-train-m" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>: This function implements steps (3) and (4) from the overview of NNE.</p>
 <div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% settings</span>
 
