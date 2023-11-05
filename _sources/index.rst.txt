@@ -31,8 +31,6 @@ In these applications, NNE offers a computationally light alternative to obtain 
 Outside these applications, NNE may still be applied but may not show clear gains. We summarize main properties of 
 NNE and the suitable (and less suitable) applications in the table below. 
 
-**Summary of NNE**
-
 .. _main-properties-table:
 
 
