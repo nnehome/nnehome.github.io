@@ -9,9 +9,51 @@ Welcome to NNE
 
 |
 
-This website describes the neural net estimator (NNE) to estimate structural models, as proposed 
-in `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_. It provides a computationally-light alternative to simulated maximum likelihood 
-or simulated method of moments. Besides computational benefits, NNE is also robust to redundant or irrelevant moments.
+This website provides a guide and code of the neural net estimator (NNE) (`Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`).
+
+NNE is a method to estimate (structural) econometric models. It exploits machine learning techniques for estimating a given econometric model. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments. 
+
+Below, we describe the main idea of NNE, applicability, and usual procedure to apply it.
+
+On the :ref:`code` page, we provide the code for the application of NNE to consumer sequential search model.
+
+|
+
+Overview of NNE
+---------------
+A structural model :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon}; \boldsymbol{\theta})`, where :math:`{x}` denote the observed attributes,
+:math:`\epsilon` is the unobservable, and :math:`\theta` is the parameter. The goal of structural estimation is 
+to obtain the parameter :math:`θ` with observable :math:`{x}` and outcome :math:`y`: ``{y,x} → θ``.
+
+The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters. 
+The graph below provides an overview of NNE.
+
+.. math::
+   :label: neural-net-training
+
+   \begin{align*}
+   \text{train a neural net } f(\cdot) \quad
+   \begin{cases}
+   \boldsymbol{\theta}^{(1)} \xrightarrow{\boldsymbol{g}(\boldsymbol{x}_{i},\boldsymbol{\varepsilon}_{i}^{(1)};\boldsymbol{\theta}^{(1)})} & \{\boldsymbol{y}_{i}^{(1)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m}^{(1)} \xrightarrow{\text{neural net}} \widehat{\boldsymbol{\theta}}^{(1)} \\
+   \boldsymbol{\theta}^{(2)} \xrightarrow{\hspace{6em}} & \{\boldsymbol{y}_{i}^{(2)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\hspace{4em}} \boldsymbol{m}^{(2)} \xrightarrow{\hspace{4.3em}} \widehat{\boldsymbol{\theta}}^{(2)} \\
+   \vdots & \vdots \\
+   \boldsymbol{\theta}^{(L)} \xrightarrow{\hspace{6em}} & \{\boldsymbol{y}_{i}^{(L)},\boldsymbol{x}_{i}\}_{i=1}^{n} \xrightarrow{\hspace{4em}} \boldsymbol{m}^{(L)} \xrightarrow{\hspace{4em}} \widehat{\boldsymbol{\theta}}^{(L)}
+   \end{cases}
+   \end{align*}
+
+.. math::
+   :label: neural-net-application
+
+   \begin{align*}
+   \text{apply } f(\cdot) \text{on real data} \quad \quad
+   \begin{cases}
+   \{\underbrace{\boldsymbol{y}_{i},\boldsymbol{x}_{i}}_{\text{real data}}\}_{i=1}^{n} \xrightarrow{\text{moments}} \boldsymbol{m} \xrightarrow{\text{neural net}} \underbrace{\widehat{\boldsymbol{\theta}}}_{\text{estimate}}
+   \end{cases}
+   \end{align*}
+
+Notation: :math:`{\theta}^{(\ell)}` drawn from a space; :math:`\Theta`; :math:`{y}^{(\ell)}` simulated outcome; :math:`{m}^{(\ell)}` simulated moments; :math:`\widehat{\theta}` neural net prediction.
+
+Besides computational benefits, NNE is also robust to redundant or irrelevant moments.
 This is in contrast to SMM, where even with sufficiently many simulations, redundant moments are known to increase 
 finite-sample biases.
 Because of these benefits, NNE is especially suitable for cases where many simulations are needed to evaluate 
