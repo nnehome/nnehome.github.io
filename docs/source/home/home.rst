@@ -21,7 +21,8 @@ On the :ref:`code` page, we provide the code for the application of NNE to consu
 
 Overview of NNE
 ---------------
-A structural model :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon}; \boldsymbol{\theta})`, where :math:`{x}` denote the observed attributes,
+A (structural) econometric model usually has an outcome of interest (e.g., consumer choice, total sales), specified through an economic model as a function of some observed attributes :math:`\boldsymbol{x}` (e.g., consumer attributes, product attritbues) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. 
+Denote a (structural) econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon}; \boldsymbol{\theta})`, where :math:`\boldsymbol{y}` collects the outcome of interest, :math:`\boldsymbol{x}` collects the observed attributes, 
 :math:`\epsilon` is the unobservable, and :math:`\theta` is the parameter. The goal of structural estimation is 
 to obtain the parameter :math:`θ` with observable :math:`{x}` and outcome :math:`y`: ``{y,x} → θ``.
 
