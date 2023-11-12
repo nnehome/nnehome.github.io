@@ -66,7 +66,7 @@ Procedure
 
  Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples that we can use to learn the mapping from data to the "correct" parameter values.
 
-3. Do step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell),\boldsymbol{\theta}^{(\ell)}_{\ell=1}^{L}`
+3. Do step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}_{\ell=1}^{L}\}`
 
 4. The neural net takes the data moments as input and predicts the parameter value underlying that dataset.
 
