@@ -58,7 +58,7 @@ Procedure
 
 .. |vspace| raw:: latex
 
-   \vspace{5mm}
+   \vspace{1mm}
 
 **Cookbook procedure to apply NNE**
 
