@@ -22,6 +22,10 @@
     color: brown
 }
 
+.math {
+    font-size: 14px
+}
+
 .highlight-console pre {
     font-size: 14px;
     font-family: "Consolas", monospace
@@ -30,10 +34,6 @@
 code {
     font-family: "Consolas", monospace;
     color:dodgerblue
-}
-
-math {
-    font-size: 14px
 }
 
 .scrollable-code-block {
