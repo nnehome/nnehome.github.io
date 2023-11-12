@@ -43,6 +43,8 @@ One way to grasp the concept of NNE is making an analog to digit recognition. Ma
   :scale: 60%
   :align: center
 
+|
+
 NNE also tackles parameter estimation, but where the *data* is economic data and the *parameter* is that of an econometric model.
 
 .. image:: para_rec.png 
