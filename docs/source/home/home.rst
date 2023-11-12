@@ -21,10 +21,9 @@ On the :ref:`code` page, we provide the code for the application of NNE to consu
 
 Overview of NNE
 ---------------
-A (structural) econometric model usually has an outcome of interest (e.g., consumer choice, total sales), specified through an economic model as a function of some observed attributes :math:`\boldsymbol{x}` (e.g., consumer attributes, product attritbues) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. 
-Denote a (structural) econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon}; \boldsymbol{\theta})`, where :math:`\boldsymbol{y}` collects the outcome of interest, :math:`\boldsymbol{x}` collects the observed attributes, 
-:math:`\epsilon` is the unobservable, and :math:`\theta` is the parameter. The goal of structural estimation is 
-to obtain the parameter :math:`θ` with observable :math:`{x}` and outcome :math:`y`: ``{y,x} → θ``.
+A (structural) econometric model usually has some outcome of interest :math:`\boldsymbol{y}` (e.g., consumer choice, total sales), specified through an economic model as a function of some observed attributes :math:`\boldsymbol{x}` (e.g., consumer attributes, product attritbues) and some unobserved attributes :math:`\boldsymbol{\epsilon}`.
+
+So we can denote a (structural) econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The goal of structural estimation is to recover the parameter :math:`\boldsymbol{\theta}` from data.
 
 The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters. 
 The graph below provides an overview of NNE.
