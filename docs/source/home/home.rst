@@ -28,7 +28,7 @@ So we can denote a structural econometric model as :math:`\boldsymbol{y} = \bold
 
 The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`. 
 
-To train such a neural net, we draw many different values of the parameter. Given each value of parameter, use the structural model to generate a copy of data. Then these many values of parameters and their corresponding copies of data become the training examples for the neural net. See `Procedure`_ later on this page for details.
+To train such a neural net, we draw many different values of the parameter. Given each value of parameter, use the structural model to generate a copy of data. Then these many values of parameters and their corresponding copies of data become the training examples for the neural net. See `Procedure`_ below for details.
 
 |
 
@@ -37,7 +37,7 @@ An Analog
 |
 One way to get the intuition of NNE is making an analog to digit recognition. 
 
-
+.. image:: _static/digit_5.png
 
 
 
