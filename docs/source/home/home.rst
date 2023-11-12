@@ -26,6 +26,7 @@ A (structural) econometric model usually has some outcome of interest :math:`\bo
 So we can denote a (structural) econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The goal of structural estimation is to recover the parameter :math:`\boldsymbol{\theta}` from data.
 
 The key idea of NNE is to use neural nets to directly learn the mapping from data to parameters. 
+
 The graph below provides an overview of NNE.
 
 .. math::
