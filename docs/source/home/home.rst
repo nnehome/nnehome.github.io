@@ -40,7 +40,10 @@ One way to get the intuition of NNE is making an analog to digit recognition.
 .. |digit_5| image:: digit_5.png 
   :scale: 75%
   
-The picture |digit_5| :math:`\quad \longmapsto \quad \theta = 5`
+.. |mapsto| image:: mapsto.png 
+  :scale: 75%
+  
+The picture |digit_5| |mapsto| :math:`\quad \longmapsto \quad \theta = 5`
 
 
 
