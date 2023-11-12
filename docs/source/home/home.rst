@@ -60,7 +60,11 @@ Procedure
 
 1. Use :math:`\ell` to index the training examples. For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. (We specify :math:`\Theta` so that it likely contains the true :math:`\boldsymbol{\theta}`. If we have a prior, we may also draw :math:`\boldsymbol{\theta}^{(\ell)}` from the prior distribution.)
 
+|
+
 2. For each :math:`\ell`, use the structural econometric model to simulate a set of outcomes :math:`\boldsymbol{y}^{\ell}`, under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
+
+|
 
 3. For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. (We specify :math:`\boldsymbol{m}` so that it contains information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`.)
 
