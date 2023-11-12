@@ -68,7 +68,7 @@ Procedure
 
 4. Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also create a validation set by repeating these steps more times for :math:`\ell=L+1,...,L^{*}`.
 
-5. Train a neural net using the training set in step 4. 
+5. Train a neural net using the training and validation sets in step 4. 
 
 5. Once the neural net is trained, we plug in the real data moments to obtain NNE estimates :math:`\hat{\theta}`.
 
