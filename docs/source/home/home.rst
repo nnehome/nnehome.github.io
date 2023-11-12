@@ -41,7 +41,7 @@ One way to get the intuition of NNE is making an analog to digit recognition. Ma
   :scale: 70%
   :align: center
   
-
+|
 
 
 Procedure
