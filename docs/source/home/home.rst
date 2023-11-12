@@ -38,7 +38,7 @@ An Analog
 One way to get the intuition of NNE is making an analog to digit recognition. 
 
 .. image:: digit_5.png 
-  :width: 600
+  :width: 100
 
 
 
