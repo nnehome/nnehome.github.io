@@ -37,13 +37,10 @@ An Analog
 |
 One way to get the intuition of NNE is making an analog to digit recognition. 
 
-.. |digit_5| image:: digit_5.png 
+.. image:: digit_rec.png 
   :scale: 66%
+  :align: center
   
-.. |mapsto| image:: mapsto.png 
-  :scale: 66%
-  
-The picture |digit_5| |mapsto| :math:`\large{\theta = 5}`
 
 
 
