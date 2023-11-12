@@ -38,7 +38,6 @@ An Analog
 |
 
 One way to grasp the concept of NNE is making an analog to digit recognition. Machine learning models have been trained to recognize the digits underlying handwritten images (below is an example). Conceptually, this can be thought of as a parameter estimation problem, where the *data* is the image and the *parameter* is the underlying digit. 
-
 .. figure:: digit_rec.png 
   :scale: 60%
   :align: center
