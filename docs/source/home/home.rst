@@ -21,13 +21,13 @@ On the :ref:`code` page, we provide the code for the application of NNE to consu
 
 Overview of NNE
 ---------------
-A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}` (e.g., consumer choice, total sales) as a function of some observed attributes :math:`\boldsymbol{x}` (e.g., consumer and product characteristics) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc.
+A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}={y_i}_i=1^n` (e.g., consumer choice, total sales) as a function of some observed attributes :math:`\boldsymbol{x}` (e.g., consumer and product characteristics) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc.
 
 So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The goal of structural estimation is to recover the parameter :math:`\boldsymbol{\theta}` from data.
 
 The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`. 
 
-The basic way to train such a neural net is to draw many different values of the parameter. Given each value of parameter, use the structural model to generate a copy of data. Then these many values of parameters and their corresponding copies of data become the training examples for the neural net.
+To train such a neural net, we draw many different values of the parameter. Given each value of parameter, use the structural model to generate a copy of data. Then these many values of parameters and their corresponding copies of data become the training examples for the neural net.
 
 Notation: :math:`{\theta}^{(\ell)}` drawn from a space; :math:`\Theta`; :math:`{y}^{(\ell)}` simulated outcome; :math:`{m}^{(\ell)}` simulated moments; :math:`\widehat{\theta}` neural net prediction.
 
