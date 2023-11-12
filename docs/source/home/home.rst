@@ -45,7 +45,7 @@ One way to grasp the concept of NNE is making an analog to digit recognition. Ma
 
 Conceptually, this can be thought of as a parameter estimation problem, where the *data* is the image and the *parameter* is the underlying digit.  NNE also tackles parameter estimation, but where the *data* is an economic dataset and the *parameter* is that of an econometric model.
 
-.. figure:: para_rec.png 
+.. figure:: theta_rec.png 
   :scale: 60%
   :align: center
   
