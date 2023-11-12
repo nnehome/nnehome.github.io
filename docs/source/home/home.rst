@@ -64,8 +64,6 @@ Procedure
 
 3. For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. (We specify :math:`\boldsymbol{m}` so that it contains information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`.)
 
- Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples that we can use to learn the mapping from data to the "correct" parameter values.
-
 4. Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also create a validation set by repeating these steps more times for :math:`\ell=L+1,...,L^{*}`.
 
 5. Train a neural net using the training and validation sets in step 4. It takes :math:`\boldsymbol{m}` as input and gives :math:`\boldsymbol{\theta}` as output.
