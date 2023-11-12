@@ -37,7 +37,7 @@ An Analog
 |
 One way to get the intuition of NNE is making an analog to digit recognition. 
 
-.. image:: digit_rec.png 
+.. image:: digit_rec_smaller.png 
   :scale: 66%
   :align: center
   
