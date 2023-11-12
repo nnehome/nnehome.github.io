@@ -35,7 +35,7 @@ To train such a neural net, we draw many different values of the parameter. Give
 An Analog
 ---------------
 |
-One way to get the intuition of NNE is making an analog to digit recognition. Machine learning models have been used to recognize the digit from handwritten digit images (below is an example). Conceptually, this can be thought of as a parameter estimation problem, where the image is the data and the underlying digit is the parameter. NNE implements this idea in the context of economic data and the parameter of an econometric model.
+One way to get the intuition of NNE is making an analog to digit recognition. Machine learning models have been used to recognize the digit from handwritten digit images (below is an example). Conceptually, this can be thought of as a parameter estimation problem, where the image is the data and the underlying digit is the parameter. In NNE, the data is not an image but economic data, and the parameter is not numerical digit but the parameter of an econometric model.
 
 .. image:: digit_rec.png 
   :scale: 70%
