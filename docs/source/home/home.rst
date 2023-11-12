@@ -68,9 +68,9 @@ Procedure
 
 4. Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also create a validation set by repeating these steps more times for :math:`\ell=L+1,...,L^{*}`.
 
-5. Train a neural net using the training and validation sets in step 4. 
+5. Train a neural net using the training and validation sets in step 4. It takes :math:`\boldsymbol{m}` as input and gives :math:`\boldsymbol{\theta}` as output.
 
-5. Once the neural net is trained, we plug in the real data moments to obtain NNE estimates :math:`\hat{\theta}`.
+6. Plug the real data moments into the neural net to obtain an estimate of :math:`\boldsymbol{\theta}`.
 
 The neural net can output "standard errors" in addition to point estimates. We establish that this neural net estimator (NNE)
 converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large. 
