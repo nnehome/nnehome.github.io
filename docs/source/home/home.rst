@@ -60,13 +60,15 @@ Procedure
 
 1. Use :math:`\ell` to index the training examples. For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. (We specify :math:`\Theta` so that it likely contains the true :math:`\boldsymbol{\theta}`. If we have a prior, we may also draw :math:`\boldsymbol{\theta}^{(\ell)}` from the prior distribution.)
 
+2. For each :math:`\ell`, use the structural econometric model to simulate the a set of outcomes :math:`\boldsymbol{y}^{\ell}` under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
+
  Using the structural model, we can generate the outcome :math:`y^{(l)}` under :math:`\theta^{(l)}`. After repeating this procedure a number of times, we get the corresponding datasets that are generated under a range of parameter values. These datasets form the basis of the training examples that we can use to learn the mapping from data to the "correct" parameter values.
 
-2. To make training easier, we can summarize the data :math:`\{y^{(l)}, x\}`  into data moments :math:`m^{(l)}`.
+3. To make training easier, we can summarize the data :math:`\{y^{(l)}, x\}`  into data moments :math:`m^{(l)}`.
 
-3. The neural net takes the data moments as input and predicts the parameter value underlying that dataset.
+4. The neural net takes the data moments as input and predicts the parameter value underlying that dataset.
 
-4. Once the neural net is trained, we plug in the real data moments to obtain NNE estimates :math:`\hat{\theta}`.
+5. Once the neural net is trained, we plug in the real data moments to obtain NNE estimates :math:`\hat{\theta}`.
 
 The neural net can output "standard errors" in addition to point estimates. We establish that this neural net estimator (NNE)
 converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large. 
