@@ -49,16 +49,16 @@ Conceptually, this can be thought of as a parameter estimation problem, where th
 
 Procedure
 ---------------
-|
 
+What we need: the ability to simulate the outcome variables :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` using the (structural) econometric model.
 
 **Cookbook procedure to apply NNE**
 
 #. **(Draw parameter values)** Use :math:`\ell` to index the training examples. For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. (We specify :math:`\Theta` so that it likely contains the true :math:`\boldsymbol{\theta}`. If we have a prior, we may also draw :math:`\boldsymbol{\theta}^{(\ell)}` from the prior distribution.)
 
-#. **(Generate data)** For each :math:`\ell`, use the structural econometric model to simulate a set of outcomes :math:`\boldsymbol{y}^{\ell}`, under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
+#. **(Simulate datasets)** For each :math:`\ell`, use the structural econometric model to simulate a set of outcomes :math:`\boldsymbol{y}^{\ell}`, under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
 
-#. **(Summarize data)** For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. (We specify :math:`\boldsymbol{m}` so that it contains information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`.)
+#. **(Summarize datasets)** For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. (We specify :math:`\boldsymbol{m}` so that it contains information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`.)
 
 #. **(Put together a training set)** Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also create a validation set by repeating these steps more times for :math:`\ell=L+1,...,L^{*}`.
 
