@@ -32,6 +32,10 @@ code {
     color:dodgerblue
 }
 
+math {
+    font-family: "Arial", sans-serif;
+}
+
 .scrollable-code-block {
     max-height: 500px; /* adjust as necessary */
     overflow-y: scroll;
