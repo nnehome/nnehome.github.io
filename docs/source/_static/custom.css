@@ -22,6 +22,10 @@
     color: brown
 }
 
+.MathJax {
+    font-size: 1.3em;
+}
+
 .highlight-console pre {
     font-size: 14px;
     font-family: "Consolas", monospace
