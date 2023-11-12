@@ -21,7 +21,7 @@ On the :ref:`code` page, we provide the code for the application of NNE to consu
 
 Overview of NNE
 ---------------
-A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` (e.g., consumer choice, total sales) as a function of some observed attributes :math:`\boldsymbol{x}` (e.g., consumer and product characteristics) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc.
+A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` (e.g., consumer choice, total sales) as a function of some observed attributes :math:`\boldsymbol{x}\equiv\{x_i\}_{i=1}^{n}` (e.g., consumer and product characteristics) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc.
 
 So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The goal of structural estimation is to recover the parameter :math:`\boldsymbol{\theta}` from data.
 
