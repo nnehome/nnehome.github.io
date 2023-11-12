@@ -21,7 +21,6 @@ On the :ref:`code` page, we provide the code for the application of NNE to consu
 
 Overview
 ---------------
-|
 
 A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` (e.g., consumer choice, total sales) as a function of some observed attributes :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}` (e.g., consumer and product characteristics) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc.
 
@@ -31,11 +30,9 @@ The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\t
 
 To train such a neural net, we draw many different values of the parameter. Given each value of parameter, use the structural model to generate a copy of data. Then these many values of parameters and their corresponding copies of data become the training examples for the neural net. See `Procedure`_ below for details.
 
-|
 
 An Analog
 ---------------
-|
 
 One way to grasp the concept of NNE is making an analog to digit recognition. Machine learning models have been trained to recognize the digits underlying handwritten images (below is an example). 
 
@@ -49,8 +46,6 @@ Conceptually, this can be thought of as a parameter estimation problem, where th
   :scale: 60%
   :align: center
   
-|
-
 
 Procedure
 ---------------
