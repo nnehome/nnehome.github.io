@@ -50,15 +50,13 @@ Conceptually, this can be thought of as a parameter estimation problem, where th
 Procedure
 ---------------
 
-Context: we want to estimate a (structural) econometric model with a given dataset. The dataset is denoted as :math:`\{\boldsymbol{x, y}\}`, with :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` and :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`.
-
-What we need: the ability to simulate the outcome variable :math:`\boldsymbol{y}` using the (structural) econometric model.
+Context: we want to estimate a (structural) econometric model with a given dataset. The dataset is denoted as :math:`\{\boldsymbol{x, y}\}`, with :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` and :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`. What we need: the ability to simulate the outcome variable :math:`\boldsymbol{y}` using the (structural) econometric model.
 
 We will use :math:`\ell` to index the training examples, which we will use to train the NNE.
 
 **Cookbook procedure to apply NNE**
 
-#. **(Draw parameter values)** For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. (We specify :math:`\Theta` so that it likely contains the true :math:`\boldsymbol{\theta}`. If we have a prior, we may also draw :math:`\boldsymbol{\theta}^{(\ell)}` from the prior distribution.)
+#. **Draw parameter values.** For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. (We specify :math:`\Theta` so that it likely contains the true :math:`\boldsymbol{\theta}`. If we have a prior, we may also draw :math:`\boldsymbol{\theta}^{(\ell)}` from the prior distribution.)
 
 #. **(Simulate datasets)** For each :math:`\ell`, use the structural econometric model to simulate a set of outcomes :math:`\boldsymbol{y}^{\ell}`, under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
 
