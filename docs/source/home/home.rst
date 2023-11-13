@@ -50,7 +50,7 @@ Conceptually, this can be thought of as a parameter estimation problem, where th
 Procedure
 ---------------
 
-Context: we want to estimate a (structural) econometric model with the data :math:`\{\boldsymbol{x, y}\}`. 
+Context: we want to estimate a (structural) econometric model with a given dataset. The dataset is denote as :math:`\{\boldsymbol{x, y}\}`, with :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` and :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`.
 What we need: the ability to simulate the outcome variables :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` using the (structural) econometric model.
 
 We will use :math:`\ell` to index the training examples, which we will use to train the NNE.
