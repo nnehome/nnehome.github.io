@@ -1,0 +1,42 @@
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}
+
+.dodgerblue-text {
+    color: dodgerblue;
+}
+
+.goldenrod-text {
+    color: goldenrod
+}
+
+.purple-text {
+    color: purple
+}
+
+.brown-text {
+    color: brown
+}
+
+.highlight-console pre {
+    font-size: 14px;
+    font-family: "Consolas", monospace
+}
+
+code {
+    font-family: "Consolas", monospace;
+    color:dodgerblue
+}
+
+.scrollable-code-block {
+    max-height: 500px; /* adjust as necessary */
+    overflow-y: scroll;
+}
+
+.table-header-centered th {
+    text-align: center;
+}
