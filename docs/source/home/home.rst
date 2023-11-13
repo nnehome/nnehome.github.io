@@ -68,9 +68,6 @@ We will use :math:`\ell` to index the training examples that we use to train the
 
 #. **Get the estimate.** Plug the real data moments into the neural net to obtain an estimate of :math:`\boldsymbol{\theta}`.
 
-The neural net can output "standard errors" in addition to point estimates. We establish that this neural net estimator (NNE)
-converges to limited-information Bayesian posterior when the number of training datasets L is sufficiently large. 
-
 |
 
 Applicability
