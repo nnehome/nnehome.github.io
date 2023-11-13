@@ -62,7 +62,7 @@ We will use :math:`\ell` to index the training examples that we use to train the
 
 #. **Summarize datasets.** For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. (We specify :math:`\boldsymbol{m}` so that it contains information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`.)
 
-#. **Put together a training set.** Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also create a validation set by repeating these steps more times for :math:`\ell=L+1,...,L^{*}`.
+#. **Put together a training set.** Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also repeat these steps more times for :math:`\ell=L+1,...,L^{*}` to create a validation set.
 
 #. **Train a neural net.** Use the training and validation sets in step 4 to train a neural net. (We can use mean-square-error loss. Other losses can train the neural net to give measures of statistical accuracy in addition to point estimates. See `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_ for details.)
 
