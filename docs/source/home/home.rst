@@ -64,7 +64,7 @@ We will use :math:`\ell` to index the training examples, which we will use to tr
 
 #. **Put together a training set.** Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training set :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also create a validation set by repeating these steps more times for :math:`\ell=L+1,...,L^{*}`.
 
-#. **Train a neural net.** Train a neural net using the training and validation sets in step 4. It takes :math:`\boldsymbol{m}` as input and gives :math:`\boldsymbol{\theta}` as output. (We can use mean-square-error loss. Other losses can train the neural net to give measures of statistical accuracy in addition to point estimates).
+#. **Train a neural net.** Use the training and validation sets in step 4 to train a neural net. (We can use mean-square-error loss. Other losses can train the neural net to give measures of statistical accuracy in addition to point estimates. See `Wei and Jiang (2023) <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_ for details.)
 
 #. **Get the estimate.** Plug the real data moments into the neural net to obtain an estimate of :math:`\boldsymbol{\theta}`.
 
