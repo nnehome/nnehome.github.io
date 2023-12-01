@@ -8,7 +8,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Code &#8212; NNE  documentation</title>
   
@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=62e430d9" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=39c899d2" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -312,7 +312,8 @@ On this page, we describe the other accompanying functions and files used in the
 <section id="moments-m">
 <h3><code class="docutils literal notranslate"><span class="pre">Moments.m</span></code><a class="headerlink" href="#moments-m" title="Link to this heading">#</a></h3>
 <p>This function summarizes data into data moments which serve as inputs into neural net estimation. It can be adapted to other structural models.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">Moments</span><span class="p">(</span>pos, z, consumer_id, yd, yt, type<span class="p">)</span>
+<details class="summary-collapse-header2-show-collapse-header-moments-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>Moments.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">Moments</span><span class="p">(</span>pos, z, consumer_id, yd, yt, type<span class="p">)</span>
 
 <span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
@@ -390,7 +391,7 @@ On this page, we describe the other accompanying functions and files used in the
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>inputs:</p>
+</details><p>inputs:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pos</span></code>: ranking position of the option</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">z</span></code>: product observables</p></li>
@@ -406,7 +407,8 @@ On this page, we describe the other accompanying functions and files used in the
 <section id="predsummary-m">
 <h3><code class="docutils literal notranslate"><span class="pre">PredSummary.m</span></code><a class="headerlink" href="#predsummary-m" title="Link to this heading">#</a></h3>
 <p>This function calculates the bias and rmse of the test data after training the neural network model.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% measure misclassifiction rate</span>
+<details class="summary-collapse-header2-show-collapse-header-predsummary-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>PredSummary.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% measure misclassifiction rate</span>
 
 
 <span class="k">function</span><span class="w"> </span>err<span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nf">PredSummary</span><span class="p">(</span>input_test, label_test, label_name, net, varargin<span class="p">)</span>
@@ -495,7 +497,7 @@ On this page, we describe the other accompanying functions and files used in the
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>inputs:</p>
+</details><p>inputs:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">input_test</span></code>: moment input in the test set</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">label_test</span></code>: label output in the test set</p></li>
@@ -511,7 +513,8 @@ On this page, we describe the other accompanying functions and files used in the
 <section id="statistics-m">
 <h3><code class="docutils literal notranslate"><span class="pre">Statistics.m</span></code><a class="headerlink" href="#statistics-m" title="Link to this heading">#</a></h3>
 <p>This function calculates the summary statistics of the search data.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[buy_rate, search_rate, num_search, pos_search] = Statistics</span><span class="p">(</span>yd, yt, pos, consumer_id, display<span class="p">)</span>
+<details class="summary-collapse-header2-show-collapse-header-statistics-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>Statistics.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[buy_rate, search_rate, num_search, pos_search] = Statistics</span><span class="p">(</span>yd, yt, pos, consumer_id, display<span class="p">)</span>
 
 <span class="c">% index = find(X(:,end));</span>
 
@@ -536,7 +539,7 @@ On this page, we describe the other accompanying functions and files used in the
 <span class="c">% tabulate(ydn)</span>
 </pre></div>
 </div>
-<div class="line-block">
+</details><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
@@ -544,7 +547,8 @@ On this page, we describe the other accompanying functions and files used in the
 <h3><code class="docutils literal notranslate"><span class="pre">gen_seq_search.m</span></code><a class="headerlink" href="#gen-seq-search-m" title="Link to this heading">#</a></h3>
 <p>This function generates outcomes based on observables and error draws. It is specific to sequential search model and can be adapted to other structural models.
 This function is adapted from the replication code of Ursu “The Power of Rankings”.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[yd, yt, order] = gen_seq_search</span><span class="p">(</span>pos, X, consumer_id, theta, eps, eps0, curve<span class="p">)</span>
+<details class="summary-collapse-header2-show-collapse-header-gen-seq-search-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>gen_seq_search.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[yd, yt, order] = gen_seq_search</span><span class="p">(</span>pos, X, consumer_id, theta, eps, eps0, curve<span class="p">)</span>
 <span class="c">%% setup</span>
 
 <span class="c">% number of options for each consumer</span>
@@ -673,7 +677,7 @@ This function is adapted from the replication code of Ursu “The Power of Ranki
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>input:</p>
+</details><p>input:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pos</span></code>: ranking position of the option</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>: product observables</p></li>
@@ -700,7 +704,8 @@ This function is adapted from the replication code of Ursu “The Power of Ranki
 If <code class="docutils literal notranslate"><span class="pre">learn_standard_error</span> <span class="pre">=</span> <span class="pre">false</span></code>, NNE uses the mean squared error loss (<span class="math notranslate nohighlight">\({C_1(f)}\)</span> in Eq 5 in the paper). If <code class="docutils literal notranslate"><span class="pre">learn_standard_error</span> <span class="pre">=</span> <span class="pre">true</span></code>, NNE uses the cross-entropy
 loss (<span class="math notranslate nohighlight">\({C_2(f)}\)</span> in Eq 6 in the paper). <code class="docutils literal notranslate"><span class="pre">backwardLoss</span></code> function specifies the derivative of the loss with respect to the predictions. When <code class="docutils literal notranslate"><span class="pre">learn_standard_error</span> <span class="pre">=</span> <span class="pre">true</span></code>,
 NNE predicts both the point estimates and the standard deviations.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">classdef</span><span class="w"> </span><span class="n">normalRegressionLayer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nnet</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">RegressionLayer</span>
+<details class="summary-collapse-header2-show-collapse-header-normalregressionlayer-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>normalRegressionLayer.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">classdef</span><span class="w"> </span><span class="n">normalRegressionLayer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nnet</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">RegressionLayer</span>
 
 <span class="w">    </span><span class="k">properties</span>
 <span class="w">        </span><span class="c">% (Optional) Layer properties.</span>
@@ -769,20 +774,21 @@ NNE predicts both the point estimates and the standard deviations.</p>
 <span class="k">end</span>
 </pre></div>
 </div>
-<div class="line-block">
+</details><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="positivetransform-m">
 <h3><code class="docutils literal notranslate"><span class="pre">PositiveTransform.m</span></code><a class="headerlink" href="#positivetransform-m" title="Link to this heading">#</a></h3>
 <p>This function is used in <code class="docutils literal notranslate"><span class="pre">normalRegressionLayer.m</span></code> to transform to positive numbers for the variance terms.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[value, derivative] = PositiveTransform</span><span class="p">(</span>x<span class="p">)</span>
+<details class="summary-collapse-header2-show-collapse-header-positivetransform-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>PositiveTransform.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[value, derivative] = PositiveTransform</span><span class="p">(</span>x<span class="p">)</span>
 
 <span class="n">value</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 <span class="n">derivative</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
 </pre></div>
 </div>
-<div class="line-block">
+</details><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
@@ -790,21 +796,22 @@ NNE predicts both the point estimates and the standard deviations.</p>
 <h3><code class="docutils literal notranslate"><span class="pre">set_up.m</span></code><a class="headerlink" href="#set-up-m" title="Link to this heading">#</a></h3>
 <p>This function generates the Monte Carlo data for sequential search models, which is not needed when estimating a real dataset.
 It also defines the bounds from which to draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span>.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% config</span>
+<details class="summary-collapse-header2-show-collapse-header-set-up-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>set_up.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% config</span>
 
 <span class="n">N</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="c">% number of consumers</span>
 <span class="n">J</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span><span class="w"> </span><span class="c">% options per consumer</span>
 
 <span class="c">% z dim = 7, the same as the empirical data</span>
 <span class="nb">bounds</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="mf">0.1</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">      </span><span class="s">&#39;\beta_1&#39;</span><span class="w">       </span><span class="c">% coefficient (stars)</span>
-<span class="w">            </span><span class="mf">0.0</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">      </span><span class="s">&#39;\beta_2&#39;</span><span class="w">       </span><span class="c">% coefficient (review score)</span>
-<span class="w">            </span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">      </span><span class="s">&#39;\beta_3&#39;</span><span class="w">       </span><span class="c">% coefficient (loc score)</span>
-<span class="w">        </span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">         </span><span class="s">&#39;\beta_4&#39;</span><span class="w">       </span><span class="c">% coefficient (chain)</span>
-<span class="w">            </span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_5&#39;</span><span class="w">           </span><span class="c">% coefficient (promotion)</span>
-<span class="w">        </span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_6&#39;</span><span class="w">      </span><span class="c">% coefficient (price)</span>
-<span class="w">            </span><span class="mf">3.0</span><span class="p">,</span><span class="w">    </span><span class="mf">2.0</span><span class="p">,</span><span class="w">  </span><span class="mf">5.0</span><span class="p">,</span><span class="w">      </span><span class="s">&#39;\eta&#39;</span><span class="w">          </span><span class="c">% outside good</span>
-<span class="w">        </span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="w">  </span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="w">        </span><span class="s">&#39;\delta_0&#39;</span><span class="w">      </span><span class="c">% search cost base</span>
+<span class="w">            </span><span class="mf">0.1</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_1&#39;</span><span class="w">       </span><span class="c">% coefficient (stars)</span>
+<span class="w">            </span><span class="mf">0.0</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_2&#39;</span><span class="w">       </span><span class="c">% coefficient (review score)</span>
+<span class="w">            </span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_3&#39;</span><span class="w">       </span><span class="c">% coefficient (loc score)</span>
+<span class="w">        </span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">     </span><span class="s">&#39;\beta_4&#39;</span><span class="w">       </span><span class="c">% coefficient (chain)</span>
+<span class="w">            </span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_5&#39;</span><span class="w">       </span><span class="c">% coefficient (promotion)</span>
+<span class="w">        </span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="mf">0.5</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\beta_6&#39;</span><span class="w">          </span><span class="c">% coefficient (price)</span>
+<span class="w">            </span><span class="mf">3.0</span><span class="p">,</span><span class="w">    </span><span class="mf">2.0</span><span class="p">,</span><span class="w">  </span><span class="mf">5.0</span><span class="p">,</span><span class="w">  </span><span class="s">&#39;\eta&#39;</span><span class="w">          </span><span class="c">% outside good</span>
+<span class="w">        </span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="w">  </span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="w">    </span><span class="s">&#39;\delta_0&#39;</span><span class="w">      </span><span class="c">% search cost base</span>
 <span class="w">            </span><span class="mf">0.1</span><span class="p">,</span><span class="w">   </span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="w">  </span><span class="mf">0.25</span><span class="p">,</span><span class="s">&#39;\delta_1&#39;</span><span class="w">  </span><span class="c">% search cost position</span>
 <span class="w">        </span><span class="p">};</span>
 
@@ -849,7 +856,7 @@ It also defines the bounds from which to draw <span class="math notranslate nohi
 <span class="nb">save</span><span class="p">(</span><span class="s">&#39;data.mat&#39;</span><span class="p">,</span><span class="s">&#39;label_name&#39;</span><span class="p">,</span><span class="s">&#39;theta_true&#39;</span><span class="p">,</span><span class="s">&#39;lb&#39;</span><span class="p">,</span><span class="s">&#39;ub&#39;</span><span class="p">,</span><span class="s">&#39;consumer_id&#39;</span><span class="p">,</span><span class="s">&#39;pos&#39;</span><span class="p">,</span><span class="s">&#39;z&#39;</span><span class="p">,</span><span class="s">&#39;yd&#39;</span><span class="p">,</span><span class="s">&#39;yt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="line-block">
+</details><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
@@ -869,7 +876,8 @@ This is specific to the estimation of sequential search model.</p>
 <h3><code class="docutils literal notranslate"><span class="pre">liklOutsideFE.m</span></code><a class="headerlink" href="#likloutsidefe-m" title="Link to this heading">#</a></h3>
 <p>This function calculates the log-likelihood for one consumer using the smoothed likelihood approach.
 The function is adapted from the replication code of Ursu “The Power of Rankings”.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% the likelihood function is adapted from the replication code of Ursu &quot;The Power of Rankings&quot;</span>
+<details class="summary-collapse-header2-show-collapse-header-likloutsidefe-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>liklOutsideFE.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% the likelihood function is adapted from the replication code of Ursu &quot;The Power of Rankings&quot;</span>
 
 <span class="k">function</span><span class="w"> </span>loglik<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">liklOutsideFE</span><span class="p">(</span>be, pos, X, consumer_id, yd, yt, R, w, eps_draw,eps0_draw,curve<span class="p">)</span>
 
@@ -1017,7 +1025,7 @@ The function is adapted from the replication code of Ursu “The Power of Rankin
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>input:</p>
+</details><p>input:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">be</span></code>: parameter value</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pos</span></code>: ranking position of the option</p></li>
@@ -1038,7 +1046,8 @@ The function is adapted from the replication code of Ursu “The Power of Rankin
 <section id="objective-mle-m">
 <h3><code class="docutils literal notranslate"><span class="pre">Objective_mle.m</span></code><a class="headerlink" href="#objective-mle-m" title="Link to this heading">#</a></h3>
 <p>This function returns the negative value of the sum of the log-likelihood by calling the <code class="docutils literal notranslate"><span class="pre">liklOutsideFE.m</span></code> function.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">Objective_mle</span><span class="p">(</span>be, pos, X, consumer_id, yd, yt, R, w, eps_draw,eps0_draw,curve<span class="p">)</span>
+<details class="summary-collapse-header2-show-collapse-header-objective-mle-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>Objective_mle.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">Objective_mle</span><span class="p">(</span>be, pos, X, consumer_id, yd, yt, R, w, eps_draw,eps0_draw,curve<span class="p">)</span>
 
 <span class="n">loglik</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">liklOutsideFE</span><span class="p">(</span><span class="n">be</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">consumer_id</span><span class="p">,</span><span class="w"> </span><span class="n">yd</span><span class="p">,</span><span class="w"> </span><span class="n">yt</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">eps_draw</span><span class="p">,</span><span class="n">eps0_draw</span><span class="p">,</span><span class="n">curve</span><span class="p">);</span>
 
@@ -1047,14 +1056,15 @@ The function is adapted from the replication code of Ursu “The Power of Rankin
 <span class="k">end</span>
 </pre></div>
 </div>
-<div class="line-block">
+</details><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>
 <section id="main-mle-m">
 <h3><code class="docutils literal notranslate"><span class="pre">main_mle.m</span></code><a class="headerlink" href="#main-mle-m" title="Link to this heading">#</a></h3>
 <p>This function implements the simulated maximum likelihood using the smoothed likelihood approach. The smoothing parameter can be set by the <code class="docutils literal notranslate"><span class="pre">w</span></code> variable.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
+<details class="summary-collapse-header2-show-collapse-header-main-mle-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>main_mle.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
 
 <span class="nb">clear</span><span class="p">;</span>
 <span class="n">seed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -1136,7 +1146,7 @@ The function is adapted from the replication code of Ursu “The Power of Rankin
 <span class="n">csvwrite</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&#39;theta_R%d_w%d.csv&#39;</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="o">-</span><span class="n">w</span><span class="p">),</span><span class="w"> </span><span class="n">A</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="line-block">
+</details><div class="line-block">
 <div class="line"><br /></div>
 </div>
 </section>

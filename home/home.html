@@ -8,7 +8,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Welcome to NNE &#8212; NNE  documentation</title>
   
@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=62e430d9" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=39c899d2" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -317,8 +317,8 @@ NNE and the suitable (and less suitable) applications in the table below.</p>
 <p id="main-properties-table">The main properties and suitable applications of the estimation method are summarized below:</p>
 <table class="table-header-centered table">
 <colgroup>
-<col style="width: 10.0%" />
-<col style="width: 90.0%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"></th>
@@ -342,8 +342,8 @@ NNE and the suitable (and less suitable) applications in the table below.</p>
 </table>
 <table class="table-header-centered table">
 <colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Suitable Applications</p></th>
@@ -409,7 +409,8 @@ These codes can be used to replicate the Monte Carlo results from <a class="refe
 <section id="generate-training-datasets-nne-gen-m">
 <h3>Generate training datasets <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code><a class="headerlink" href="#generate-training-datasets-nne-gen-m" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>: This function implements steps (1) and (2) from the overview of NNE.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
+<details class="summary-collapse-header2-show-collapse-header-nne-gen-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>nne_gen.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% set up</span>
 
 <span class="nb">clear</span><span class="p">;</span>
 <span class="n">seed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -489,7 +490,7 @@ These codes can be used to replicate the Monte Carlo results from <a class="refe
 <span class="nb">save</span><span class="p">(</span><span class="s">&#39;RNGstate.mat&#39;</span><span class="p">,</span><span class="s">&#39;state&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Several key steps include:</p>
+</details><br><p>Several key steps include:</p>
 <ul class="simple">
 <li><p>Draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> <code class="docutils literal notranslate"><span class="pre">theta</span> <span class="pre">=</span> <span class="pre">unifrnd(lb,</span> <span class="pre">ub)</span></code>. Ideally, the bounds to draw <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> from should cover the true parameter value. When <span class="math notranslate nohighlight">\(\Theta\)</span> does not cover the true value, NNE’s estimate can fall outside <span class="math notranslate nohighlight">\(\Theta\)</span> and in the direction towards the true value. One should check whether NNE’s estimate is inside <span class="math notranslate nohighlight">\(\Theta\)</span>. If not, then <span class="math notranslate nohighlight">\(\Theta\)</span> likely does not contain the truth and needs to be adjusted.</p></li>
 <li><p>Simulate outcome <span class="math notranslate nohighlight">\(y^{(l)}\)</span> with function <code class="docutils literal notranslate"><span class="pre">gen_seq_search()</span></code>, which takes parameter <span class="math notranslate nohighlight">\(\theta^{(l)}\)</span> and error draw <span class="math notranslate nohighlight">\(\epsilon^{(l)}\)</span>. This function is specific to sequential search and can be changed to other structural models.</p></li>
@@ -501,7 +502,8 @@ These codes can be used to replicate the Monte Carlo results from <a class="refe
 <section id="train-a-neural-network-nne-train-m">
 <h3>Train a neural network <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code><a class="headerlink" href="#train-a-neural-network-nne-train-m" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>: This function implements steps (3) and (4) from the overview of NNE.</p>
-<div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% settings</span>
+<details class="summary-collapse-header2-show-collapse-header-nne-train-m-collapse-header-code-collapse-header2">
+<summary><collapse_header2>Show <collapse_header>nne_train.m</collapse_header> code</collapse_header2></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% settings</span>
 
 <span class="nb">clear</span><span class="p">;</span>
 <span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
@@ -585,7 +587,7 @@ These codes can be used to replicate the Monte Carlo results from <a class="refe
 <span class="n">csvwrite</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&#39;theta_L%d_nodes%d.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">num_nodes</span><span class="p">),</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Several key steps include:</p>
+</details><br><p>Several key steps include:</p>
 <ul class="simple">
 <li><p>We can ask NNE to output standard errors by setting <code class="docutils literal notranslate"><span class="pre">learn_standard_error</span> <span class="pre">=</span> <span class="pre">true;</span></code>. It will double the dimensionality of the NNE output by including both the point estimates and the standard errors.</p></li>
 <li><p>Train the neural net with function: <code class="docutils literal notranslate"><span class="pre">[net,</span> <span class="pre">info]</span> <span class="pre">=</span> <span class="pre">trainNetwork(input_train,</span> <span class="pre">label_train,</span> <span class="pre">layers,</span> <span class="pre">opts);</span></code></p>
