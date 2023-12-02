@@ -40,21 +40,3 @@ code {
 .table-header-centered th {
     text-align: center;
 }
-
-collapse_header {
-    font-family: "Consolas", monospace;
-    color:dodgerblue;
-    background-color: #f8f8f8; /* Light grey background, common for inline code */
-    padding: 2px 4px;
-    border-radius: 4px;
-}
-
-collapse_header2 {
-    font-family: "Consolas", monospace;
-    background-color: #f8f8f8; /* Light grey background, common for inline code */
-    padding: 2px 4px;
-    border-radius: 4px;
-    border: 1px solid #e1e4e8; /* Light grey border */
-}
-
-

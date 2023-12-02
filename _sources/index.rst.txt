@@ -131,93 +131,89 @@ Generate training datasets ``nne_gen.m``
 
 ``nne_gen.m``: This function implements steps (1) and (2) from the overview of NNE.
 
-..  collapse:: <collapse_header2>Show <collapse_header>nne_gen.m</collapse_header> code</collapse_header2>
 
-    .. code-block:: matlab
-        :class: scrollable-code-block
+.. code-block:: matlab
+    :class: scrollable-code-block
 
-        %% set up
+    %% set up
 
-        clear; 
-        seed = 1; 
-        type = 4; % denotes the type of moments in the Moments() function
+    clear; 
+    seed = 1; 
+    type = 4; % denotes the type of moments in the Moments() function
 
-        tic;
+    tic;
 
-        rng(seed)
+    rng(seed)
 
-        L = 10000; % number of simulations
+    L = 10000; % number of simulations
 
-        set_up % generate a search dataset, save in data.mat
+    set_up % generate a search dataset, save in data.mat
 
-        load('data.mat')
+    load('data.mat')
 
-        % table with (normalized) search cost and reservation utility
-        curve = importdata('tableData.csv'); 
+    % table with (normalized) search cost and reservation utility
+    curve = importdata('tableData.csv'); 
 
-        %% simulate
+    %% simulate
 
-        input = cell(L,1);
-        label = cell(L,1);
+    input = cell(L,1);
+    label = cell(L,1);
 
-        for l = 1:L
+    for l = 1:L
 
-            theta = unifrnd(lb, ub);
+        theta = unifrnd(lb, ub);
 
-            [yd, yt] = gen_seq_search(pos, z, consumer_id, theta, ...
-                randn(length(consumer_id),1), randn(length(unique(consumer_id)),1), curve);
+        [yd, yt] = gen_seq_search(pos, z, consumer_id, theta, ...
+            randn(length(consumer_id),1), randn(length(unique(consumer_id)),1), curve);
 
-            % keep non-outlier informative draws 
-            [buy_rate, search_rate] = Statistics(yd, yt, pos, consumer_id, false);
+        % keep non-outlier informative draws 
+        [buy_rate, search_rate] = Statistics(yd, yt, pos, consumer_id, false);
 
-            if buy_rate > 0 && buy_rate < 1 && search_rate > 0 && search_rate < 1
+        if buy_rate > 0 && buy_rate < 1 && search_rate > 0 && search_rate < 1
 
-                input{l} = Moments(pos, z, consumer_id, yd, yt, type);
-                label{l} = theta;
-
-            end
+            input{l} = Moments(pos, z, consumer_id, yd, yt, type);
+            label{l} = theta;
 
         end
 
-        % remove empty cells (outliers)
-        input = input(~cellfun('isempty',input));
-        label = label(~cellfun('isempty',label));
+    end
 
-        input = cell2mat(input);
-        label = cell2mat(label);
+    % remove empty cells (outliers)
+    input = input(~cellfun('isempty',input));
+    label = label(~cellfun('isempty',label));
 
-        %% save 
+    input = cell2mat(input);
+    label = cell2mat(label);
 
-        n = size(input,1);
+    %% save 
 
-        input_train = input(1:floor(n*0.9),:);
-        label_train = label(1:floor(n*0.9),:);
+    n = size(input,1);
 
-        input_test = input(floor(n*0.9)+1:n,:);
-        label_test = label(floor(n*0.9)+1:n,:);
+    input_train = input(1:floor(n*0.9),:);
+    label_train = label(1:floor(n*0.9),:);
 
-        %% generate simulated real data (for Monte Carlo)
+    input_test = input(floor(n*0.9)+1:n,:);
+    label_test = label(floor(n*0.9)+1:n,:);
 
-        [yd, yt] = gen_seq_search(pos, z, consumer_id, theta_true, ...
-            randn(length(consumer_id),1), randn(length(unique(consumer_id)),1), curve);
+    %% generate simulated real data (for Monte Carlo)
 
-        input_sim_real = Moments(pos, z, consumer_id, yd, yt, type);
-        label_sim_real = theta_true;
+    [yd, yt] = gen_seq_search(pos, z, consumer_id, theta_true, ...
+        randn(length(consumer_id),1), randn(length(unique(consumer_id)),1), curve);
 
-        %% save training set and seed
-        toc;
+    input_sim_real = Moments(pos, z, consumer_id, yd, yt, type);
+    label_sim_real = theta_true;
 
-        time_gen = toc/60;
+    %% save training set and seed
+    toc;
 
-        save('training_set.mat', 'input_train', 'label_train', 'input_test', 'label_test', ...
-                                'input_sim_real', 'label_sim_real', 'label_name', ß'time_gen')
+    time_gen = toc/60;
 
-        state = rng;
-        save('RNGstate.mat','state')        
+    save('training_set.mat', 'input_train', 'label_train', 'input_test', 'label_test', ...
+                            'input_sim_real', 'label_sim_real', 'label_name', ß'time_gen')
 
-.. raw:: html
+    state = rng;
+    save('RNGstate.mat','state')
 
-   <br>
 
 Several key steps include:
 
@@ -233,9 +229,7 @@ Train a neural network ``nne_train.m``
 
 ``nne_train.m``: This function implements steps (3) and (4) from the overview of NNE.
 
-..  collapse:: <collapse_header2>Show <collapse_header>nne_train.m</collapse_header> code</collapse_header2>
-
-  .. code-block:: matlab
+.. code-block:: matlab
     :class: scrollable-code-block
 
     %% settings
@@ -320,10 +314,6 @@ Train a neural network ``nne_train.m``
     out = [theta, se, L, info.FinalValidationLoss, time_gen, time_train];
 
     csvwrite(sprintf('theta_L%d_nodes%d.csv', L, num_nodes), out);
-
-.. raw:: html
-
-   <br>
 
 Several key steps include:
 
