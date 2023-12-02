@@ -1,48 +1,55 @@
 :html_theme.sidebar_secondary.remove:
 
-.. pNNE documentation master file, created by
-   sphinx-quickstart on Mon Sep 18 12:08:20 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+:parenttoc: True
 
-.. toctree::
-   :maxdepth: 3
-
-.. toctree::
-   :hidden:
-
-    [Home] <home/home>
-    [Consumer Search] <code_1/code_1>
-    [AR1 Model] <code_2/code_2>
-
+.. _home:
 
 Welcome to NNE
 ===============
 
 |
 
-This website provides a guide and code of the neural net estimator (NNE) (`Wei and Jiang 2023 <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_). NNE exploits machine learning techniques to estimate existing econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments. 
+This website provides a guide and code of the neural net estimator (NNE) (`Wei and Jiang 2023 <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_). NNE exploits machine learning techniques for estimating given econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments. 
 
 Below, we describe an `overview`_ of NNE, its `step-by-step procedure`_, and the `applicability`_ to marketing/economics problems.
 
-We also provide Matlab code for two applications of NNE. You're welcome to modify the code to estimate other econometric models. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the documentation for the code at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_1>` page.
+We provide example code for two applications of NNE. You're welcome to modify the code to estimate other econometric models.
+
+#. The :ref:`consumer search <code_1>` page provides the code applying NNE to consumer sequential search model.
+#. The :ref:`AR1 model <code_2>` page provides the code to illustrate the concept of NNE in a simple AR1 model.
 
 Overview
 ---------------
 
-A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` as a function of some observed attributes :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`  and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc. The outcome of interest can be consumer choice, sales, etc. The observed attributes often are consumer and product characteristics.
+A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` (e.g., consumer choice, total sales) as a function of some observed attributes :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}` (e.g., consumer and product characteristics) and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc.
 
-So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{q}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The task of structural estimation can be described as recovering the parameter :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`.
+So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{g}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The goal of structural estimation is to recover the parameter :math:`\boldsymbol{\theta}` from data.
 
 The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`. 
 
-To train such a neural net, we only require it is possible to simulate :math:`\boldsymbol{y}` using the econometric model. Specifically, we first draw many different values of the parameter. Given each parameter value, use the structural model to generate a copy of data. Then, these many parameter values and their corresponding copies of data become the training examples for the neural net. The step-by-step procedure below gives more details.
+To train such a neural net, we draw many different values of the parameter. Given each value of parameter, use the structural model to generate a copy of data. Then these many values of parameters and their corresponding copies of data become the training examples for the neural net. See `step-by-step procedure`_ below for details.
+
+**An Analog.** One way to grasp the concept of NNE is making an analog to digit recognition. Machine learning models have been trained to recognize the digits underlying handwritten images (below is an example). 
+
+.. figure:: digit_rec.png 
+  :scale: 60%
+  :align: center
+
+Conceptually, this can be thought of as a parameter estimation problem, where the *data* is an image and the *parameter* is the underlying digit.  NNE also tackles parameter estimation, but where the *data* is an economic dataset and the *parameter* is that of an econometric model.
+
+.. figure:: theta_rec.png 
+  :scale: 60%
+  :align: center
   
 
 Step-by-step Procedure
 -----------------------
 
-Below we list the usual procedure of NNE. We use :math:`\ell` to index the training examples that we use to train the neural net.
+Below we list the usual procedure of NNE.
+
+Context: we want to estimate a (structural) econometric model. The data is denoted as :math:`\{\boldsymbol{x, y}\}`, with :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` and :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`. What we need: the ability to simulate the outcome variable :math:`\boldsymbol{y}` using the econometric model.
+
+We use :math:`\ell` to index the training examples that we use to train the neural net.
 
 #. **Simulate data.** For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. Use the structural econometric model to simulate a set of outcomes :math:`\boldsymbol{y}^{(\ell)}`, under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
 
@@ -78,7 +85,7 @@ The complexity of econometric models in economics/marketing means there is often
    * - 
      - Main Properties
    * - 1
-     - It does not require computing integrals over the unobservables (:math:`\boldsymbol{\epsilon}`) in the structural econometric model. It only requires being able to simulate data using the econometric model.
+     - It does not require computing integrals over the unobservables (:math:`\boldsymbol{\epsilon}`) in the structural econometric model.
    * - 2
      - It does not require optimizing an (potentially non-smooth) objective function as in extremum estimators (e.g., SMLE, SMM, indirect inference).
    * - 3
@@ -93,12 +100,13 @@ The complexity of econometric models in economics/marketing means there is often
 
    * - Suitable Applications
      - Less Suitable Applications
-   * - A large number of simulations are needed to evaluate likelihood/moments. The SMLE/SMM objective is difficult to optimize. There lacks clear guidance on moment choice. Formulas of standard errors are not yet established.
-     - Closed-form expressions are available for likelihood/moments. The main estimation burden comes from other than the simulations to evaluate likelihood/moments.
+   * - Many simulations are needed to evaluate likelihood/moments. The SMLE/SMM objective is difficult to optimize. There lacks clear guidance on moment choice. Formulas of standard errors are not yet established.
+     - Close-form expressions are available for likelihood/moments. The main estimation burden comes from other than the simulations to evaluate likelihood/moments.
    * - **Examples**: discrete choices with rich unobserved heterogeneity, sequential search, choices on networks.
      - **Examples**: dynamic choice or games where the main burden is solving policy functions.
 
 |
+
 
 
 
