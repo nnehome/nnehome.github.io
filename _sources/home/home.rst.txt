@@ -11,11 +11,11 @@ Welcome to NNE
 
 .. _top:
 
-This website provides a guide and code of the neural net estimator (NNE) (`paper`_). NNE exploits machine learning techniques to estimate existing econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments. 
+This website provides a guide for and the code of the neural net estimator (NNE) (`paper`_). NNE exploits machine learning techniques to estimate existing econometric models. It is a simulation-based estimator and provides an alternative to simulated maximum likelihood or simulated method of moments. It offers sizable computational and accuracy gains in suitable applications.
 
 Below, we describe an `overview`_ of NNE, its `step-by-step procedure`_, and the `applicability`_ to marketing/economics problems.
 
-We also provide Matlab code for two applications of NNE. You're welcome to modify the code to estimate other econometric models. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the documentation for the code at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page.
+We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. The AR1 application is a good example to illustrate the concept of NNE. The consumer search application shows the computational and accuracy advantages of NNE. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the code documentation at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page. You're welcome to modify the code to estimate other econometric models. 
 
 |
 
@@ -24,7 +24,7 @@ Overview
 
 A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` as a function of some observed attributes :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`  and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc. The outcome of interest can be consumer choice, sales, etc. The observed attributes often are consumer and product characteristics.
 
-So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{q}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter of the model. The task of structural estimation can be described as recovering the parameter :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`.
+So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{q}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter vector of the model. The task of structural estimation can be described as recovering the parameter :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`.
 
 The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`. 
 
@@ -37,11 +37,11 @@ Step-by-step procedure
 
 Below we list the usual procedure of NNE. We use :math:`\ell` to index the training examples that we use to train the neural net.
 
-#. **Simulate data.** For each :math:`\ell`, draw parameter values :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. Use the structural econometric model to simulate a set of outcomes :math:`\boldsymbol{y}^{(\ell)}`, under the parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`.
+#. **Simulate data.** For each :math:`\ell`, draw parameter vector :math:`\boldsymbol{\theta}^{(\ell)}` from a parameter space :math:`\Theta`. Given this parameter :math:`\boldsymbol{\theta}^{(\ell)}` and the observed attributes :math:`\boldsymbol{x}`, use the structural econometric model to simulate outcomes :math:`y_i^{(\ell)}` for :math:`i=1,...,n`. Let :math:`\boldsymbol{y}^{(\ell)}\equiv\{y_i^{(\ell)}\}_{i=1}^{n}`.
 
 #. **Summarize data.** For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. 
 
-#. **Train a neural net.** Repeat step 1-3 for :math:`\ell=1,...,L` to construct the training examples :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also repeat these steps more times to create validation examples. Use these examples to train a neural net. 
+#. **Train a neural net.** Repeat steps 1-3 for :math:`\ell=1,...,L` to construct the training examples :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also repeat these steps more times to create validation examples. Use these examples to train a neural net. 
 
 #. **Get the estimate.** Plug the real data moments into the neural net to obtain an estimate of :math:`\boldsymbol{\theta}`.
 
@@ -90,7 +90,7 @@ The table below summarizes the main properties of NNE as well as its suitable ap
    * - Suitable Applications
      - Less Suitable Applications
    * - A large number of simulations are needed to evaluate likelihood/moments. The SMLE/SMM objective is difficult to optimize. There lacks clear guidance on moment choice. Formulas of standard errors are not yet established.
-     - Closed-form expressions are available for likelihood/moments. The main estimation burden comes from other than the simulations to evaluate likelihood/moments.
+     - Closed-form expressions are available for likelihood/moments. The main estimation burden comes from sources other than the simulations to evaluate likelihood/moments.
    * - **Examples**: discrete choices with rich unobserved heterogeneity, sequential search, choices on networks.
      - **Examples**: dynamic choice or games where the main burden is solving policy functions.
 

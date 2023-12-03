@@ -322,11 +322,23 @@ document.write(`
 <div class="line"><br /></div>
 </div>
 <p>The concept of NNE can be illustrated with a simple AR1 model: <span class="math notranslate nohighlight">\(y_{i}={\beta}y_{i-1}+\epsilon_{i}\)</span>. The model is simple enough that it won’t see computational or accuracy gains from NNE. But the simplicity allows NNE to be more easily illustrated. The code is easier-to-follow than that in <a class="reference internal" href="../code_1/code_1.html#code-1"><span class="std std-ref">consumer search</span></a>, and thus is useful for a quicker look at how NNE actually works. This <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> page provides the Matlab (2023b) code. Below we provide description of the code.</p>
-<p>The main code scripts are <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>, <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>, and <code class="docutils literal notranslate"><span class="pre">nne_use.m</span></code>. These three scripts correspond to steps 1 &amp; 2, step 3, and step 4, respectively, in the step-by-step procedure of NNE listed on <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page. Other files are the supporting functions used by these scripts.</p>
 <p>For more details of this application, see our paper referred in <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<section id="an-example-to-use-the-code">
+<h2>An example to use the code:<a class="headerlink" href="#an-example-to-use-the-code" title="Link to this heading">#</a></h2>
+<p>Run the three scripts in order as follows. This example is a Monte Carlo experiment that uses NNE to estimate the AR1 from a simulated dataset.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; nne_gen          % generate the training examples for NNE, saved in nne_training.mat</span>
+<span class="go">&gt;&gt; nne_train        % train a neural net, saved in nne_trained.mat</span>
+<span class="go">&gt;&gt; nne_use          % apply the trained neural net on a simulated time series</span>
+</pre></div>
+</div>
+<p>Two functions are used in these scripts: <code class="docutils literal notranslate"><span class="pre">model.m</span></code> and <code class="docutils literal notranslate"><span class="pre">moments.m</span></code>, which we explain below.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
 <section id="description-of-each-file">
 <h2>Description of each file:<a class="headerlink" href="#description-of-each-file" title="Link to this heading">#</a></h2>
 <section id="model-m">
@@ -359,7 +371,7 @@ document.write(`
 </section>
 <section id="nne-gen-m">
 <h3><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code><a class="headerlink" href="#nne-gen-m" title="Link to this heading">#</a></h3>
-<p>This script generates the training and validation examples (Step 1 &amp; 2 in the procedure on <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page).</p>
+<p>This script generates the training and validation examples (Steps 1 &amp; 2 in the procedure on <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page).</p>
 <ul class="simple">
 <li><p>It uses <code class="docutils literal notranslate"><span class="pre">model.m</span></code> to simulate the time-series data in each training or validation example.</p></li>
 <li><p>It uses <code class="docutils literal notranslate"><span class="pre">moments.m</span></code> to summarize data in each training or validation example.</p></li>
@@ -415,6 +427,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-to-use-the-code">An example to use the code:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-each-file">Description of each file:</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-m"><code class="docutils literal notranslate"><span class="pre">model.m</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moments-m"><code class="docutils literal notranslate"><span class="pre">moments.m</span></code></a></li>

@@ -9,9 +9,26 @@ Consumer search
 
 One example application of NNE is to estimate consumer search model. This `GitHub <https://github.com/nnehome/nne-matlab>`_ page provides the Matlab (2023b) code. Below we provide description of the code files. The code itself is commented as well. You can modify the code for your own structural model.
 
-The main code scripts are ``nne_gen.m``, ``nne_train.m``, and ``nne_use.m``. These three scripts correspond to steps 1 & 2, step 3, and step 4, respectively, in the step-by-step procedure of NNE listed on :ref:`home<home>` page. The data for estimation is stored in ``data.mat``. You can use script ``monte_carlo_data.m`` to simulate data for Monte Carlo experiments. Other files are the supporting functions used by these scripts.
-
 For more details of this application, see our paper referred in :ref:`home <home>` page.
+
+|
+
+An example to use the code:
+----------------------------
+
+Run the four scripts in order as follows. This example is a Monte Carlo experiment that uses NNE to estimate the search model parameter from a simulated dataset.
+
+.. code-block:: console
+
+    >> monte_carlo_data		% simulate a dataset, saved in data.mat
+    >> nne_gen			% generate the training examples for NNE, saved in nne_training.mat
+    >> nne_train		% train a neural net, saved in nne_trained.mat
+    >> nne_use			% apply the trained neural net on the data in data.mat
+
+Three functions are used in these scripts: ``model_seq_search.m``, ``moments.m``, and ``normalRegressionLayer.m``, which we explain below.
+    
+..
+	The main code scripts are ``nne_gen.m``, ``nne_train.m``, and ``nne_use.m``. These three scripts correspond to steps 1 & 2, step 3, and step 4, respectively, in the step-by-step procedure of NNE listed on :ref:`home<home>` page. The data for estimation is stored in ``data.mat``. You can use script ``monte_carlo_data.m`` to simulate data for Monte Carlo experiments. Other files are the supporting functions used by these scripts.
 
 |
 
