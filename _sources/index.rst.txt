@@ -27,20 +27,20 @@ This website provides a guide for and the code of the neural net estimator (NNE)
 
 Below, we describe an `overview`_ of NNE, its `step-by-step procedure`_, and the `applicability`_ to marketing/economics problems.
 
-We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. The AR1 is a good example to illustrate the concept of NNE. The consumer search application shows the computational and accuracy advantages of NNE. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the code documentation at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page. You're welcome to modify the code to estimate other econometric models. 
+We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. The AR1 is a good example to illustrate the concept of NNE, whereas the consumer search application demonstrates computational and accuracy advantages of NNE. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the code documentation at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page. You're welcome to modify the code to estimate other econometric models. 
 
 |
 
 Overview
 ---------------
 
-A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` as a function of some observed attributes :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`  and some unobserved attributes :math:`\boldsymbol{\epsilon}`. The function is often an economic model such as random utility maximization, sequential search, game, etc. The outcome of interest can be consumer choice, sales, etc. The observed attributes often are consumer and product characteristics.
+A (structural) econometric model specifies some outcome of interest :math:`\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}` as a function :math:`\boldsymbol{q}` of some observed attributes :math:`\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}`  and some unobserved attributes :math:`\boldsymbol{\varepsilon}`. The function :math:`\boldsymbol{q}` is often an economic model such as random utility maximization, sequential search, game, etc. The outcome of interest :math:`\boldsymbol{y}` can be consumer choice, product sales, etc. The observed attributes :math:`\boldsymbol{x}` are often consumer and product characteristics.
 
 So we can denote a structural econometric model as :math:`\boldsymbol{y} = \boldsymbol{q}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})`, where :math:`\boldsymbol{\theta}` is the parameter vector of the model. The task of structural estimation can be described as recovering the parameter :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`.
 
 The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\theta}` from data :math:`\{\boldsymbol{x, y}\}`. 
 
-To train such a neural net, we only require it is possible to simulate :math:`\boldsymbol{y}` using the econometric model. Specifically, we first draw many different values of the parameter. Given each parameter value, use the structural model to generate a copy of data. Then, these many parameter values and their corresponding copies of data become the training examples for the neural net. The step-by-step procedure below gives more details.
+To train such a neural net, we only require being able to simulate :math:`\boldsymbol{y}` using the econometric model. Specifically, we first draw many different values of the parameter. Given each parameter value, use the structural model to generate a copy of data. Then, these many parameter values and their corresponding copies of data become the training examples for the neural net. The step-by-step procedure below gives more details.
   
 |
 
@@ -53,7 +53,7 @@ Below we list the usual procedure of NNE. We use :math:`\ell` to index the train
 
 #. **Summarize data.** For each :math:`\ell`, summarize the data :math:`\{\boldsymbol{y}^{(\ell)}, \boldsymbol{x}\}` into a set of data moments :math:`\boldsymbol{m}^{(\ell)}`. 
 
-#. **Train a neural net.** Repeat steps 1-3 for :math:`\ell=1,...,L` to construct the training examples :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also repeat these steps more times to create validation examples. Use these examples to train a neural net. 
+#. **Train a neural net.** Repeat steps 1-3 for :math:`\ell=1,...,L` to construct the training examples :math:`\{\boldsymbol{m}^{(\ell)},\boldsymbol{\theta}^{(\ell)}\}_{\ell=1}^{L}`. We can also repeat steps 1-3 more times to create validation examples. Use these examples to train a neural net. 
 
 #. **Get the estimate.** Plug the real data moments into the neural net to obtain an estimate of :math:`\boldsymbol{\theta}`.
 
@@ -70,7 +70,7 @@ Some practical notes:
 Applicability
 ---------------
 
-Increasing complexity of models in economics/marketing means there is often no closed-form expressions of likelihood or moment functions. So reseachers often rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM). NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications, making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer sequential search. We have studied it extensively in our paper referenced :ref:`above <top>`. You can find our code on the :ref:`consumer search <code_1>` page.
+The increasing complexity of models in economics/marketing means there are often no closed-form expressions of likelihood or moment functions. So reseachers thus rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM). NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications, making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer sequential search. We have studied it extensively in our paper referenced :ref:`above <top>`. You can find our code on the :ref:`consumer search <code_1>` page.
 
 The table below summarizes the main properties of NNE as well as its suitable applications.
 
@@ -86,7 +86,7 @@ The table below summarizes the main properties of NNE as well as its suitable ap
    * - 
      - Main Properties
    * - 1
-     - It does not require computing integrals over the unobservables (:math:`\boldsymbol{\epsilon}`) in the structural econometric model. It only requires being able to simulate data using the econometric model.
+     - It does not require computing integrals over the unobservables (:math:`\boldsymbol{\varepsilon}`) in the structural econometric model. It only requires being able to simulate data using the econometric model.
    * - 2
      - It does not require optimizing an (potentially non-smooth) objective function as in extremum estimators (e.g., SMLE, SMM, indirect inference).
    * - 3
