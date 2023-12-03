@@ -9,11 +9,15 @@ Welcome to NNE
 
 |
 
-This website provides a guide and code of the neural net estimator (NNE) (`Wei and Jiang 2023 <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_). NNE exploits machine learning techniques to estimate existing econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments. 
+.. _top:
+
+This website provides a guide and code of the neural net estimator (NNE) (`paper`_). NNE exploits machine learning techniques to estimate existing econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments. 
 
 Below, we describe an `overview`_ of NNE, its `step-by-step procedure`_, and the `applicability`_ to marketing/economics problems.
 
 We also provide Matlab code for two applications of NNE. You're welcome to modify the code to estimate other econometric models. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the documentation for the code at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page.
+
+|
 
 Overview
 ---------------
@@ -26,8 +30,9 @@ The basic idea of NNE is to train neural nets to recognize :math:`\boldsymbol{\t
 
 To train such a neural net, we only require it is possible to simulate :math:`\boldsymbol{y}` using the econometric model. Specifically, we first draw many different values of the parameter. Given each parameter value, use the structural model to generate a copy of data. Then, these many parameter values and their corresponding copies of data become the training examples for the neural net. The step-by-step procedure below gives more details.
   
+|
 
-Step-by-step Procedure
+Step-by-step procedure
 -----------------------
 
 Below we list the usual procedure of NNE. We use :math:`\ell` to index the training examples that we use to train the neural net.
@@ -46,15 +51,18 @@ Some practical notes:
  
 * We specify :math:`\boldsymbol{m}` so that it contains relevant information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`. It is generally OK to include possibly irrelevant or redundant moments in :math:`\boldsymbol{m}` -- the performance of NNE is relatively robust to redundant moments.
  
-* We can use mean-square-error loss to train NNE. Other loss functions can train the neural net to give measures of statistical accuracy in addition to point estimates. See `our paper <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_ for details.
+* We can use mean-square-error loss to train NNE. Other loss functions can train the neural net to give measures of statistical accuracy in addition to point estimates. See our `paper`_ for details.
 
+|
 
 Applicability
 ---------------
 
+Increasing complexity of models in economics/marketing means there is often no closed-form expressions of likelihood or moment functions. So reseachers often rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM). NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications, making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer sequential search. We have studied it extensively in our `paper`_. You can find our code on the :ref:`consumer search <code_1>` page.
+
 The table below summarizes the main properties of NNE as well as its suitable applications.
 
-The complexity of econometric models in economics/marketing means there is often no closed-form expressions of likelihood or moment functions. So reseachers often rely on simulation-based estimators such as simulated maximum likelihood (SMLE) and simulated method of moments (SMM). NNE is a simulation-based estimator like SMLE and SMM. But the properties of NNE offer sizable speed and accuracy gains over SMLE/SMM in some applications. One particular application in marketing that can benefit from NNE is consumer sequential search. We have studied it extensively in `our paper <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_. You can find our code on the :ref:`consumer search <code_1>` page.
+|
 
 .. _main-properties-table:
 
@@ -88,6 +96,22 @@ The complexity of econometric models in economics/marketing means there is often
 
 |
 
+|
 
+Paper
+---------------
 
+|
+
+Yanhao 'Max' Wei and Zhenling Jiang (2023). "Estimating Parameters of Structural Models with Neural Networks." 
+
+`SSRN link <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_
+
+|
+
+|
+
+|
+
+|
 

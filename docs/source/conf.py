@@ -44,3 +44,5 @@ html_theme_options = {
     },
     "show_prev_next": False
 }
+
+html_show_sourcelink = False

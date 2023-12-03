@@ -5,15 +5,21 @@
 Consumer search
 ============================
 
-One example application of NNE is estimating the consumer search model. This `GitHub <https://github.com/nnehome/nne-matlab>`_ page provides the Matlab (2023b) code. You can modify the code for your own structural model. On this page we provide an overview of the code files. The code itself is commented as well. See `our paper <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_ for more details of the application.
+|
 
-The :ref:`home<home>` page has listed 4 steps to apply NNE. The corresponding files are ``nne_gen.m`` (Step 1 & 2), ``nne_train.m`` (Step 3), and ``nne_use.m`` (Step 4). The data used in estimation is stored in ``data.mat``. We provide a script ``monte_carlo_data.m`` to simulate data for Monte Carlo experiments. Other files are supporting functions used by these scripts.
+One example application of NNE is to estimate consumer search model. This `GitHub <https://github.com/nnehome/nne-matlab>`_ page provides the Matlab (2023b) code. Below we provide description of the code files. The code itself is commented as well. You can modify the code for your own structural model.
 
-Description of code files
+The main code scripts are ``nne_gen.m``, ``nne_train.m``, and ``nne_use.m``. These three scripts correspond to steps 1 & 2, step 3, and step 4, respectively, in the step-by-step procedure of NNE listed on :ref:`home<home>` page. The data for estimation is stored in ``data.mat``. You can use script ``monte_carlo_data.m`` to simulate data for Monte Carlo experiments. Other files are the supporting functions used by these scripts.
+
+For more details of this application, see our paper referred in :ref:`home <home>` page.
+
+|
+
+Description of each file:
 --------------------------
 
 ``model_seq_search.m``
-"""""""""""""""""""""""
+""""""""""""""""""""""""""
 
 This function codes a sequential search model.
 
@@ -35,8 +41,10 @@ This function codes a sequential search model.
   * ``yt``: dummies indicating if products are bought
   * ``order``: order of search
 
+|
+
 ``moments.m``
-""""""""""""""
+""""""""""""""""""""""""""
 
 This function summarizes data into a set of moments (used in Step 2 in the procedure on :ref:`home<home>` page).
 
@@ -48,20 +56,26 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 
 * Output: a vector collecting the values of the moments.
 
+|
+
 ``normalRegressionLayer.m``
 """"""""""""""""""""""""""""
 
 This file codes the cross-entropy loss. It extends the Matlab 's built-in MSE loss. This loss function is needed if we want NNE to output estimates of statistical accuracy in addition to point estimates.
 
+|
+
 ``monte_carlo_data.m``
-"""""""""""""""""""""""
+""""""""""""""""""""""""""
 
 This script generates a Monte Carlo dataset of sequential search. It uses ``model_seq_search.m`` to simulate the search and purchase choices. The data is saved in a file ``data.mat``.
 
-``nne_gen.m``
-""""""""""""""
+|
 
-This script generates the training and validation examples (Step 1 & 2 in the procedure on :ref:`home<home>` page).
+``nne_gen.m``
+""""""""""""""""""""""""""
+
+This script generates the training and validation examples (Steps 1 & 2 in the procedure on :ref:`home<home>` page).
 
 * It loads the product attributes (``z`` and ``pos``)  in ``data.mat``.
 * It uses ``model_seq_search.m`` to simulate the consumer choices in each training or validation example.
@@ -69,8 +83,10 @@ This script generates the training and validation examples (Step 1 & 2 in the pr
 * Corner examples (e.g., nobody made a purchase) are dropped.
 * At the end, the training and validation examples are saved in a file ``nne_training.mat``.
 
+|
+
 ``nne_train.m``
-""""""""""""""""
+""""""""""""""""""""""""""
 
 This script trains a shallow neural net (Step 3 in the procedure on :ref:`home<home>` page).
 
@@ -79,8 +95,10 @@ This script trains a shallow neural net (Step 3 in the procedure on :ref:`home<h
 * Validation loss is reported. You can use it to choose hyperparameters, most notably the number of hidden nodes.
 * At the end, the trained neural net is saved in a file ``nne_trained.mat``.
 
+|
+
 ``nne_use.m``
-""""""""""""""
+""""""""""""""""""""""""""
 
 This script applies the trained neural net to obtain parameter estimate (Step 4 in the procedure on :ref:`home<home>` page).
 
