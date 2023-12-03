@@ -17,7 +17,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx_new_tab_link',
-    'sphinx_copybutton'
+    'sphinx_copybutton',
+    'sphinx_reredirects'
 ]
 
 templates_path = ['_templates']
@@ -46,3 +47,7 @@ html_theme_options = {
 }
 
 html_show_sourcelink = False
+
+redirects = {
+     "home/home.html": "../index.html"
+}
