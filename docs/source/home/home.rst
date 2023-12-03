@@ -15,7 +15,7 @@ This website provides a guide for and the code of the neural net estimator (NNE)
 
 Below, we describe an `overview`_ of NNE, its `step-by-step procedure`_, and the `applicability`_ to marketing/economics problems.
 
-We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. The AR1 application is a good example to illustrate the concept of NNE. The consumer search application shows the computational and accuracy advantages of NNE. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the code documentation at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page. You're welcome to modify the code to estimate other econometric models. 
+We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. The AR1 is a good example to illustrate the concept of NNE. The consumer search application shows the computational and accuracy advantages of NNE. You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. Please also find the code documentation at the :ref:`consumer search <code_1>` page and the :ref:`AR1 model <code_2>` page. You're welcome to modify the code to estimate other econometric models. 
 
 |
 
