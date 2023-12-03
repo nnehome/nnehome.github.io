@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=62e430d9" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cdba88d3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -318,10 +318,17 @@ document.write(`
                   
   <section id="consumer-search">
 <span id="code-1"></span><h1>Consumer search<a class="headerlink" href="#consumer-search" title="Link to this heading">#</a></h1>
-<p>One example application of NNE is estimating the consumer search model. This <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> page provides the Matlab (2023b) code. You can modify the code for your own structural model. On this page we provide an overview of the code files. The code itself is commented as well. See <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">our paper</a> for more details of the application.</p>
-<p>The <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page has listed 4 steps to apply NNE. The corresponding files are <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code> (Step 1 &amp; 2), <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code> (Step 3), and <code class="docutils literal notranslate"><span class="pre">nne_use.m</span></code> (Step 4). The data used in estimation is stored in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>. We provide a script <code class="docutils literal notranslate"><span class="pre">monte_carlo_data.m</span></code> to simulate data for Monte Carlo experiments. Other files are supporting functions used by these scripts.</p>
-<section id="description-of-code-files">
-<h2>Description of code files<a class="headerlink" href="#description-of-code-files" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>One example application of NNE is to estimate consumer search model. This <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> page provides the Matlab (2023b) code. Below we provide description of the code files. The code itself is commented as well. You can modify the code for your own structural model.</p>
+<p>The main code scripts are <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>, <code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code>, and <code class="docutils literal notranslate"><span class="pre">nne_use.m</span></code>. These three scripts correspond to steps 1 &amp; 2, step 3, and step 4, respectively, in the step-by-step procedure of NNE listed on <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page. The data for estimation is stored in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>. You can use script <code class="docutils literal notranslate"><span class="pre">monte_carlo_data.m</span></code> to simulate data for Monte Carlo experiments. Other files are the supporting functions used by these scripts.</p>
+<p>For more details of this application, see our paper referred in <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="description-of-each-file">
+<h2>Description of each file:<a class="headerlink" href="#description-of-each-file" title="Link to this heading">#</a></h2>
 <section id="model-seq-search-m">
 <h3><code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code><a class="headerlink" href="#model-seq-search-m" title="Link to this heading">#</a></h3>
 <p>This function codes a sequential search model.</p>
@@ -346,6 +353,9 @@ document.write(`
 </ul>
 </li>
 </ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="moments-m">
 <h3><code class="docutils literal notranslate"><span class="pre">moments.m</span></code><a class="headerlink" href="#moments-m" title="Link to this heading">#</a></h3>
@@ -357,18 +367,27 @@ document.write(`
 <li><p>Inputs: as described above for <code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code>.</p></li>
 <li><p>Output: a vector collecting the values of the moments.</p></li>
 </ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="normalregressionlayer-m">
 <h3><code class="docutils literal notranslate"><span class="pre">normalRegressionLayer.m</span></code><a class="headerlink" href="#normalregressionlayer-m" title="Link to this heading">#</a></h3>
 <p>This file codes the cross-entropy loss. It extends the Matlab ‘s built-in MSE loss. This loss function is needed if we want NNE to output estimates of statistical accuracy in addition to point estimates.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="monte-carlo-data-m">
 <h3><code class="docutils literal notranslate"><span class="pre">monte_carlo_data.m</span></code><a class="headerlink" href="#monte-carlo-data-m" title="Link to this heading">#</a></h3>
 <p>This script generates a Monte Carlo dataset of sequential search. It uses <code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code> to simulate the search and purchase choices. The data is saved in a file <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="nne-gen-m">
 <h3><code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code><a class="headerlink" href="#nne-gen-m" title="Link to this heading">#</a></h3>
-<p>This script generates the training and validation examples (Step 1 &amp; 2 in the procedure on <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page).</p>
+<p>This script generates the training and validation examples (Steps 1 &amp; 2 in the procedure on <a class="reference internal" href="../home/home.html#home"><span class="std std-ref">home</span></a> page).</p>
 <ul class="simple">
 <li><p>It loads the product attributes (<code class="docutils literal notranslate"><span class="pre">z</span></code> and <code class="docutils literal notranslate"><span class="pre">pos</span></code>)  in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p></li>
 <li><p>It uses <code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code> to simulate the consumer choices in each training or validation example.</p></li>
@@ -376,6 +395,9 @@ document.write(`
 <li><p>Corner examples (e.g., nobody made a purchase) are dropped.</p></li>
 <li><p>At the end, the training and validation examples are saved in a file <code class="docutils literal notranslate"><span class="pre">nne_training.mat</span></code>.</p></li>
 </ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="nne-train-m">
 <h3><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code><a class="headerlink" href="#nne-train-m" title="Link to this heading">#</a></h3>
@@ -386,6 +408,9 @@ document.write(`
 <li><p>Validation loss is reported. You can use it to choose hyperparameters, most notably the number of hidden nodes.</p></li>
 <li><p>At the end, the trained neural net is saved in a file <code class="docutils literal notranslate"><span class="pre">nne_trained.mat</span></code>.</p></li>
 </ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="nne-use-m">
 <h3><code class="docutils literal notranslate"><span class="pre">nne_use.m</span></code><a class="headerlink" href="#nne-use-m" title="Link to this heading">#</a></h3>
@@ -420,7 +445,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-code-files">Description of code files</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-each-file">Description of each file:</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-seq-search-m"><code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moments-m"><code class="docutils literal notranslate"><span class="pre">moments.m</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalregressionlayer-m"><code class="docutils literal notranslate"><span class="pre">normalRegressionLayer.m</span></code></a></li>
@@ -432,14 +457,6 @@ document.write(`
 </li>
 </ul>
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div class="tocsection sourcelink">
-    <a href="../_sources/code_1/code_1.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
 
 </div></div>
               

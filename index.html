@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=62e430d9" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=cdba88d3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -295,18 +295,24 @@ document.write(`
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>This website provides a guide and code of the neural net estimator (NNE) (<a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">Wei and Jiang 2023</a>). NNE exploits machine learning techniques to estimate existing econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments.</p>
+<p id="top">This website provides a guide and code of the neural net estimator (NNE) (<a class="reference internal" href="#paper">paper</a>). NNE exploits machine learning techniques to estimate existing econometric models. It can achieve good estimation accuracy at light computational costs, and thus provides an alternative to simulated maximum likelihood or simulated method of moments.</p>
 <p>Below, we describe an <a class="reference internal" href="#overview">overview</a> of NNE, its <a class="reference internal" href="#step-by-step-procedure">step-by-step procedure</a>, and the <a class="reference internal" href="#applicability">applicability</a> to marketing/economics problems.</p>
 <p>We also provide Matlab code for two applications of NNE. You’re welcome to modify the code to estimate other econometric models. You can find the code at this <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> repository. Please also find the documentation for the code at the <a class="reference internal" href="code_1/code_1.html#code-1"><span class="std std-ref">consumer search</span></a> page and the <a class="reference internal" href="code_2/code_2.html#code-2"><span class="std std-ref">AR1 model</span></a> page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>A (structural) econometric model specifies some outcome of interest <span class="math notranslate nohighlight">\(\boldsymbol{y}\equiv\{y_i\}_{i=1}^{n}\)</span> as a function of some observed attributes <span class="math notranslate nohighlight">\(\boldsymbol{x}\equiv\{\boldsymbol{x}_i\}_{i=1}^{n}\)</span>  and some unobserved attributes <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span>. The function is often an economic model such as random utility maximization, sequential search, game, etc. The outcome of interest can be consumer choice, sales, etc. The observed attributes often are consumer and product characteristics.</p>
 <p>So we can denote a structural econometric model as <span class="math notranslate nohighlight">\(\boldsymbol{y} = \boldsymbol{q}(\boldsymbol{x}, \boldsymbol{\epsilon},  \boldsymbol{\theta})\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> is the parameter of the model. The task of structural estimation can be described as recovering the parameter <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from data <span class="math notranslate nohighlight">\(\{\boldsymbol{x, y}\}\)</span>.</p>
 <p>The basic idea of NNE is to train neural nets to recognize <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from data <span class="math notranslate nohighlight">\(\{\boldsymbol{x, y}\}\)</span>.</p>
 <p>To train such a neural net, we only require it is possible to simulate <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> using the econometric model. Specifically, we first draw many different values of the parameter. Given each parameter value, use the structural model to generate a copy of data. Then, these many parameter values and their corresponding copies of data become the training examples for the neural net. The step-by-step procedure below gives more details.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="step-by-step-procedure">
-<h2>Step-by-step Procedure<a class="headerlink" href="#step-by-step-procedure" title="Link to this heading">#</a></h2>
+<h2>Step-by-step procedure<a class="headerlink" href="#step-by-step-procedure" title="Link to this heading">#</a></h2>
 <p>Below we list the usual procedure of NNE. We use <span class="math notranslate nohighlight">\(\ell\)</span> to index the training examples that we use to train the neural net.</p>
 <ol class="arabic simple">
 <li><p><strong>Simulate data.</strong> For each <span class="math notranslate nohighlight">\(\ell\)</span>, draw parameter values <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(\ell)}\)</span> from a parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>. Use the structural econometric model to simulate a set of outcomes <span class="math notranslate nohighlight">\(\boldsymbol{y}^{(\ell)}\)</span>, under the parameter <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(\ell)}\)</span> and the observed attributes <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>.</p></li>
@@ -318,13 +324,19 @@ document.write(`
 <ul class="simple">
 <li><p>We specify <span class="math notranslate nohighlight">\(\Theta\)</span> so that it likely contains the true <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. If we have a prior, we may also draw <span class="math notranslate nohighlight">\(\boldsymbol{\theta}^{(\ell)}\)</span> from the prior distribution.</p></li>
 <li><p>We specify <span class="math notranslate nohighlight">\(\boldsymbol{m}\)</span> so that it contains relevant information for recovering <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Common examples include the mean of <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and the covariances between <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. It is generally OK to include possibly irrelevant or redundant moments in <span class="math notranslate nohighlight">\(\boldsymbol{m}\)</span> – the performance of NNE is relatively robust to redundant moments.</p></li>
-<li><p>We can use mean-square-error loss to train NNE. Other loss functions can train the neural net to give measures of statistical accuracy in addition to point estimates. See <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">our paper</a> for details.</p></li>
+<li><p>We can use mean-square-error loss to train NNE. Other loss functions can train the neural net to give measures of statistical accuracy in addition to point estimates. See our <a class="reference internal" href="#paper">paper</a> for details.</p></li>
 </ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 <section id="applicability">
 <h2>Applicability<a class="headerlink" href="#applicability" title="Link to this heading">#</a></h2>
+<p>Increasing complexity of models in economics/marketing means there is often no closed-form expressions of likelihood or moment functions. So reseachers often rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM). NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications, making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer sequential search. We have studied it extensively in our <a class="reference internal" href="#paper">paper</a>. You can find our code on the <a class="reference internal" href="code_1/code_1.html#code-1"><span class="std std-ref">consumer search</span></a> page.</p>
 <p>The table below summarizes the main properties of NNE as well as its suitable applications.</p>
-<p>The complexity of econometric models in economics/marketing means there is often no closed-form expressions of likelihood or moment functions. So reseachers often rely on simulation-based estimators such as simulated maximum likelihood (SMLE) and simulated method of moments (SMM). NNE is a simulation-based estimator like SMLE and SMM. But the properties of NNE offer sizable speed and accuracy gains over SMLE/SMM in some applications. One particular application in marketing that can benefit from NNE is consumer sequential search. We have studied it extensively in <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">our paper</a>. You can find our code on the <a class="reference internal" href="code_1/code_1.html#code-1"><span class="std std-ref">consumer search</span></a> page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <table class="table-header-centered table" id="main-properties-table">
 <colgroup>
 <col style="width: 10.0%" />
@@ -369,6 +381,29 @@ document.write(`
 </tr>
 </tbody>
 </table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="paper">
+<h2>Paper<a class="headerlink" href="#paper" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Yanhao ‘Max’ Wei and Zhenling Jiang (2023). “Estimating Parameters of Structural Models with Neural Networks.”</p>
+<p><a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">SSRN link</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
