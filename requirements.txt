@@ -3,3 +3,4 @@ pydata-sphinx-theme==0.14.0
 sphinxcontrib-matlabdomain
 sphinx_new_tab_link
 sphinx_copybutton
+sphinx-reredirects
