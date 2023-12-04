@@ -1,6 +1,6 @@
 :parenttoc: True
 
-.. _code_1:
+.. _code_consumer_search:
 
 Consumer search
 ============================
