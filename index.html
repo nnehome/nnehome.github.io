@@ -155,14 +155,14 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="code_1/code_1.html">
+                      <a class="nav-link nav-internal" href="code_consumer_search/code_consumer_search.html">
                          [Consumer Search]
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="code_2/code_2.html">
+                      <a class="nav-link nav-internal" href="code_ar1_model/code_ar1_model.html">
                          [AR1 Model]
                       </a>
                     </li>
@@ -227,14 +227,14 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="code_1/code_1.html">
+                      <a class="nav-link nav-internal" href="code_consumer_search/code_consumer_search.html">
                          [Consumer Search]
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="code_2/code_2.html">
+                      <a class="nav-link nav-internal" href="code_ar1_model/code_ar1_model.html">
                          [AR1 Model]
                       </a>
                     </li>
@@ -295,9 +295,17 @@ document.write(`
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p id="top">This website provides a guide for and the code of the neural net estimator (NNE) (Wei and Jiang 2023, <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">SSRN link</a>). NNE exploits machine learning techniques to estimate existing econometric models. It is a simulation-based estimator and provides an alternative to simulated maximum likelihood or simulated method of moments. It offers sizable computational and accuracy gains in suitable applications.</p>
+<p id="top">This website provides a guide for and the code of the neural net estimator (NNE) (Wei and Jiang 2023,
+<a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#" rel="noopener noreferrer" target="_blank">SSRN link</a>).
+NNE exploits machine learning techniques to estimate existing econometric models.
+It is a simulation-based estimator and provides an alternative to simulated maximum likelihood or simulated method of moments.
+It offers sizable computational and accuracy gains in suitable applications.</p>
 <p>Below, we describe an <a class="reference internal" href="#overview">overview</a> of NNE, its <a class="reference internal" href="#step-by-step-procedure">step-by-step procedure</a>, and the <a class="reference internal" href="#applicability">applicability</a> to marketing/economics problems.</p>
-<p>We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. The AR1 is a good example to illustrate the concept of NNE, whereas the consumer search application demonstrates computational and accuracy advantages of NNE. You can find the code at this <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> repository. Please also find the code documentation at the <a class="reference internal" href="code_1/code_1.html#code-1"><span class="std std-ref">consumer search</span></a> page and the <a class="reference internal" href="code_2/code_2.html#code-2"><span class="std std-ref">AR1 model</span></a> page. You’re welcome to modify the code to estimate other econometric models.</p>
+<p>We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model.
+The AR1 is a good example to illustrate the concept of NNE, whereas the consumer search application demonstrates computational and accuracy advantages of NNE.
+You can find the code at this <a class="reference external" href="https://github.com/nnehome/nne-matlab" rel="noopener noreferrer" target="_blank">GitHub</a> repository.
+Please also find the code documentation at the <a class="reference internal" href="code_consumer_search/code_consumer_search.html#code-consumer-search"><span class="std std-ref">consumer search</span></a> page and the <a class="reference internal" href="code_ar1_model/code_ar1_model.html#code-ar1-model"><span class="std std-ref">AR1 model</span></a> page.
+You’re welcome to modify the code to estimate other econometric models.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -332,7 +340,12 @@ document.write(`
 </section>
 <section id="applicability">
 <h2>Applicability<a class="headerlink" href="#applicability" title="Link to this heading">#</a></h2>
-<p>The increasing complexity of models in economics/marketing means there are often no closed-form expressions of likelihood or moment functions. So reseachers thus rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM). NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications, making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer sequential search. We have studied it extensively in our paper referenced <a class="reference internal" href="#top"><span class="std std-ref">above</span></a>. You can find our code on the <a class="reference internal" href="code_1/code_1.html#code-1"><span class="std std-ref">consumer search</span></a> page.</p>
+<p>The increasing complexity of models in economics/marketing means there are often no closed-form expressions of likelihood or moment functions.
+So reseachers thus rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM).
+NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications,
+making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer
+sequential search. We have studied it extensively in our paper referenced <a class="reference internal" href="#top"><span class="std std-ref">above</span></a>.
+You can find our code on the <a class="reference internal" href="code_consumer_search/code_consumer_search.html#code-consumer-search"><span class="std std-ref">consumer search</span></a> page.</p>
 <p>The table below summarizes the main properties of NNE as well as its suitable applications.</p>
 <div class="line-block">
 <div class="line"><br /></div>
