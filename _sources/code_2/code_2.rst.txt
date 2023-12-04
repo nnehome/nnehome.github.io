@@ -20,7 +20,7 @@ Run the three scripts in order as follows. This example is a Monte Carlo experim
 
 .. code-block:: console
 
-    >> monte_carlo_data		% simulate a AR1 times series and save it in data.mat
+    >> monte_carlo_data		% simulate an AR1 times series and save it in data.mat
     >> nne_gen			% generate the training examples for NNE and save them in nne_training.mat
     >> nne_train		% train a neural net and apply it to data.mat
 
