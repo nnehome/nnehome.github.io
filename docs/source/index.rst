@@ -11,9 +11,9 @@
 .. toctree::
    :hidden:
 
-    [Home] <home/home>
-    [Consumer Search] <code_consumer_search/code_consumer_search>
-    [AR1 Model] <code_ar1_model/code_ar1_model>
+    Home <home/home>
+    Consumer Search <code_consumer_search/code_consumer_search>
+    AR1 Model <code_ar1_model/code_ar1_model>
 
 
 Welcome to NNE

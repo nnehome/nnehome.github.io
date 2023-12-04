@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx_new_tab_link',
     'sphinx_copybutton',
+    'sphinx_toolbox.collapse',
     'sphinx_reredirects'
 ]
 

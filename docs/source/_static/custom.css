@@ -41,3 +41,14 @@ code {
     text-align: center;
 }
 
+collapse_header {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    color:dodgerblue;
+    font-size: 0.9em;
+    line-height: 1.4;
+    overflow-x: auto; /* for horizontal scrolling */
+    padding: 0.5em;
+}
