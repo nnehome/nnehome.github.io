@@ -52,3 +52,7 @@ collapse_header {
     overflow-x: auto; /* for horizontal scrolling */
     padding: 0.3em;
 }
+
+.nav-item {
+    margin-right: 18px; /* Adjust the space between tabs */
+}

@@ -4,3 +4,4 @@ sphinxcontrib-matlabdomain
 sphinx_new_tab_link
 sphinx_copybutton
 sphinx-reredirects
+sphinx_toolbox.collapse
