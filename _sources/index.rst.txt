@@ -32,7 +32,7 @@ Below, we describe an `overview`_ of NNE, its `step-by-step procedure`_, and the
 
 We also provide Matlab code for two applications of NNE: a consumer search model and an AR1 model. 
 The AR1 is a good example to illustrate the concept of NNE, whereas the consumer search application demonstrates computational and accuracy advantages of NNE. 
-You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository.
+You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab-code>`_ repository.
 Please also find the code documentation at the :ref:`consumer search <code_consumer_search>` page and the :ref:`AR1 model <code_ar1_model>` page. 
 You're welcome to modify the code to estimate other econometric models. 
 
