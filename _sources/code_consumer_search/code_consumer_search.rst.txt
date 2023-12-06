@@ -7,7 +7,7 @@ Consumer search
 
 |
 
-One example application of NNE is to estimate consumer search model. This `GitHub <https://github.com/nnehome/nne-matlab>`_ repository provides the Matlab (2023b) code. Below we provide description of the code files. The code itself is commented as well. You are welcome to modify the code to estimate your own structural model.
+One example application of NNE is to estimate consumer search model. This `GitHub <https://github.com/nnehome/nne-matlab-code>`_ repository provides the Matlab (2023b) code. Below we provide description of the code files. The code itself is commented as well. You are welcome to modify the code to estimate your own structural model.
 
 More details of this application (e.g., specification of the search model) can be found in our paper referenced in :ref:`home <home>` page.
 
