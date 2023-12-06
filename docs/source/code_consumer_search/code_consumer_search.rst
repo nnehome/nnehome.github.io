@@ -57,7 +57,7 @@ This function codes a sequential search model.
   * ``yt``: dummies indicating if products are bought
   * ``order``: order of search
 
-..  collapse:: Show code <collapse_header>model_seq_search.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>model_seq_search.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -226,7 +226,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 
 * Output: a vector collecting the values of the moments.
 
-..  collapse:: Show code <collapse_header>moments.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>moments.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -291,7 +291,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 
 This file codes the cross-entropy loss. It extends the Matlab 's built-in MSE loss. This loss function is needed if we want NNE to output estimates of statistical accuracy in addition to point estimates.
 
-..  collapse:: Show code <collapse_header>normalRegressionLayer.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>normalRegressionLayer.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -383,7 +383,7 @@ This file codes the cross-entropy loss. It extends the Matlab 's built-in MSE lo
 
 This script generates a dataset of consumer search under a "true" value of the search model parameter, for the purpose of Monte Carlo experiments. It uses the function ``model_seq_search.m`` to simulate the search and purchase choices. The data is saved in a file ``data.mat``.
 
-..  collapse:: Show code <collapse_header>monte_carlo_data.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>monte_carlo_data.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -456,7 +456,7 @@ This script generates the training and validation examples (Steps 1 & 2 in the p
 * Corner examples (e.g., nobody made a purchase) are dropped.
 * At the end, the training and validation examples are saved in a file ``nne_training.mat``.
 
-..  collapse:: Show code <collapse_header>nne_gen.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>nne_gen.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -560,7 +560,7 @@ This script trains a shallow neural net (Steps 3 & 4 in the procedure on :ref:`h
 * Validation loss is reported. You can use it to choose hyperparameters, such as the number of hidden nodes.
 * At the end, it applies the trained neural net to the data in ``data.mat`` and reports the estimate.
 
-..  collapse:: Show code <collapse_header>nne_train.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>nne_train.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block

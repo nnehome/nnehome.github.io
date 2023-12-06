@@ -50,7 +50,7 @@ This function codes the simple AR1 model.
 * Input ``beta``:  the coefficient in the AR1 model.
 * Output ``y``: simulated time series collected in a vector.
 
-..  collapse:: Show code <collapse_header>model.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>model.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -97,7 +97,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 
 * Output: the value of the moment(s).
 
-..  collapse:: Show code <collapse_header>moments.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>moments.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -137,7 +137,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 
 This script simulates an AR1 time series under a "true" value of  :math:`\beta`, for the purpose of Monte Carlo experiments. It uses the function ``model.m`` to simulate the time series. The time series is saved in a file ``data.mat``.
 
-..  collapse:: Show code <collapse_header>monte_carlo_data.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>monte_carlo_data.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -171,7 +171,7 @@ This script generates the training and validation examples (Steps 1 & 2 in the p
 * It uses ``moments.m`` to summarize data in each training or validation example.
 * At the end, the training and validation examples are saved in a file ``nne_training.mat``.
 
-..  collapse:: Show code <collapse_header>nne_gen.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>nne_gen.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
@@ -245,7 +245,7 @@ This script trains a shallow neural net (Steps 3 & 4 in the procedure on :ref:`h
 * Validation loss is reported. You can use it to choose hyperparameters, such as the number of hidden nodes.
 * At the end, it applies the trained neural net on ``data.mat`` to recover the value of :math:`\beta`.
 
-..  collapse:: Show code <collapse_header>nne_train.m</collapse_header>
+..  collapse:: Click to show code <collapse_header>nne_train.m</collapse_header>
 
     .. code-block:: matlab
         :class: scrollable-code-block
