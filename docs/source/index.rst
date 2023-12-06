@@ -23,7 +23,7 @@ Welcome to NNE
 
 .. _top:
 
-This website provides a guide for and the code of the neural net estimator (NNE) (see `paper`_ below).
+This website provides a guide for and the code of the neural net estimator (NNE) (see `paper`_).
 NNE exploits machine learning techniques to estimate existing econometric models. 
 It is a simulation-based estimator and provides an alternative to simulated maximum likelihood or simulated method of moments. 
 It offers sizable computational and accuracy gains in suitable applications.
@@ -70,7 +70,7 @@ Some practical notes:
  
 * We specify :math:`\boldsymbol{m}` so that it contains relevant information for recovering :math:`\boldsymbol{\theta}`. Common examples include the mean of :math:`\boldsymbol{y}` and the covariances between :math:`\boldsymbol{y}` and :math:`\boldsymbol{x}`. It is generally OK to include possibly irrelevant or redundant moments in :math:`\boldsymbol{m}` -- the performance of NNE is relatively robust to redundant moments.
  
-* We can use mean-square-error loss to train NNE. Other loss functions can train the neural net to give measures of statistical accuracy in addition to point estimates. See our `paper`_ referenced below for details.
+* We can use mean-square-error loss to train NNE. Other loss functions can train the neural net to give measures of statistical accuracy in addition to point estimates. See the `paper`_ referenced below for details.
 
 |
 
@@ -81,7 +81,7 @@ The increasing complexity of models in economics/marketing means there are often
 So reseachers thus rely on simulation-based estimators such as simulated maximum likelihood (SMLE) or simulated method of moments (SMM). 
 NNE is a simulation-based estimator as well. But NNE offers sizable speed and accuracy gains over SMLE/SMM in some applications, 
 making estimation much more tractable. One particular application in marketing that benefits from NNE is consumer 
-sequential search. We have studied it extensively in our `paper`_ referenced below. 
+sequential search. We have studied it extensively in the `paper`_ referenced below. 
 You can find our code on the :ref:`consumer search <code_consumer_search>` page.
 
 The table below summarizes the main properties of NNE as well as its suitable applications.
