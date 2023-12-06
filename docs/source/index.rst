@@ -23,8 +23,7 @@ Welcome to NNE
 
 .. _top:
 
-This website provides a guide for and the code of the neural net estimator (NNE) (Wei and Jiang 2023, 
-`SSRN link <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3496098#>`_). 
+This website provides a guide for and the code of the neural net estimator (NNE). 
 NNE exploits machine learning techniques to estimate existing econometric models. 
 It is a simulation-based estimator and provides an alternative to simulated maximum likelihood or simulated method of moments. 
 It offers sizable computational and accuracy gains in suitable applications.
