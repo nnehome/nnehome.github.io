@@ -10,7 +10,7 @@ Simple AR1 model
 The concept of NNE can be illustrated with a simple AR1 model: :math:`y_{i}={\beta}y_{i-1}+\epsilon_{i}`. 
 The model is simple enough that it won't see computational or accuracy gains from NNE. But the simplicity allows NNE to be more easily illustrated. 
 The code is also easier-to-follow than that in :ref:`consumer search <code_consumer_search>`. 
-You can find the Matlab (2023b) code at this `GitHub <https://github.com/nnehome/nne-matlab>`_ repository. 
+You can find the Matlab (2023b) code at this `GitHub <https://github.com/nnehome/nne-matlab-code>`_ repository. 
 Below we provide description of the code files.
 
 More details of this application can be found in our paper referenced in :ref:`home <home>` page.
