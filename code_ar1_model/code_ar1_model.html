@@ -355,8 +355,8 @@ Below we provide description of the code files.</p>
 <li><p>Input <code class="docutils literal notranslate"><span class="pre">beta</span></code>:  the coefficient in the AR1 model.</p></li>
 <li><p>Output <code class="docutils literal notranslate"><span class="pre">y</span></code>: simulated time series collected in a vector.</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-model-m-collapse-header">
-<summary>Show code <collapse_header>model.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>y<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span>beta<span class="p">)</span>
+<details class="summary-click-to-show-code-collapse-header-model-m-collapse-header">
+<summary>Click to show code <collapse_header>model.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>y<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span>beta<span class="p">)</span>
 
 <span class="cm">%{</span>
 
@@ -398,8 +398,8 @@ Below we provide description of the code files.</p>
 <li><p>Input <code class="docutils literal notranslate"><span class="pre">y</span></code>: times-series vector as described above for <code class="docutils literal notranslate"><span class="pre">model.m</span></code>.</p></li>
 <li><p>Output: the value of the moment(s).</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-moments-m-collapse-header">
-<summary>Show code <collapse_header>moments.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">moments</span><span class="p">(</span>y<span class="p">)</span>
+<details class="summary-click-to-show-code-collapse-header-moments-m-collapse-header">
+<summary>Click to show code <collapse_header>moments.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">moments</span><span class="p">(</span>y<span class="p">)</span>
 
 <span class="cm">%{</span>
 
@@ -435,8 +435,8 @@ Below we provide description of the code files.</p>
 <section id="monte-carlo-data-m">
 <h3><code class="docutils literal notranslate"><span class="pre">monte_carlo_data.m</span></code><a class="headerlink" href="#monte-carlo-data-m" title="Link to this heading">#</a></h3>
 <p>This script simulates an AR1 time series under a “true” value of  <span class="math notranslate nohighlight">\(\beta\)</span>, for the purpose of Monte Carlo experiments. It uses the function <code class="docutils literal notranslate"><span class="pre">model.m</span></code> to simulate the time series. The time series is saved in a file <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p>
-<details class="summary-show-code-collapse-header-monte-carlo-data-m-collapse-header">
-<summary>Show code <collapse_header>monte_carlo_data.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<details class="summary-click-to-show-code-collapse-header-monte-carlo-data-m-collapse-header">
+<summary>Click to show code <collapse_header>monte_carlo_data.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
 
 <span class="cm">This script generates a Monte Carlo data for estimation of AR1 model. The</span>
 <span class="cm">data will be saved in data.mat.</span>
@@ -467,8 +467,8 @@ Below we provide description of the code files.</p>
 <li><p>It uses <code class="docutils literal notranslate"><span class="pre">moments.m</span></code> to summarize data in each training or validation example.</p></li>
 <li><p>At the end, the training and validation examples are saved in a file <code class="docutils literal notranslate"><span class="pre">nne_training.mat</span></code>.</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-nne-gen-m-collapse-header">
-<summary>Show code <collapse_header>nne_gen.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<details class="summary-click-to-show-code-collapse-header-nne-gen-m-collapse-header">
+<summary>Click to show code <collapse_header>nne_gen.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
 
 <span class="cm">This script generates the training and validation examples to be used to</span>
 <span class="cm">train NNE. The examples will be saved in nne_trainning.mat.</span>
@@ -539,8 +539,8 @@ Below we provide description of the code files.</p>
 <li><p>Validation loss is reported. You can use it to choose hyperparameters, such as the number of hidden nodes.</p></li>
 <li><p>At the end, it applies the trained neural net on <code class="docutils literal notranslate"><span class="pre">data.mat</span></code> to recover the value of <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-nne-train-m-collapse-header">
-<summary>Show code <collapse_header>nne_train.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<details class="summary-click-to-show-code-collapse-header-nne-train-m-collapse-header">
+<summary>Click to show code <collapse_header>nne_train.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
 
 <span class="cm">This script trains the neural net in NNE, and then applies the trained</span>
 <span class="cm">neural net on data.mat to obtain a parameter estimate.</span>

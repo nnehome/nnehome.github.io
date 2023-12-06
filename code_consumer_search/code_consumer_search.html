@@ -365,8 +365,8 @@ document.write(`
 </ul>
 </li>
 </ul>
-<details class="summary-show-code-collapse-header-model-seq-search-m-collapse-header">
-<summary>Show code <collapse_header>model_seq_search.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[yd, yt, order] = model_seq_search</span><span class="p">(</span>pos, z, consumer_id, theta, curve<span class="p">)</span>
+<details class="summary-click-to-show-code-collapse-header-model-seq-search-m-collapse-header">
+<summary>Click to show code <collapse_header>model_seq_search.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">[yd, yt, order] = model_seq_search</span><span class="p">(</span>pos, z, consumer_id, theta, curve<span class="p">)</span>
 
 <span class="cm">%{</span>
 
@@ -530,8 +530,8 @@ document.write(`
 <li><p>Inputs: as described above for <code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code>.</p></li>
 <li><p>Output: a vector collecting the values of the moments.</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-moments-m-collapse-header">
-<summary>Show code <collapse_header>moments.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">moments</span><span class="p">(</span>pos, z, consumer_id, yd, yt<span class="p">)</span>
+<details class="summary-click-to-show-code-collapse-header-moments-m-collapse-header">
+<summary>Click to show code <collapse_header>moments.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>output<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">moments</span><span class="p">(</span>pos, z, consumer_id, yd, yt<span class="p">)</span>
 
 <span class="cm">%{</span>
 
@@ -591,8 +591,8 @@ document.write(`
 <section id="normalregressionlayer-m">
 <h3><code class="docutils literal notranslate"><span class="pre">normalRegressionLayer.m</span></code><a class="headerlink" href="#normalregressionlayer-m" title="Link to this heading">#</a></h3>
 <p>This file codes the cross-entropy loss. It extends the Matlab ‘s built-in MSE loss. This loss function is needed if we want NNE to output estimates of statistical accuracy in addition to point estimates.</p>
-<details class="summary-show-code-collapse-header-normalregressionlayer-m-collapse-header">
-<summary>Show code <collapse_header>normalRegressionLayer.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">classdef</span><span class="w"> </span><span class="n">normalRegressionLayer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nnet</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">RegressionLayer</span>
+<details class="summary-click-to-show-code-collapse-header-normalregressionlayer-m-collapse-header">
+<summary>Click to show code <collapse_header>normalRegressionLayer.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">classdef</span><span class="w"> </span><span class="n">normalRegressionLayer</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nnet</span><span class="p">.</span><span class="n">layer</span><span class="p">.</span><span class="n">RegressionLayer</span>
 
 <span class="cm">%{</span>
 
@@ -680,8 +680,8 @@ document.write(`
 <section id="monte-carlo-data-m">
 <h3><code class="docutils literal notranslate"><span class="pre">monte_carlo_data.m</span></code><a class="headerlink" href="#monte-carlo-data-m" title="Link to this heading">#</a></h3>
 <p>This script generates a dataset of consumer search under a “true” value of the search model parameter, for the purpose of Monte Carlo experiments. It uses the function <code class="docutils literal notranslate"><span class="pre">model_seq_search.m</span></code> to simulate the search and purchase choices. The data is saved in a file <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p>
-<details class="summary-show-code-collapse-header-monte-carlo-data-m-collapse-header">
-<summary>Show code <collapse_header>monte_carlo_data.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<details class="summary-click-to-show-code-collapse-header-monte-carlo-data-m-collapse-header">
+<summary>Click to show code <collapse_header>monte_carlo_data.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
 
 <span class="cm">This script generates a Monte Carlo data for estimation of the sequential</span>
 <span class="cm">search model. The data will be saved in data.mat.</span>
@@ -751,8 +751,8 @@ document.write(`
 <li><p>Corner examples (e.g., nobody made a purchase) are dropped.</p></li>
 <li><p>At the end, the training and validation examples are saved in a file <code class="docutils literal notranslate"><span class="pre">nne_training.mat</span></code>.</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-nne-gen-m-collapse-header">
-<summary>Show code <collapse_header>nne_gen.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<details class="summary-click-to-show-code-collapse-header-nne-gen-m-collapse-header">
+<summary>Click to show code <collapse_header>nne_gen.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
 
 <span class="cm">This script generates the training and validation examples to be used to</span>
 <span class="cm">train NNE. The examples will be saved in nne_trainning.mat.</span>
@@ -853,8 +853,8 @@ document.write(`
 <li><p>Validation loss is reported. You can use it to choose hyperparameters, such as the number of hidden nodes.</p></li>
 <li><p>At the end, it applies the trained neural net to the data in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code> and reports the estimate.</p></li>
 </ul>
-<details class="summary-show-code-collapse-header-nne-train-m-collapse-header">
-<summary>Show code <collapse_header>nne_train.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
+<details class="summary-click-to-show-code-collapse-header-nne-train-m-collapse-header">
+<summary>Click to show code <collapse_header>nne_train.m</collapse_header></summary><div class="scrollable-code-block highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="cm">%{</span>
 
 <span class="cm">This script trains the neural net in NNE, and then applies the trained</span>
 <span class="cm">neural net on data.mat to obtain a parameter estimate.</span>
