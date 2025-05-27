@@ -1,5 +1,3 @@
-:html_theme.sidebar_secondary.remove:
-
 .. pNNE documentation master file, created by
    sphinx-quickstart on Mon Sep 18 12:08:20 2023.
    You can adapt this file completely to your liking, but it should at least
@@ -125,7 +123,7 @@ The table below summarizes the main properties of NNE as well as its suitable ap
 Paper
 ---------------
 
-"Estimating Parameters of Structural Models with Neural Networks." 2023.
+Wei and Jiang (2024) "Estimating Parameters of Structural Models with Neural Networks." Marketing Science, `SSRN link <https://ssrn.com/abstract=3496098>`_
 
 |
 
