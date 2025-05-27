@@ -123,7 +123,7 @@ The table below summarizes the main properties of NNE as well as its suitable ap
 Paper
 ---------------
 
-Wei and Jiang (2024) "Estimating Parameters of Structural Models with Neural Networks." Marketing Science, `SSRN link <https://ssrn.com/abstract=3496098>`_
+Wei and Jiang (2024) "Estimating Parameters of Structural Models with Neural Networks," Marketing Science. `SSRN link <https://ssrn.com/abstract=3496098>`_
 
 |
 
