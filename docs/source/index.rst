@@ -14,32 +14,41 @@ Please select the type of NNE below.
 
    <div class="method-cards">
 
-     <a class="method-card accent-nne" href="nne/index.html">
-       <h3>NNE</h3>
-       <p>Train a neural net on researcher-specified <em>data moments</em> to estimate your
-          own structural model. The core estimator, with Matlab code for a consumer
-          search model and an AR1 model.</p>
-       <span class="method-paper">Wei &amp; Jiang (2024), <em>Marketing Science</em></span>
+     <div class="method-card accent-nne">
+       <h3>Original NNE (limited-information)</h3>
+       <p>Based on &ldquo;Estimating Parameters of Structural Models Using Neural Nets,&rdquo;
+          <a class="inline-link" href="https://pubsonline.informs.org/doi/10.1287/mksc.2022.0360"
+             target="_blank" rel="noopener">Wei and Jiang (2025), Marketing Science</a>, 44(1).
+          This NNE uses researcher-specified moments as input to the neural net. It is most useful
+          when the researcher has clear intuition about what data moments identify the structural
+          model.</p>
        <span class="method-open">Open &rarr;</span>
-     </a>
+       <a class="card-stretch" href="nne/index.html" aria-label="Open Original NNE"></a>
+     </div>
 
-     <a class="method-card accent-pnne" href="pnne/index.html">
+     <div class="method-card accent-pnne">
        <h3>Pre-trained NNE</h3>
-       <p>No training required. Plug your data into <code>nne_estimate.m</code> and get
-          estimates for a sequential search model in under a second, with optional
-          bootstrap standard errors.</p>
-       <span class="method-paper">Wei &amp; Jiang (2025)</span>
+       <p>Based on &ldquo;Pre-Training Estimators for Structural Models: Application to Consumer
+          Search,&rdquo; <a class="inline-link" href="https://arxiv.org/abs/2505.00526"
+          target="_blank" rel="noopener">Wei and Jiang (2025)</a>. This NNE pretrains a neural net
+          for a given structural model, so researchers can use it to estimate the structural model
+          right away &mdash; as easy as running a reduced-form regression.</p>
        <span class="method-open">Open &rarr;</span>
-     </a>
+       <a class="card-stretch" href="pnne/index.html" aria-label="Open Pre-trained NNE"></a>
+     </div>
 
-     <a class="method-card accent-fnne" href="fnne/index.html">
+     <div class="method-card accent-fnne">
        <h3>Full-information NNE</h3>
-       <p>Feed the net the <em>whole dataset</em> instead of moments. It exploits all
-          variation in the data automatically &mdash; useful for estimating a model
-          <em>and</em> assessing its identification.</p>
-       <span class="method-paper">Wei &amp; Jiang (2025)</span>
+       <p>Based on &ldquo;Estimating and Assessing Identification of Structural Models via Deep
+          Learning,&rdquo; <a class="inline-link"
+          href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6774178"
+          target="_blank" rel="noopener">Wei and Jiang (2026)</a>. This NNE uses the whole dataset
+          (instead of researcher-specified moments) as input. It can automatically exploit variation
+          in data and thus is useful for not only estimating but also assessing the identification of
+          a structural model.</p>
        <span class="method-open">Open &rarr;</span>
-     </a>
+       <a class="card-stretch" href="fnne/index.html" aria-label="Open Full-information NNE"></a>
+     </div>
 
    </div>
 
