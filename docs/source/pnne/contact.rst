@@ -7,8 +7,6 @@ Contact
 
 |
 
-For questions about the neural net estimators on this site, please contact the authors:
-
 .. list-table::
    :widths: 30 70
    :header-rows: 0

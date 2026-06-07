@@ -7,63 +7,36 @@ Data
 
 |
 
-To use the pre-trained NNE, organize your data into five arrays. With :math:`n` consumers and
-:math:`J` options each (row order: product :math:`j` nested within consumer :math:`i`):
-
-.. list-table::
-   :widths: 22 18 60
-   :header-rows: 1
-   :class: table-header-centered
-
-   * - Array
-     - Size
-     - Description
-   * - ``consumer_idx``
-     - :math:`(n \times J) \times 1`
-     - Maps each row to its consumer :math:`i`.
-   * - ``Y``
-     - :math:`(n \times J) \times 2`
-     - ``[searched, bought]`` indicators for each product.
-   * - ``Xp``
-     - :math:`(n \times J) \times K_p`
-     - Product attributes.
-   * - ``Xa``
-     - :math:`(n \times J) \times K_a`
-     - Advertising attributes.
-   * - ``Xc``
-     - :math:`n \times K_c`
-     - Consumer attributes.
+We share four datasets as examples for users to try out the pretrained NNE. You can find them (mat files) in the “sample_data” folder at this `GitHub directory <https://github.com/pnnehome/code_matlab>`_. These datasets are used in Wei and Jiang (2025) and come from public sources. More detailed descriptions of these datasets can be found in the paper too.
 
 |
 
-Sample datasets
----------------
+Description of the datasets
+---------------------------
 
-The ``sample_data`` folder in the `GitHub repository <https://github.com/nnehome>`_ contains
-real datasets used in Wei and Jiang (2025), all derived from public sources:
+Expedia - destination 1
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. list-table::
-   :widths: 28 12 60
-   :header-rows: 1
-   :class: table-header-centered
+This dataset comes from `a Kaggle contest <https://www.kaggle.com/competitions/expedia-personalized-sort/overview>`_ that studies hotel searches and bookings on Expedia.com. It has been used in several papers to study consumer online search behaviors. This dataset here includes the search sessions for the largest travel destination in this contest. There are :math:`n = 1258` sessions. There are 3 product attributes, 2 consumer attributes, and 1 advertising attribute.
 
-   * - Dataset
-     - Sessions
-     - Notes
-   * - **Expedia — Destination 1**
-     - 1,258
-     - Hotel search sessions (Kaggle competition); 3 product, 2 consumer, 1 advertising attribute.
-   * - **Expedia — Destination 2**
-     - 897
-     - Second-largest destination in the same contest; below the typical :math:`n \geq 1{,}000` guideline but reportedly functional.
-   * - **Trivago — Desktop**
-     - —
-     - ACM RecSys Challenge, desktop interface; purchase definition is not a perfect fit for the standard search model.
-   * - **Trivago — Mobile**
-     - —
-     - Mobile channel from the same RecSys Challenge.
+Expedia - destination 2
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
+This dataset includes the search sessions for the second largest travel destination in the same Kaggle contest as above. There are :math:`n = 897` sessions, slightly smaller than the current requirement of the pretrained NNE (see :ref:`code <pnne_code>`). Despite this small shortfall, the pretrained NNE seems to work well in this case.
 
-   **Migrated section.** Copy the exact array-construction examples and the per-dataset details from
-   the original ``pnnehome`` documentation / repository as needed.
+Trivago - desktop channel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This dataset comes from the `ACM RecSys Challenge <https://recsys.acm.org/recsys19/challenge/>`_ that analyzes user sessions on Trivago.com. This dataset here includes the search sessions made on the desktop channel. The setting of Trivago does not exactly fit the standard sequential search model (because a purchase is not well defined). Nevertheless, it provides a good place to try out the pretrained NNE.
+
+Trivago - mobile channel
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This dataset includes the search sessions made on the mobile channel from the same RecSys Challenge above.
+
+|
+
+Papers
+------
+
+Wei, Yanhao ‘Max’ and Zhenling Jiang (2025), “Pretraining Estimators for Structural Models: Application to Consumer Search.” `arXiv <https://arxiv.org/abs/2505.00526>`__
