@@ -1,0 +1,49 @@
+{# Section-scoped previous/next navigation, with a centered Home link.
+   The theme's default prev/next follows the global toctree and would cross
+   section boundaries. Here we keep navigation within the current section
+   (NNE / Pre-trained NNE / Full-information NNE) only: the first page of a
+   section has no "previous", the last page has no "next". A Home link in the
+   middle always returns to the landing page. #}
+{% if pagename != 'index' %}
+{% set sections = [
+    [('Overview', 'nne/index'), ('Consumer Search', 'nne/consumer_search'), ('AR1 Model', 'nne/ar1_model')],
+    [('Overview', 'pnne/index'), ('Code', 'pnne/code'), ('Data', 'pnne/data'), ('Contact', 'pnne/contact')],
+    [('Overview', 'fnne/index'), ('Mixed Logit Model', 'fnne/mixed_logit'), ('Consumer Search', 'fnne/consumer_search')]
+] %}
+{% set ns = namespace(prev=None, next=None) %}
+{% for section in sections %}
+  {% for title, page in section %}
+    {% if page == pagename %}
+      {% if not loop.first %}{% set ns.prev = section[loop.index0 - 1] %}{% endif %}
+      {% if not loop.last %}{% set ns.next = section[loop.index0 + 1] %}{% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+<div class="prev-next-area">
+  <div class="prev-next-slot prev-next-slot--left">
+    {%- if ns.prev %}
+      <a class="left-prev" href="{{ pathto(ns.prev[1]) }}" title="{{ _('previous page') }}">
+        <i class="fa-solid fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">{{ _("previous") }}</p>
+          <p class="prev-next-title">{{ ns.prev[0] }}</p>
+        </div>
+      </a>
+    {%- endif %}
+  </div>
+  <div class="prev-next-slot prev-next-slot--center">
+    <a class="home-link" href="{{ pathto('index') }}" title="{{ _('home page') }}">{{ _("Home") }}</a>
+  </div>
+  <div class="prev-next-slot prev-next-slot--right">
+    {%- if ns.next %}
+      <a class="right-next" href="{{ pathto(ns.next[1]) }}" title="{{ _('next page') }}">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">{{ _("next") }}</p>
+          <p class="prev-next-title">{{ ns.next[0] }}</p>
+        </div>
+        <i class="fa-solid fa-angle-right"></i>
+      </a>
+    {%- endif %}
+  </div>
+</div>
+{% endif %}

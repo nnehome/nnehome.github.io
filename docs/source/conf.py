@@ -48,10 +48,9 @@ html_theme_options = {
     "navbar_align": "content",
     "navbar_persistent": ["search-button"],
     "logo": {
-        "link": "https://nnehome.github.io",
         "text": "NNE",
     },
-    "show_prev_next": False,
+    "show_prev_next": True,
     "show_nav_level": 1,
     "show_toc_level": 2,
     "icon_links": [
