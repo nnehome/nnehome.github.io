@@ -6,7 +6,7 @@ Full-information NNE
 |
 
 This page describes the **full-information neural net estimator (full-information NNE)**, based on
-Wei and Jiang (2025), "Estimating and Assessing Identification of Structural Models via Deep Learning"
+Wei and Jiang (2026), "Estimating and Assessing Identification of Structural Models via Deep Learning"
 (see `paper`_ below).
 
 Unlike the :ref:`moment-based NNE <nne>`, which feeds the neural net a set of researcher-specified
@@ -83,8 +83,8 @@ We provide Matlab code for two applications.
 Paper
 -----
 
-Wei and Jiang (2025) "Estimating and Assessing Identification of Structural Models via Deep Learning."
-`Link to paper <https://ssrn.com/abstract=3496098>`_
+Wei and Jiang (2026). "Estimating and Assessing Identification of Structural Models via Deep Learning."
+`SSRN <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6774178>`__
 
 |
 

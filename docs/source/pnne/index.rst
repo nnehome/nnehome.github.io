@@ -167,13 +167,13 @@ product rating.
 Papers
 ------
 
-Wei, Yanhao 'Max' and Zhenling Jiang (2025), "Pretraining Estimators for Structural Models:
+Wei, Yanhao 'Max' and Zhenling Jiang (2025). "Pretraining Estimators for Structural Models:
 Application to Consumer Search." `arXiv <https://arxiv.org/abs/2505.00526>`__
 
 Yanhao Wei, Zhenling Jiang (2025). "Estimating Parameters of Structural Models Using Neural Networks"
 `Marketing Science <https://pubsonline.informs.org/doi/10.1287/mksc.2022.0360>`__, 44 (1), 102-128.
 
-Ursu, Raluca, Stephan Seiler, and Elisabeth Honka (2025), "The Sequential Search Model: A Framework
+Ursu, Raluca, Stephan Seiler, and Elisabeth Honka (2025). "The Sequential Search Model: A Framework
 for Empirical Research." `QME <https://link.springer.com/article/10.1007/s11129-024-09291-2>`__, 23(1): 165-213.
 
 |

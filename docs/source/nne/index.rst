@@ -1,14 +1,14 @@
 .. _home:
 .. _nne:
 
-NNE
-===
+Welcome to NNE
+==============
 
 |
 
 .. _top:
 
-This page describes the **neural net estimator (NNE)** (see `paper`_).
+This website provides a guide for and the code of the neural net estimator (NNE) (see `paper`_).
 NNE exploits machine learning techniques to estimate existing econometric models.
 It is a simulation-based estimator and provides an alternative to simulated maximum likelihood or simulated method of moments.
 It offers sizable computational and accuracy gains in suitable applications.
@@ -20,12 +20,6 @@ The AR1 is a good example to illustrate the concept of NNE, whereas the consumer
 You can find the code at this `GitHub <https://github.com/nnehome/nne-matlab-code>`_ repository.
 Please also find the code documentation at the :ref:`consumer search <code_consumer_search>` page and the :ref:`AR1 model <code_ar1_model>` page.
 You're welcome to modify the code to estimate other econometric models.
-
-.. tip::
-
-   Looking for a version that takes the **whole dataset** as input (and assesses identification)?
-   See :ref:`Full-information NNE <fnne>`. Want a **ready-to-use** estimator for the consumer
-   search model with no training required? See :ref:`Pre-trained NNE <pnne>`.
 
 |
 
@@ -116,7 +110,8 @@ The table below summarizes the main properties of NNE as well as its suitable ap
 Paper
 ---------------
 
-Wei and Jiang (2024) "Estimating Parameters of Structural Models with Neural Networks," Marketing Science. `SSRN link <https://ssrn.com/abstract=3496098>`_
+Yanhao Wei, Zhenling Jiang (2025). "Estimating Parameters of Structural Models Using Neural Networks"
+`Marketing Science <https://pubsonline.informs.org/doi/10.1287/mksc.2022.0360>`__, 44 (1), 102-128.
 
 |
 
