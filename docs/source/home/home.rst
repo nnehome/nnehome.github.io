@@ -1,7 +1,8 @@
+:orphan:
+
 :html_theme.sidebar_secondary.remove:
 
-:parenttoc: True
+Redirecting
+===========
 
-.. _home:
-
-This page should redirect to: nnehome.github.io/docs/build/html/index.html
+This page has moved. You should be redirected to the `NNE home page <../index.html>`_.

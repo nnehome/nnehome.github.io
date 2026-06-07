@@ -56,3 +56,87 @@ collapse_header {
 .nav-item {
     margin-right: 18px; /* Adjust the space between tabs */
 }
+
+/* ===================================================================
+   Family landing page: tagline, method cards, comparison table
+   =================================================================== */
+
+.nne-tagline {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--pst-color-text-muted, #5a6570);
+    max-width: 46rem;
+    margin: 0.25rem 0 1.5rem 0;
+}
+
+.method-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.method-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.4rem 1.2rem 1.4rem;
+    border: 1px solid var(--pst-color-border, #dfe2e5);
+    border-top: 4px solid var(--accent, #3a7bd5);
+    border-radius: 10px;
+    background: var(--pst-color-on-background, #fff);
+    text-decoration: none !important;
+    color: inherit;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.method-card:hover {
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.10);
+    transform: translateY(-3px);
+}
+
+.method-card .method-kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent, #3a7bd5);
+}
+
+.method-card h3 {
+    margin: 0.3rem 0 0.5rem 0;
+    font-size: 1.45rem;
+    color: var(--pst-color-text-base, #222);
+}
+
+.method-card p {
+    flex: 1 1 auto;
+    margin: 0 0 0.9rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--pst-color-text-base, #333);
+}
+
+.method-card .method-paper {
+    font-size: 0.82rem;
+    color: var(--pst-color-text-muted, #6a7480);
+    margin-bottom: 0.4rem;
+}
+
+.method-card .method-open {
+    font-weight: 600;
+    color: var(--accent, #3a7bd5);
+}
+
+/* Per-method accent colors (reused on section pages if desired) */
+.accent-nne  { --accent: #3a7bd5; }   /* dodgerblue family */
+.accent-fnne { --accent: #2e9e5b; }   /* green */
+.accent-pnne { --accent: #8a55c9; }   /* purple */
+
+/* "Which one do I need?" comparison table */
+.compare-table {
+    font-size: 0.92rem;
+}
+.compare-table td,
+.compare-table th {
+    vertical-align: top;
+}

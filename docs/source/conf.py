@@ -37,21 +37,34 @@ html_css_files = [
 ]
 html_logo = '_static/logo.png'
 
+# Contextual left sidebar: show the pages within the current top-level
+# section (NNE / Full-information NNE / Pre-trained NNE). The family landing
+# page (index) gets no left sidebar so the method cards run full width.
 html_sidebars = {
-  "**": []
+    "index": [],
 }
 
 html_theme_options = {
-    "navbar_persistent":[],
+    "navbar_align": "content",
+    "navbar_persistent": ["search-button"],
     "logo": {
         "link": "https://nnehome.github.io",
-        "text": "NNE"
+        "text": "NNE",
     },
-    "show_prev_next": False
+    "show_prev_next": False,
+    "show_nav_level": 1,
+    "show_toc_level": 2,
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/nnehome",
+            "icon": "fa-brands fa-github",
+        },
+    ],
 }
 
 html_show_sourcelink = False
 
 redirects = {
-     "home/home.html": "../index.html"
+    "home/home.html": "../index.html",
 }
