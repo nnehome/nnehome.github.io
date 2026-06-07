@@ -61,6 +61,11 @@ collapse_header {
     margin-right: 18px; /* Adjust the space between tabs */
 }
 
+/* Footer copyright in light grey */
+.bd-footer .footer-item p {
+    color: #aaaaaa;
+}
+
 /* ===================================================================
    Full-width layout: let the page span the whole window instead of
    centering within an 88rem cap. This pushes the section-navigation
