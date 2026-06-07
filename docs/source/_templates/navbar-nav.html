@@ -1,0 +1,45 @@
+{# Custom navbar: each top-level method is a hover/click dropdown that lists
+   the pages of that section (replacing the left "Section Navigation" sidebar). #}
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="{{ _('Site Navigation') }}">
+    {{ _("Site Navigation") }}
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    {% set sections = [
+        ('NNE', 'nne/index', [
+            ('Overview', 'nne/index'),
+            ('Consumer Search', 'nne/consumer_search'),
+            ('AR1 Model', 'nne/ar1_model')
+        ]),
+        ('Pre-trained NNE', 'pnne/index', [
+            ('Overview', 'pnne/index'),
+            ('Code', 'pnne/code'),
+            ('Data', 'pnne/data'),
+            ('Contact', 'pnne/contact')
+        ]),
+        ('Full-information NNE', 'fnne/index', [
+            ('Overview', 'fnne/index'),
+            ('Mixed Logit Model', 'fnne/mixed_logit'),
+            ('Consumer Search', 'fnne/consumer_search')
+        ])
+    ] %}
+    {% for title, index, children in sections %}
+      {% set section_prefix = index.split('/')[0] + '/' %}
+      {% set is_active = pagename.startswith(section_prefix) %}
+      <li class="nav-item nav-section{% if is_active %} active{% endif %}">
+        <a class="nav-link nav-section-link" href="{{ pathto(index) }}">{{ title }}</a>
+        <ul class="nav-section-menu">
+          {% for ctitle, cpage in children %}
+            <li>
+              <a class="nav-section-item{% if pagename == cpage %} current{% endif %}"
+                 href="{{ pathto(cpage) }}">{{ ctitle }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

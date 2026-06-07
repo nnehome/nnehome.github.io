@@ -37,11 +37,11 @@ html_css_files = [
 ]
 html_logo = '_static/logo.png'
 
-# Contextual left sidebar: show the pages within the current top-level
-# section (NNE / Full-information NNE / Pre-trained NNE). The family landing
-# page (index) gets no left sidebar so the method cards run full width.
+# No left sidebar anywhere: each section's pages are reached through the
+# navbar dropdowns (see _templates/navbar-nav.html), which frees the full
+# width for the main content.
 html_sidebars = {
-    "index": [],
+    "**": [],
 }
 
 html_theme_options = {
