@@ -93,6 +93,13 @@ collapse_header {
     justify-content: flex-start;
 }
 
+/* Landing page only: it has no right sidebar (empty TOC), so reserve the
+   same right-hand whitespace via padding so the content column width matches
+   the other pages. (sidebar width + the article's own 1rem padding). */
+body:has(#family-home) .bd-main .bd-content .bd-article-container {
+    padding-right: calc(var(--pst-sidebar-secondary) + 1rem);
+}
+
 /* With the left sidebar gone, add a left gutter so content (and the
    logo/tabs) don't hug the window edge. One variable keeps the header
    logo, the main content, and the footer copyright left-aligned. */
@@ -340,4 +347,5 @@ collapse_header {
 .compare-table td,
 .compare-table th {
     vertical-align: top;
+    text-align: left;
 }

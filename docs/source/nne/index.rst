@@ -105,6 +105,21 @@ The table below summarizes the main properties of NNE as well as its suitable ap
 
 |
 
+Applications
+------------
+
+We provide Matlab code for two applications.
+
+.. list-table::
+   :widths: 28 72
+   :header-rows: 0
+   :class: table-header-centered
+
+   * - :ref:`AR1 <code_ar1_model>`
+     - A simple AR model to illustrate the concept of NNE.
+   * - :ref:`Consumer Search <code_consumer_search>`
+     - Consumer sequential search model.
+
 |
 
 Paper

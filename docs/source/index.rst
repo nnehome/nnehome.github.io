@@ -1,5 +1,3 @@
-:html_theme.sidebar_secondary.remove:
-
 .. _family-home:
 
 Welcome to NNE
@@ -54,43 +52,32 @@ Please select the type of NNE below.
 
 |
 
-Which one do I need?
---------------------
-
 .. list-table::
    :widths: 28 24 24 24
    :header-rows: 1
    :stub-columns: 1
-   :class: table-header-centered compare-table
+   :class: compare-table
 
    * -
-     - NNE
-     - Full-information NNE
+     - Original NNE
      - Pre-trained NNE
+     - Full-information NNE
    * - Input to the neural net
      - Researcher-specified moments :math:`\boldsymbol{m}`
-     - The whole dataset :math:`\mathcal{D}`
+     - Regression coefficients & summary statistics
      - The whole dataset :math:`\mathcal{D}`
    * - You provide
      - Your structural model + moments
-     - Your structural model
      - Just your data (search model)
+     - Your structural model
    * - Training needed
      - Yes (you train it)
+     - No (pre-trained)
      - Yes (you train it)
-     - No &mdash; pre-trained
-   * - Also gives you
-     - Point estimate + accuracy
-     - Identification analysis; posterior :math:`\mathrm{Var}(\boldsymbol{\theta}\mid\mathcal{D})`
-     - One-call estimate + bootstrap SE
    * - Code
-     - Matlab (search, AR1)
-     - Matlab (mixed logit, search)
-     - Matlab (``nne_estimate.m``)
-   * - Paper
-     - Wei & Jiang (2024)
-     - Wei & Jiang (2025)
-     - Wei & Jiang (2025)
+     - AR1 & Search
+     - Search
+     - Mixed Logit & Search
 
 |
 
