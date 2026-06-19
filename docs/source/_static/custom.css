@@ -350,6 +350,16 @@ body:has(#family-home) .bd-main .bd-content .bd-article-container {
     text-align: left;
 }
 
+/* Breadcrumb navigation at 1.2rem (up from the theme default 0.8rem),
+   including the divider, which the theme sizes separately. Selectors match
+   the theme's specificity (ul.bd-breadcrumbs ...) so they actually win. */
+ul.bd-breadcrumbs {
+    font-size: 1.2rem;
+}
+ul.bd-breadcrumbs li.breadcrumb-item:not(.breadcrumb-home)::before {
+    font-size: 1.2rem;
+}
+
 /* Bold all content headings on every page */
 .bd-article h1,
 .bd-article h2,

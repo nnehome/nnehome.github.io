@@ -50,7 +50,7 @@ html_theme_options = {
     "logo": {
         "text": "NNE",
     },
-    "show_prev_next": True,
+    "show_prev_next": False,
     "show_nav_level": 1,
     "show_toc_level": 2,
     "icon_links": [
