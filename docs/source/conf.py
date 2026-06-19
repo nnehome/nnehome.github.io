@@ -67,3 +67,10 @@ html_show_sourcelink = False
 redirects = {
     "home/home.html": "../index.html",
 }
+
+rst_prolog = """
+.. role:: note-text
+
+.. role:: raw-html(raw)
+   :format: html
+"""

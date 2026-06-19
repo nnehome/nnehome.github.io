@@ -1,22 +1,20 @@
 :parenttoc: True
 
-.. _code_consumer_search:
+.. _nne_search:
 
-Consumer search
-============================
-
-|
-
-One example application of NNE is to estimate consumer search model. This `GitHub <https://github.com/nnehome/nne-matlab-code>`_ repository provides the Matlab (2023b) code. Below we provide description of the code files. The code itself is commented as well. You are welcome to modify the code to estimate your own structural model. The GitHub repository also provides the code that uses SMLE to estimate the search model.
-
-More details of this application (e.g., specification of the search model) can be found in our paper referenced in :ref:`home <home>` page.
+Search model
+==================
 
 |
 
-An example to use the code:
-----------------------------
+Below is documentation for the Matlab code in "NNE_search" folder at this `GitHub repository <https://github.com/nnehome/nne-matlab-code>`_. The code uses NNE to estimate a consumer search model. You are welcome to modify the code to estimate your own structural model.
 
-Run the three scripts in order as follows. This example is a Monte Carlo experiment that uses NNE to estimate the search model parameter from a simulated dataset.
+|
+
+Workflow
+----------
+
+The following shows how to conduct a Monte Carlo experiment that estimates the search model from a simulated dataset.
 
 .. code-block:: console
 
@@ -24,14 +22,9 @@ Run the three scripts in order as follows. This example is a Monte Carlo experim
     >> nne_gen			% generate the training examples for NNE and save them in nne_training.mat
     >> nne_train		% train a neural net and then apply it on data.mat
 
-Three functions are used in these scripts: ``model_seq_search.m``, ``moments.m``, and ``normalRegressionLayer.m``, which are explained in the description below.
-    
-..
-	The main code scripts are ``nne_gen.m`` and ``nne_train.m``. The data for estimation is stored in ``data.mat``. You can use script ``monte_carlo_data.m`` to simulate data for Monte Carlo experiments. Other files are the supporting functions used by these scripts.
-
 |
 
-Description of each file:
+Description of each file
 --------------------------
 
 ``model_seq_search.m``
@@ -45,17 +38,17 @@ This function codes a sequential search model.
 
 * Inputs:
 
-  * ``pos``: product ranking positions
+  * ``pos``: product ranking positions (which affects search costs)
   * ``z``: other product attributes (e.g., review rating, price)
-  * ``consumer_id``: indices of consumers (or search sessions)
-  * ``theta``: vector of search model parameter
-  * ``curve``: relation between search cost and reservation utility, stored in ``curve_seq_search.csv``
+  * ``consumer_id``: indices of consumers
+  * ``theta``: search model parameter vector
+  * ``curve``: lookup table for reservation utility, available from ``curve_seq_search.csv``
  
 * Outputs:
 
-  * ``yd``: dummies indicating if products are searched
-  * ``yt``: dummies indicating if products are bought
-  * ``order``: order of search
+  * ``yd``: dummies indicating searches
+  * ``yt``: dummies indicating purchases
+  * ``order``: search order
 
 ..  collapse:: Click to show code <collapse_header>model_seq_search.m</collapse_header>
 
@@ -216,7 +209,7 @@ This function codes a sequential search model.
 ``moments.m``
 """"""""""""""""""""""""""
 
-This function summarizes data into a set of moments (used in Step 2 in the procedure on :ref:`home<home>` page).
+This function summarizes data into a set of moments.
 
 .. code-block:: console
 
@@ -224,7 +217,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
     
 * Inputs: as described above for ``model_seq_search.m``.
 
-* Output: a vector collecting the values of the moments.
+* Output: a vector collecting the moments.
 
 ..  collapse:: Click to show code <collapse_header>moments.m</collapse_header>
 
@@ -289,7 +282,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 ``normalRegressionLayer.m``
 """"""""""""""""""""""""""""
 
-This file codes the cross-entropy loss. It extends the Matlab 's built-in MSE loss. This loss function is needed if we want NNE to output estimates of statistical accuracy in addition to point estimates.
+This file codes the cross-entropy loss. This custom loss function is needed if we want NNE to output variance estimates in addition to point estimates.
 
 ..  collapse:: Click to show code <collapse_header>normalRegressionLayer.m</collapse_header>
 
@@ -381,7 +374,7 @@ This file codes the cross-entropy loss. It extends the Matlab 's built-in MSE lo
 ``monte_carlo_data.m``
 """"""""""""""""""""""""""
 
-This script generates a dataset of consumer search under a "true" value of the search model parameter, for the purpose of Monte Carlo experiments. It uses the function ``model_seq_search.m`` to simulate the search and purchase choices. The data is saved in a file ``data.mat``.
+This script generates a dataset of consumer search under a "true" value of the search model parameter, for the purpose of Monte Carlo experiments. It uses the function ``model_seq_search.m`` and saves the simulated data to ``data.mat``.
 
 ..  collapse:: Click to show code <collapse_header>monte_carlo_data.m</collapse_header>
 
@@ -448,13 +441,12 @@ This script generates a dataset of consumer search under a "true" value of the s
 ``nne_gen.m``
 """"""""""""""""""""""""""
 
-This script generates the training and validation examples (Steps 1 & 2 in the procedure on :ref:`home<home>` page).
+This script generates the training and validation examples.
 
 * It loads the product attributes (``z`` and ``pos``)  in ``data.mat``.
 * It uses ``model_seq_search.m`` to simulate the consumer choices in each training or validation example.
 * It uses ``moments.m`` to summarize data in each training or validation example.
-* Corner examples (e.g., nobody made a purchase) are dropped.
-* At the end, the training and validation examples are saved in a file ``nne_training.mat``.
+* The training and validation examples are saved to ``nne_training.mat``.
 
 ..  collapse:: Click to show code <collapse_header>nne_gen.m</collapse_header>
 
@@ -553,12 +545,12 @@ This script generates the training and validation examples (Steps 1 & 2 in the p
 ``nne_train.m``
 """"""""""""""""""""""""""
 
-This script trains a shallow neural net (Steps 3 & 4 in the procedure on :ref:`home<home>` page).
+This script trains a shallow neural net.
 
-* It loads the training and validation examples from ``nne_training.mat`` (created by ``nne_gen.m``).
+* It loads the training and validation examples from ``nne_training.mat`` (saved by ``nne_gen.m``).
 * It uses ``normalRegressionLayer.m`` for the cross-entropy loss.
-* Validation loss is reported. You can use it to choose hyperparameters, such as the number of hidden nodes.
-* At the end, it applies the trained neural net to the data in ``data.mat`` and reports the estimate.
+* Validation loss is reported. You can use it to choose neural net hyperparameters, such as the number of hidden nodes.
+* After training, it applies the neural net to the data in ``data.mat``.
 
 ..  collapse:: Click to show code <collapse_header>nne_train.m</collapse_header>
 

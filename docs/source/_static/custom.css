@@ -93,17 +93,11 @@ collapse_header {
     justify-content: flex-start;
 }
 
-/* Bold the landing page title and section headings (e.g. Contact);
-   the theme renders headings at normal weight. */
-body:has(#family-home) h1,
-body:has(#family-home) h2 {
-    font-weight: 700;
-}
-
-/* Bold the headings on the NNE (Limited-information) overview page */
-body:has(#nne) h1,
-body:has(#nne) h2 {
-    font-weight: 700;
+/* Landing page only: it has no right sidebar (empty TOC), so reserve the
+   same right-hand whitespace via padding so the content column width matches
+   the other pages. (sidebar width + the article's own 1rem padding). */
+body:has(#family-home) .bd-main .bd-content .bd-article-container {
+    padding-right: calc(var(--pst-sidebar-secondary) + 1rem);
 }
 
 /* With the left sidebar gone, add a left gutter so content (and the
@@ -306,7 +300,6 @@ body:has(#nne) h2 {
 .method-card h3 {
     margin: 0.3rem 0 0.5rem 0;
     font-size: 1.45rem;
-    font-weight: 700;
     color: var(--pst-color-text-base, #222);
 }
 
@@ -339,11 +332,7 @@ body:has(#nne) h2 {
 .method-card .inline-link {
     position: relative;
     z-index: 2;
-    font-weight: inherit;
-    text-decoration: none;
-}
-.method-card .inline-link:hover {
-    text-decoration: none;
+    font-weight: 600;
 }
 
 /* Per-method accent colors (reused on section pages if desired) */
@@ -359,4 +348,14 @@ body:has(#nne) h2 {
 .compare-table th {
     vertical-align: top;
     text-align: left;
+}
+
+/* Bold all content headings on every page */
+.bd-article h1,
+.bd-article h2,
+.bd-article h3,
+.bd-article h4,
+.bd-article h5,
+.bd-article h6 {
+    font-weight: 700;
 }

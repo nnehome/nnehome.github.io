@@ -1,26 +1,20 @@
 :parenttoc: True
 
-.. _code_ar1_model:
+.. _nne_ar1:
 
 Simple AR1 model
 =================
 
 |
 
-The concept of NNE can be illustrated with a simple AR1 model: :math:`y_{i}={\beta}y_{i-1}+\epsilon_{i}`. 
-The model is simple enough that it won't see computational or accuracy gains from NNE. But the simplicity allows NNE to be more easily illustrated. 
-The code is also easier-to-follow than that in :ref:`consumer search <code_consumer_search>`. 
-You can find the Matlab (2023b) code at this `GitHub <https://github.com/nnehome/nne-matlab-code>`_ repository. 
-Below we provide description of the code files.
-
-More details of this application can be found in our paper referenced in :ref:`home <home>` page.
+Below is documentation for the Matlab code in "NNE_AR1" folder at this `GitHub repository <https://github.com/nnehome/nne-matlab-code>`_. The code uses NNE to estimate a simple AR1 model. The AR1 model is :math:`y_{i}={\beta}y_{i-1}+\epsilon_{i}`. This is a toy example where we don't see computational or accuracy gains from NNE. But the simplicity allows NNE to be more easily understood.
 
 |
 
-An example to use the code:
-----------------------------
+Workflow
+----------
 
-Run the three scripts in order as follows. This example is a Monte Carlo experiment that uses NNE to estimate the AR1 from a simulated dataset.
+The following shows how to conduct a Monte Carlo experiment that estimates the AR1 on a simulated dataset.
 
 .. code-block:: console
 
@@ -28,14 +22,9 @@ Run the three scripts in order as follows. This example is a Monte Carlo experim
     >> nne_gen			% generate the training examples for NNE and save them in nne_training.mat
     >> nne_train		% train a neural net and apply it to data.mat
 
-Two functions are used in these scripts: ``model.m`` and ``moments.m``, which are explained in the description below.
-
-..
-	The main code scripts are ``nne_gen.m`` and ``nne_train.m``. Other files are the supporting functions used by these scripts.
-
 |
 
-Description of each file:
+Description of each file
 --------------------------
 
 ``model.m``
@@ -87,13 +76,13 @@ This function codes the simple AR1 model.
 ``moments.m``
 """"""""""""""
 
-This function summarizes data into a set of moments (used in Step 2 in the procedure on :ref:`home<home>` page).
+This function summarizes data into a set of moment(s).
 
 .. code-block:: console
 
     output = moments(y)
     
-* Input ``y``: times-series vector as described above for ``model.m``.
+* Input ``y``: times-series vector as outputted from ``model.m``.
 
 * Output: the value of the moment(s).
 
@@ -135,7 +124,7 @@ This function summarizes data into a set of moments (used in Step 2 in the proce
 ``monte_carlo_data.m``
 """"""""""""""""""""""""""
 
-This script simulates an AR1 time series under a "true" value of  :math:`\beta`, for the purpose of Monte Carlo experiments. It uses the function ``model.m`` to simulate the time series. The time series is saved in a file ``data.mat``.
+This script simulates an AR1 time series under a "true" value of  :math:`\beta`, for the purpose of Monte Carlo experiments. It uses ``model.m`` and saves the time series into ``data.mat``.
 
 ..  collapse:: Click to show code <collapse_header>monte_carlo_data.m</collapse_header>
 
@@ -165,11 +154,11 @@ This script simulates an AR1 time series under a "true" value of  :math:`\beta`,
 ``nne_gen.m``
 """"""""""""""
 
-This script generates the training and validation examples (Steps 1 & 2 in the procedure on :ref:`home<home>` page).
+This script generates the training and validation examples.
 
 * It uses ``model.m`` to simulate the time-series data in each training or validation example.
 * It uses ``moments.m`` to summarize data in each training or validation example.
-* At the end, the training and validation examples are saved in a file ``nne_training.mat``.
+* The training and validation examples are saved to ``nne_training.mat``.
 
 ..  collapse:: Click to show code <collapse_header>nne_gen.m</collapse_header>
 
@@ -239,11 +228,11 @@ This script generates the training and validation examples (Steps 1 & 2 in the p
 ``nne_train.m``
 """"""""""""""""
 
-This script trains a shallow neural net (Steps 3 & 4 in the procedure on :ref:`home<home>` page).
+This script trains a shallow neural net.
 
-* It loads the training and validation examples from ``nne_training.mat`` (created by ``nne_gen.m``).
-* Validation loss is reported. You can use it to choose hyperparameters, such as the number of hidden nodes.
-* At the end, it applies the trained neural net on ``data.mat`` to recover the value of :math:`\beta`.
+* It loads the training and validation examples from ``nne_training.mat`` (saved by ``nne_gen.m``).
+* Validation loss is reported. You can use it to choose neural net hyperparameters, such as the number of hidden nodes.
+* After training, it applies the trained neural net on ``data.mat``.
 
 ..  collapse:: Click to show code <collapse_header>nne_train.m</collapse_header>
 

@@ -6,9 +6,9 @@
    middle always returns to the landing page. #}
 {% if pagename != 'index' %}
 {% set sections = [
-    [('Overview', 'nne/index'), ('Consumer Search', 'nne/consumer_search'), ('AR1 Model', 'nne/ar1_model')],
-    [('Overview', 'pnne/index'), ('Code', 'pnne/code'), ('Data', 'pnne/data'), ('Contact', 'pnne/contact')],
-    [('Overview', 'fnne/index'), ('Mixed Logit Model', 'fnne/mixed_logit'), ('Consumer Search', 'fnne/consumer_search')]
+    [('Overview', 'nne/index'), ('Search model', 'nne/nne_search'), ('AR1 model', 'nne/nne_ar1')],
+    [('Overview', 'pnne/index'), ('Code', 'pnne/pnne_code'), ('Data', 'pnne/pnne_data')],
+    [('Overview', 'fnne/index'), ('Mixed logit model', 'fnne/fnne_mixed_logit'), ('Search model', 'fnne/fnne_search')]
 ] %}
 {% set ns = namespace(prev=None, next=None) %}
 {% for section in sections %}

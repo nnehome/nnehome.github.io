@@ -11,19 +11,18 @@
     {% set sections = [
         ('Original NNE', 'nne/index', [
             ('Overview', 'nne/index'),
-            ('Search model', 'nne/consumer_search'),
-            ('AR1 Model', 'nne/ar1_model')
+            ('Search model', 'nne/nne_search'),
+            ('AR1 model', 'nne/nne_ar1')
         ]),
         ('Pretrained NNE', 'pnne/index', [
             ('Overview', 'pnne/index'),
-            ('Code', 'pnne/code'),
-            ('Data', 'pnne/data'),
-            ('Contact', 'pnne/contact')
+            ('Code', 'pnne/pnne_code'),
+            ('Data', 'pnne/pnne_data')
         ]),
         ('Full-information NNE', 'fnne/index', [
             ('Overview', 'fnne/index'),
-            ('Mixed Logit Model', 'fnne/mixed_logit'),
-            ('Consumer Search', 'fnne/consumer_search')
+            ('Mixed logit model', 'fnne/fnne_mixed_logit'),
+            ('Search model', 'fnne/fnne_search')
         ])
     ] %}
     {% for title, index, children in sections %}
