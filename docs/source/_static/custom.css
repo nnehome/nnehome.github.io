@@ -93,11 +93,18 @@ collapse_header {
     justify-content: flex-start;
 }
 
-/* Landing page only: it has no right sidebar (empty TOC), so reserve the
-   same right-hand whitespace via padding so the content column width matches
-   the other pages. (sidebar width + the article's own 1rem padding). */
-body:has(#family-home) .bd-main .bd-content .bd-article-container {
-    padding-right: calc(var(--pst-sidebar-secondary) + 1rem);
+/* Landing page only: hide the right sidebar (its only TOC entry is "Contact")
+   while keeping its width as whitespace, so the content column matches the
+   other pages. */
+body:has(#family-home) .bd-sidebar-secondary {
+    visibility: hidden;
+}
+
+/* Bold the landing page title and section headings (e.g. Contact);
+   the theme renders headings at normal weight. */
+body:has(#family-home) h1,
+body:has(#family-home) h2 {
+    font-weight: 700;
 }
 
 /* With the left sidebar gone, add a left gutter so content (and the
@@ -300,6 +307,7 @@ body:has(#family-home) .bd-main .bd-content .bd-article-container {
 .method-card h3 {
     margin: 0.3rem 0 0.5rem 0;
     font-size: 1.45rem;
+    font-weight: 700;
     color: var(--pst-color-text-base, #222);
 }
 
@@ -332,7 +340,11 @@ body:has(#family-home) .bd-main .bd-content .bd-article-container {
 .method-card .inline-link {
     position: relative;
     z-index: 2;
-    font-weight: 600;
+    font-weight: inherit;
+    text-decoration: none;
+}
+.method-card .inline-link:hover {
+    text-decoration: none;
 }
 
 /* Per-method accent colors (reused on section pages if desired) */
