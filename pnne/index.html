@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to Pre-trained NNE &#8212; NNE  documentation</title>
+    <title>Pre-trained NNE &#8212; NNE  documentation</title>
   
   
   
@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0a330531" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=eff97390" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -48,8 +48,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'pnne/index';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Code" href="code.html" />
-    <link rel="prev" title="Simple AR1 model" href="../nne/ar1_model.html" />
+    <link rel="next" title="Code" href="pnne_code.html" />
+    <link rel="prev" title="Simple AR1 model" href="../nne/nne_ar1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -163,12 +163,12 @@
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/consumer_search.html">Consumer Search</a>
+                 href="../nne/nne_search.html">Search model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/ar1_model.html">AR1 Model</a>
+                 href="../nne/nne_ar1.html">AR1 model</a>
             </li>
           
         </ul>
@@ -177,7 +177,7 @@
       
       
       <li class="nav-item nav-section active">
-        <a class="nav-link nav-section-link" href="#">Pre-trained NNE</a>
+        <a class="nav-link nav-section-link" href="#">Pretrained NNE</a>
         <ul class="nav-section-menu">
           
             <li>
@@ -187,17 +187,12 @@
           
             <li>
               <a class="nav-section-item"
-                 href="code.html">Code</a>
+                 href="pnne_code.html">Code</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="data.html">Data</a>
-            </li>
-          
-            <li>
-              <a class="nav-section-item"
-                 href="contact.html">Contact</a>
+                 href="pnne_data.html">Data</a>
             </li>
           
         </ul>
@@ -216,12 +211,12 @@
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/mixed_logit.html">Mixed Logit Model</a>
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/consumer_search.html">Consumer Search</a>
+                 href="../fnne/fnne_search.html">Search model</a>
             </li>
           
         </ul>
@@ -335,12 +330,12 @@ document.write(`
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/consumer_search.html">Consumer Search</a>
+                 href="../nne/nne_search.html">Search model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/ar1_model.html">AR1 Model</a>
+                 href="../nne/nne_ar1.html">AR1 model</a>
             </li>
           
         </ul>
@@ -349,7 +344,7 @@ document.write(`
       
       
       <li class="nav-item nav-section active">
-        <a class="nav-link nav-section-link" href="#">Pre-trained NNE</a>
+        <a class="nav-link nav-section-link" href="#">Pretrained NNE</a>
         <ul class="nav-section-menu">
           
             <li>
@@ -359,17 +354,12 @@ document.write(`
           
             <li>
               <a class="nav-section-item"
-                 href="code.html">Code</a>
+                 href="pnne_code.html">Code</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="data.html">Data</a>
-            </li>
-          
-            <li>
-              <a class="nav-section-item"
-                 href="contact.html">Contact</a>
+                 href="pnne_data.html">Data</a>
             </li>
           
         </ul>
@@ -388,12 +378,12 @@ document.write(`
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/mixed_logit.html">Mixed Logit Model</a>
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/consumer_search.html">Consumer Search</a>
+                 href="../fnne/fnne_search.html">Search model</a>
             </li>
           
         </ul>
@@ -471,7 +461,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Welcome to Pre-trained NNE</li>
+    <li class="breadcrumb-item active" aria-current="page">Pre-trained NNE</li>
   </ul>
 </nav>
 </div>
@@ -488,33 +478,45 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="welcome-to-pre-trained-nne">
-<span id="pnne"></span><h1>Welcome to Pre-trained NNE<a class="headerlink" href="#welcome-to-pre-trained-nne" title="Link to this heading">#</a></h1>
-<p>(<span class="note-text">Note: This website is being updated over time. Last update on June 5, 2025.</span>)</p><p>This is the companion website for <a class="reference external" href="https://arxiv.org/abs/2505.00526" rel="noopener noreferrer" target="_blank">Wei and Jiang (2025)</a>. It provides a pretrained estimator for a
-consumer search model used in economics &amp; marketing. The estimator is based on a neural net that
-recognizes search model parameters from data patterns. The neural net is pretrained so the estimation
-cost for users is minimal. We call this estimator a <strong>pretrained neural net estimator (NNE)</strong>.
-Pretraining NNE is generally applicable to structural models, though here we focus on the search model.</p>
-<p>Below is a brief overview of how to apply the pretrained NNE to your search data. For Matlab code and
-detailed documentation, see the <a class="reference internal" href="code.html#pnne-code"><span class="std std-ref">code</span></a> page. For examples to try out, see the
-<a class="reference internal" href="data.html#pnne-data"><span class="std std-ref">data</span></a> page.</p>
+  <section id="pre-trained-nne">
+<span id="pnne"></span><h1>Pre-trained NNE<a class="headerlink" href="#pre-trained-nne" title="Link to this heading">#</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This is the companion website for the pretrained Neural Net Estimator (pretrained NNE), based on <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856490" rel="noopener noreferrer" target="_blank">“Pretraining Estimators for Structural Models: Application to Consumer Search,” Wei and Jiang 2025</a>.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>The main function to execute is <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code>, as shown below.</p>
+<p>Here we provide a pretrained estimator for a consumer search model used in economics &amp; marketing. The estimator is based on a neural net that can recognize the search model parameter from data patterns. The neural net is pretrained so <em>the estimation
+cost for users is negligible</em>. The approach to pretrain NNE is generally applicable to structural models, though here we focus on the search model.</p>
+<p>The Matlab (2024b) files for this pretrained NNE can be found at this <a class="reference external" href="https://github.com/pnnehome/code_matlab" rel="noopener noreferrer" target="_blank">GitHub directory</a> (<span class="note-text">last update on May 6, 2025</span>). Below is a brief guide of how to apply this pretrained NNE to your search data. Further documentation is given on the <a class="reference internal" href="pnne_code.html#pnne-code"><span class="std std-ref">code</span></a> page. Example datasets to try are provided on the <a class="reference internal" href="pnne_data.html#pnne-data"><span class="std std-ref">data</span></a> page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="using-this-pretrained-nne">
+<h2>Using This Pretrained NNE<a class="headerlink" href="#using-this-pretrained-nne" title="Link to this heading">#</a></h2>
+<section id="what-is-the-model-to-be-estimated">
+<h3>What is the model to be estimated?<a class="headerlink" href="#what-is-the-model-to-be-estimated" title="Link to this heading">#</a></h3>
+<p>Our pretrained NNE estimates a sequential search model. The model’s exact specification is given
+in the paper. Here we give a high-level description. A consumer faces <span class="math notranslate nohighlight">\(J\)</span> products plus an outside good, and decides which products to search and which product to buy. The first search is free (so the consumer searches at least once).
+There are <em>product attributes</em> that affect the consumer’s utility for each product, and the effects are captured by <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>. There may be <em>consumer attributes</em> that affect the consumer’s outside utility, and the effects are captured by <span class="math notranslate nohighlight">\(\boldsymbol{\eta}\)</span>. There may also be <em>advertising attributes</em> that affect search costs (but not utility), and the effects are captured by <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span>. Parameters <span class="math notranslate nohighlight">\(\eta_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_0\)</span> capture the baseline outside utility and search cost, respectively.</p>
+</section>
+<section id="how-to-run-the-estimation">
+<h3>How to run the estimation?<a class="headerlink" href="#how-to-run-the-estimation" title="Link to this heading">#</a></h3>
+<p>Our pretrained NNE is written in Matlab. The main function to execute is <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx)</span>
 </pre></div>
 </div>
-<p>Explanation for inputs and output:</p>
 <ul class="simple">
 <li><p>Input <code class="docutils literal notranslate"><span class="pre">nne</span></code> stores the trained neural net and some pre-defined settings, available from the file <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>.</p></li>
-<li><p>Inputs <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code> are your data (more on them below).</p></li>
+<li><p>Inputs <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code> are your data (more explanation below).</p></li>
 <li><p>Output <code class="docutils literal notranslate"><span class="pre">result</span></code> is a table with the parameter estimate for the search model.</p></li>
 </ul>
-<p>Below shows an example. The total execution time is 0.78 sec on a laptop. The time includes overheads
-such as some data sanity checks.</p>
+<p>Below shows an example. The total execution time on a laptop is 0.78 seconds, which also include overheads
+such as data sanity checks.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; load(&#39;trained_nne.mat&#39;, &#39;nne&#39;)</span>
 <span class="go">&gt;&gt; tic</span>
 <span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx);</span>
@@ -534,46 +536,14 @@ such as some data sanity checks.</p>
 <span class="go"> &quot;\beta_2&quot;      -0.53811</span>
 </pre></div>
 </div>
-<p>The rest of this page gives details on: (i) the search model, (ii) how to format data, and (iii) how
-to get standard errors.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<section id="the-search-model">
-<h3>1) The search model<a class="headerlink" href="#the-search-model" title="Link to this heading">#</a></h3>
-<p>Sequential search models have been commonly applied in economics &amp; marketing. A consumer faces
-<span class="math notranslate nohighlight">\(J\)</span> products (or options). She decides which options to search and which option to buy.
-Searching an option incurs a search cost but also reveals some utility for that option. The search
-model estimated by our pretrained NNE here is a standard one. The exact specification of it is given
-in Wei and Jiang (2025). Here we give a high-level description:</p>
-<ul class="simple">
-<li><p>A consumer faces a list of <span class="math notranslate nohighlight">\(J\)</span> products plus an outside good. A free search is endowed (because in most data each consumer searches at least once).</p></li>
-<li><p>The list shows some <strong>product attributes</strong> that affect consumer’s utility for products. Their effects are described by <span class="math notranslate nohighlight">\(\beta\)</span>.</p></li>
-<li><p>There may be some <strong>consumer attributes</strong> that affect consumer’s outside utility. Their effects are described by <span class="math notranslate nohighlight">\(\eta\)</span>.</p></li>
-<li><p>There may be <strong>advertising attributes</strong> that affect search costs (but not utility). Their effects are described by <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
-</ul>
-<p>For a survey on empirical applications of search models, see <a class="reference external" href="https://link.springer.com/article/10.1007/s11129-024-09291-2" rel="noopener noreferrer" target="_blank">Ursu, Seiler, &amp; Honka (2025)</a>.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
 </section>
-<section id="data-format">
-<h3>2) Data format<a class="headerlink" href="#data-format" title="Link to this heading">#</a></h3>
-<p>Our code assumes that the data are represented in five arrays: <code class="docutils literal notranslate"><span class="pre">Y</span></code>, <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code>. The easiest way to explain them is through an example of shopping at an online
-retailer, which we illustrate below. There are <span class="math notranslate nohighlight">\(n = 10{,}000\)</span> consumers and <span class="math notranslate nohighlight">\(J = 15\)</span>
-options per consumer.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code> is a column vector with <span class="math notranslate nohighlight">\(nJ\)</span> rows. Each value indicates the consumer.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code> has two columns with <span class="math notranslate nohighlight">\(nJ\)</span> rows; the 1st column indicates searches and 2nd column indicates purchases. In this example, we see the first consumer searched the 1st, 3rd, and 8th options. She bought the 3rd option.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code> stores product attributes. In this example, there are two product attributes: a 1-5 product rating and log price.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code> stores advertising attributes. In this example, the single advertising attribute indicates whether the product is highlighted on the retailer website.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code> stores consumer attributes. It has only <span class="math notranslate nohighlight">\(n\)</span> rows, one for each consumer. It is not shown below.</p></li>
-</ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; table(consumer_idx, Y, Xp, Xa)</span>
+<section id="how-to-format-your-data">
+<h3>How to format your data?<a class="headerlink" href="#how-to-format-your-data" title="Link to this heading">#</a></h3>
+<p>Our code assumes that the data are represented in five arrays as input to <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code>. An example is given below. The example features <span class="math notranslate nohighlight">\(n = 10{,}000\)</span> consumers and <span class="math notranslate nohighlight">\(J = 15\)</span> products per consumer.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;  table(consumer_idx, Y, Xp, Xa)</span>
 <span class="go">ans = 150000×4 table</span>
 <span class="go"> consumer_idx      Y             Xp          Xa</span>
-<span class="go"> ______________    ______    ______________    __</span>
+<span class="go"> ____________    ______    ______________    __</span>
 <span class="go">        1        1    0    4      0.67743    1</span>
 <span class="go">        1        0    0    5       1.1052    1</span>
 <span class="go">        1        1    1    1     -0.24542    1</span>
@@ -595,21 +565,38 @@ options per consumer.</p>
 <span class="go">      :            :             :           :</span>
 </pre></div>
 </div>
-<p>More generally, if your data do not feature advertising or consumer attributes, you can simply let
-<code class="docutils literal notranslate"><span class="pre">Xa</span></code> or <code class="docutils literal notranslate"><span class="pre">Xc</span></code> be an empty matrix.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code>: a column vector with <span class="math notranslate nohighlight">\(nJ\)</span> rows, showing consumer indices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: two binary columns indicating searches and purchases, respectively. In this example, the first consumer searched the 1st, 3rd, and 8th products, and bought the 3rd product.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>: product attributes. This example features two product attributes: a 1-5 review rating and log price.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code>: advertising attributes. This example features a single advertising attribute indicating whether the product is highlighted by the seller.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>: consumer attributes (not shown in the example). Unlike the other four arrays, it should have <span class="math notranslate nohighlight">\(n\)</span> instead of <span class="math notranslate nohighlight">\(nJ\)</span> rows.</p></li>
+</ul>
+<p>More generally, simply let <code class="docutils literal notranslate"><span class="pre">Xa</span> <span class="pre">=</span> <span class="pre">[]</span></code> or <code class="docutils literal notranslate"><span class="pre">Xc</span> <span class="pre">=</span> <span class="pre">[]</span></code> if your data do not feature advertising or consumer attributes. <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, and <code class="docutils literal notranslate"><span class="pre">Xc</span></code> need not be standardized. However, we recommend de-meaning them to make <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\eta_0\)</span> easier to interpret. We also recommend treating outliers (e.g., winsorizing, transformation) before using the pretrained NNE.</p>
+<p>Below list the data sizes currently accepted by our pretrained NNE (<span class="note-text">Note: these settings can be adjusted in the future if needed — feel free to contact us</span>).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> ≥ 1000 consumers (or search sessions);</p></li>
+<li><p>15 ≤ <span class="math notranslate nohighlight">\(J\)</span> ≤ 35;</p></li>
+<li><p>Number of <em>product attributes</em> ≥ 2 and ≤ 8;</p></li>
+<li><p>Number of <em>consumer attributes</em> ≤ 5;</p></li>
+<li><p>Number of <em>advertising attributes</em> ≤ 2.</p></li>
+</ul>
+<p>In addition, the NNE is pretrained on data with the following summary statistics. If your data fall outside these ranges, the pretrained NNE may not work as intended.</p>
+<ul class="simple">
+<li><p><em>Buy rate</em> (fraction of consumers who bought inside good) is 0.5% ~ 70%.</p></li>
+<li><p><em>Search rate</em> (fraction of consumers who went beyond free search) is 1% ~ 80%.</p></li>
+<li><p><em>Average number of searches</em> per consumer is 1 ~ 6.</p></li>
+</ul>
 </section>
-<section id="bootstrap-standard-errors">
-<h3>3) Bootstrap standard errors<a class="headerlink" href="#bootstrap-standard-errors" title="Link to this heading">#</a></h3>
+<section id="how-to-get-standard-errors">
+<h3>How to get standard errors?<a class="headerlink" href="#how-to-get-standard-errors" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code> function has standard error calculation built in. Simply add <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">=</span> <span class="pre">true</span></code>
 option as shown below. The output will include an additional column of standard errors. The
-calculation bootstraps 50 samples so execution time will be somewhat longer, but it can take advantage
+calculation bootstraps 50 samples so execution time will be a bit longer, but it can take advantage
 of parallel computing toolbox if installed.</p>
-<p>In this example, we see <span class="math notranslate nohighlight">\(\alpha_1\)</span> is negative, indicating that the highlighted products enjoy a
-lower search cost. We see <span class="math notranslate nohighlight">\(\beta_1\)</span> is positive, indicating that consumer utility increases with
-product rating.</p>
+<p>In this example, <span class="math notranslate nohighlight">\(\alpha_1\)</span> is negative, indicating that the highlighted products enjoy a
+lower search cost. We see that <span class="math notranslate nohighlight">\(\beta_1\)</span> is positive, indicating that consumer utility increases with
+the review rating.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx, se = true)</span>
 <span class="go">result = 8×3 table</span>
 
@@ -627,22 +614,11 @@ product rating.</p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
-</div>
-</section>
-</section>
-<section id="papers">
-<h2>Papers<a class="headerlink" href="#papers" title="Link to this heading">#</a></h2>
-<p>Wei, Yanhao ‘Max’ and Zhenling Jiang (2025). “Pretraining Estimators for Structural Models:
-Application to Consumer Search.” <a class="reference external" href="https://arxiv.org/abs/2505.00526" rel="noopener noreferrer" target="_blank">arXiv</a></p>
-<p>Yanhao Wei, Zhenling Jiang (2025). “Estimating Parameters of Structural Models Using Neural Networks”
-<a class="reference external" href="https://pubsonline.informs.org/doi/10.1287/mksc.2022.0360" rel="noopener noreferrer" target="_blank">Marketing Science</a>, 44 (1), 102-128.</p>
-<p>Ursu, Raluca, Stephan Seiler, and Elisabeth Honka (2025). “The Sequential Search Model: A Framework
-for Empirical Research.” <a class="reference external" href="https://link.springer.com/article/10.1007/s11129-024-09291-2" rel="noopener noreferrer" target="_blank">QME</a>, 23(1): 165-213.</p>
-<div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 </section>
 
@@ -652,60 +628,6 @@ for Empirical Research.” <a class="reference external" href="https://link.spri
               
               
               
-              
-                <footer class="prev-next-footer">
-                  
-
-
-
-
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-      
-      
-    
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-
-<div class="prev-next-area">
-  <div class="prev-next-slot prev-next-slot--left">
-  </div>
-  <div class="prev-next-slot prev-next-slot--center">
-    <a class="home-link" href="../index.html" title="home page">Home</a>
-  </div>
-  <div class="prev-next-slot prev-next-slot--right">
-      <a class="right-next" href="code.html" title="next page">
-        <div class="prev-next-info">
-          <p class="prev-next-subtitle">next</p>
-          <p class="prev-next-title">Code</p>
-        </div>
-        <i class="fa-solid fa-angle-right"></i>
-      </a>
-  </div>
-</div>
-
-                </footer>
               
             </div>
             
@@ -719,13 +641,14 @@ for Empirical Research.” <a class="reference external" href="https://link.spri
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-search-model">1) The search model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format">2) Data format</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrap-standard-errors">3) Bootstrap standard errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-this-pretrained-nne">Using This Pretrained NNE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-model-to-be-estimated">What is the model to be estimated?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run-the-estimation">How to run the estimation?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-format-your-data">How to format your data?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-get-standard-errors">How to get standard errors?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papers">Papers</a></li>
 </ul>
   </nav></div>
 

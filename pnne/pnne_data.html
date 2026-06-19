@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0a330531" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=eff97390" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
@@ -45,11 +45,11 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pnne/data';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pnne/pnne_data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contact" href="contact.html" />
-    <link rel="prev" title="Code" href="code.html" />
+    <link rel="next" title="Full-information NNE" href="../fnne/index.html" />
+    <link rel="prev" title="Code" href="pnne_code.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -163,12 +163,12 @@
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/consumer_search.html">Consumer Search</a>
+                 href="../nne/nne_search.html">Search model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/ar1_model.html">AR1 Model</a>
+                 href="../nne/nne_ar1.html">AR1 model</a>
             </li>
           
         </ul>
@@ -177,7 +177,7 @@
       
       
       <li class="nav-item nav-section active">
-        <a class="nav-link nav-section-link" href="index.html">Pre-trained NNE</a>
+        <a class="nav-link nav-section-link" href="index.html">Pretrained NNE</a>
         <ul class="nav-section-menu">
           
             <li>
@@ -187,17 +187,12 @@
           
             <li>
               <a class="nav-section-item"
-                 href="code.html">Code</a>
+                 href="pnne_code.html">Code</a>
             </li>
           
             <li>
               <a class="nav-section-item current"
                  href="#">Data</a>
-            </li>
-          
-            <li>
-              <a class="nav-section-item"
-                 href="contact.html">Contact</a>
             </li>
           
         </ul>
@@ -216,12 +211,12 @@
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/mixed_logit.html">Mixed Logit Model</a>
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/consumer_search.html">Consumer Search</a>
+                 href="../fnne/fnne_search.html">Search model</a>
             </li>
           
         </ul>
@@ -335,12 +330,12 @@ document.write(`
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/consumer_search.html">Consumer Search</a>
+                 href="../nne/nne_search.html">Search model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../nne/ar1_model.html">AR1 Model</a>
+                 href="../nne/nne_ar1.html">AR1 model</a>
             </li>
           
         </ul>
@@ -349,7 +344,7 @@ document.write(`
       
       
       <li class="nav-item nav-section active">
-        <a class="nav-link nav-section-link" href="index.html">Pre-trained NNE</a>
+        <a class="nav-link nav-section-link" href="index.html">Pretrained NNE</a>
         <ul class="nav-section-menu">
           
             <li>
@@ -359,17 +354,12 @@ document.write(`
           
             <li>
               <a class="nav-section-item"
-                 href="code.html">Code</a>
+                 href="pnne_code.html">Code</a>
             </li>
           
             <li>
               <a class="nav-section-item current"
                  href="#">Data</a>
-            </li>
-          
-            <li>
-              <a class="nav-section-item"
-                 href="contact.html">Contact</a>
             </li>
           
         </ul>
@@ -388,12 +378,12 @@ document.write(`
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/mixed_logit.html">Mixed Logit Model</a>
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="../fnne/consumer_search.html">Consumer Search</a>
+                 href="../fnne/fnne_search.html">Search model</a>
             </li>
           
         </ul>
@@ -472,7 +462,7 @@ document.write(`
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Welcome to Pre-trained NNE</a></li>
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Pre-trained NNE</a></li>
     
     <li class="breadcrumb-item active" aria-current="page">Data</li>
   </ul>
@@ -496,7 +486,7 @@ document.write(`
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>We share four datasets as examples for users to try out the pretrained NNE. You can find them (mat files) in the “sample_data” folder at this <a class="reference external" href="https://github.com/pnnehome/code_matlab" rel="noopener noreferrer" target="_blank">GitHub directory</a>. These datasets are used in Wei and Jiang (2025) and come from public sources. More detailed descriptions of these datasets can be found in the paper too.</p>
+<p>We share four datasets as examples for users to try out the pretrained NNE. You can find them (Matlab files) in the ‘sample_data’ folder at this <a class="reference external" href="https://github.com/pnnehome/code_matlab" rel="noopener noreferrer" target="_blank">GitHub directory</a>. These datasets all come from public sources. More detailed descriptions of these datasets can be found in <a class="reference external" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856490" rel="noopener noreferrer" target="_blank">the paper</a>.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -504,15 +494,15 @@ document.write(`
 <h2>Description of the datasets<a class="headerlink" href="#description-of-the-datasets" title="Link to this heading">#</a></h2>
 <section id="expedia-destination-1">
 <h3>Expedia - destination 1<a class="headerlink" href="#expedia-destination-1" title="Link to this heading">#</a></h3>
-<p>This dataset comes from <a class="reference external" href="https://www.kaggle.com/competitions/expedia-personalized-sort/overview" rel="noopener noreferrer" target="_blank">a Kaggle contest</a> that studies hotel searches and bookings on Expedia.com. It has been used in several papers to study consumer online search behaviors. This dataset here includes the search sessions for the largest travel destination in this contest. There are <span class="math notranslate nohighlight">\(n = 1258\)</span> sessions. There are 3 product attributes, 2 consumer attributes, and 1 advertising attribute.</p>
+<p>This dataset comes from <a class="reference external" href="https://www.kaggle.com/competitions/expedia-personalized-sort/overview" rel="noopener noreferrer" target="_blank">a Kaggle contest</a> based on Expedia.com search and booking data. The data are used in several papers to study consumer online search behaviors. This dataset here focuses on the search sessions for the largest travel destination in this contest. There are <span class="math notranslate nohighlight">\(n = 1258\)</span> sessions, 3 product attributes, 2 consumer attributes, and 1 advertising attribute.</p>
 </section>
 <section id="expedia-destination-2">
 <h3>Expedia - destination 2<a class="headerlink" href="#expedia-destination-2" title="Link to this heading">#</a></h3>
-<p>This dataset includes the search sessions for the second largest travel destination in the same Kaggle contest as above. There are <span class="math notranslate nohighlight">\(n = 897\)</span> sessions, slightly smaller than the current requirement of the pretrained NNE (see <a class="reference internal" href="code.html#pnne-code"><span class="std std-ref">code</span></a>). Despite this small shortfall, the pretrained NNE seems to work well in this case.</p>
+<p>This dataset includes the search sessions for the 2nd largest travel destination in the same Kaggle contest as above. There are <span class="math notranslate nohighlight">\(n = 897\)</span> sessions, slightly below the current minimal requirement of <span class="math notranslate nohighlight">\(n\)</span> the pretrained NNE (see <a class="reference internal" href="index.html#pnne"><span class="std std-ref">here</span></a>). Despite this, the pretrained NNE seems to work well.</p>
 </section>
 <section id="trivago-desktop-channel">
 <h3>Trivago - desktop channel<a class="headerlink" href="#trivago-desktop-channel" title="Link to this heading">#</a></h3>
-<p>This dataset comes from the <a class="reference external" href="https://recsys.acm.org/recsys19/challenge/" rel="noopener noreferrer" target="_blank">ACM RecSys Challenge</a> that analyzes user sessions on Trivago.com. This dataset here includes the search sessions made on the desktop channel. The setting of Trivago does not exactly fit the standard sequential search model (because a purchase is not well defined). Nevertheless, it provides a good place to try out the pretrained NNE.</p>
+<p>This dataset comes from the <a class="reference external" href="https://recsys.acm.org/recsys19/challenge/" rel="noopener noreferrer" target="_blank">ACM RecSys Challenge</a> based on user session data on Trivago.com. This dataset here includes the search sessions made on the desktop channel.</p>
 </section>
 <section id="trivago-mobile-channel">
 <h3>Trivago - mobile channel<a class="headerlink" href="#trivago-mobile-channel" title="Link to this heading">#</a></h3>
@@ -522,10 +512,6 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="papers">
-<h2>Papers<a class="headerlink" href="#papers" title="Link to this heading">#</a></h2>
-<p>Wei, Yanhao ‘Max’ and Zhenling Jiang (2025), “Pretraining Estimators for Structural Models: Application to Consumer Search.” <a class="reference external" href="https://arxiv.org/abs/2505.00526" rel="noopener noreferrer" target="_blank">arXiv</a></p>
-</section>
 </section>
 
 
@@ -534,67 +520,6 @@ document.write(`
               
               
               
-              
-                <footer class="prev-next-footer">
-                  
-
-
-
-
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-      
-      
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-
-<div class="prev-next-area">
-  <div class="prev-next-slot prev-next-slot--left">
-      <a class="left-prev" href="code.html" title="previous page">
-        <i class="fa-solid fa-angle-left"></i>
-        <div class="prev-next-info">
-          <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Code</p>
-        </div>
-      </a>
-  </div>
-  <div class="prev-next-slot prev-next-slot--center">
-    <a class="home-link" href="../index.html" title="home page">Home</a>
-  </div>
-  <div class="prev-next-slot prev-next-slot--right">
-      <a class="right-next" href="contact.html" title="next page">
-        <div class="prev-next-info">
-          <p class="prev-next-subtitle">next</p>
-          <p class="prev-next-title">Contact</p>
-        </div>
-        <i class="fa-solid fa-angle-right"></i>
-      </a>
-  </div>
-</div>
-
-                </footer>
               
             </div>
             
@@ -615,7 +540,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trivago-mobile-channel">Trivago - mobile channel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#papers">Papers</a></li>
 </ul>
   </nav></div>
 

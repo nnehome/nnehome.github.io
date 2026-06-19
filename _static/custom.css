@@ -73,9 +73,13 @@ collapse_header {
    middle content column fill the freed-up space.
    =================================================================== */
 
-/* Header, main area, and footer all use .bd-page-width */
+/* Centered, responsive layout: cap the page at a max width and center it, so
+   the left/right margins grow and shrink with the browser window (instead of
+   a fixed left gutter). Header, main area, and footer all use .bd-page-width. */
 .bd-page-width {
-    max-width: 100%;
+    max-width: 97rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Let the article fill its column (theme default caps it at 60em) */
@@ -83,40 +87,15 @@ collapse_header {
     max-width: none;
 }
 
-/* Right "On this page" TOC: widen it so headings don't wrap. */
+/* Right "On this page" TOC width (trimmed a bit to give the main content
+   more room). */
 :root {
-    --pst-sidebar-secondary: 20rem;
+    --pst-sidebar-secondary: 18rem;
 }
 
-/* Left-align the article within its (now wider) column */
+/* Left-align the article within its column */
 .bd-content {
     justify-content: flex-start;
-}
-
-/* Landing page only: it has no right sidebar (empty TOC), so reserve the
-   same right-hand whitespace via padding so the content column width matches
-   the other pages. (sidebar width + the article's own 1rem padding). */
-body:has(#family-home) .bd-main .bd-content .bd-article-container {
-    padding-right: calc(var(--pst-sidebar-secondary) + 1rem);
-}
-
-/* With the left sidebar gone, add a left gutter so content (and the
-   logo/tabs) don't hug the window edge. One variable keeps the header
-   logo, the main content, and the footer copyright left-aligned. */
-:root {
-    --left-gutter: 30rem;
-}
-
-.bd-main .bd-content .bd-article-container {
-    padding-left: var(--left-gutter);
-}
-
-.bd-header__inner.bd-page-width {
-    padding-left: var(--left-gutter);
-}
-
-.bd-footer .bd-footer__inner.bd-page-width {
-    padding-left: var(--left-gutter);
 }
 
 /* ===================================================================
@@ -265,7 +244,7 @@ body:has(#family-home) .bd-main .bd-content .bd-article-container {
 
 .method-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.25rem;
     margin: 1.5rem 0 0.5rem 0;
 }
@@ -348,4 +327,38 @@ body:has(#family-home) .bd-main .bd-content .bd-article-container {
 .compare-table th {
     vertical-align: top;
     text-align: left;
+}
+
+/* Breadcrumb navigation at 1.2rem (up from the theme default 0.8rem),
+   including the divider, which the theme sizes separately. Selectors match
+   the theme's specificity (ul.bd-breadcrumbs ...) so they actually win. */
+ul.bd-breadcrumbs {
+    font-size: 1.2rem;
+}
+ul.bd-breadcrumbs li.breadcrumb-item:not(.breadcrumb-home)::before {
+    font-size: 1.2rem;
+}
+
+/* Cap the Full-information NNE architecture diagram so it does not enlarge
+   too much on wide browsers (it otherwise scales with the column at 80%). */
+body:has(#fnne) .bd-article figure img {
+    max-width: 700px;
+}
+
+/* basic.css floats "align: left" figures (float: left), which makes the
+   following section wrap to the right of the image. Keep such figures on
+   their own line (left-aligned block) so content flows below them. */
+.bd-article figure.align-left {
+    float: none;
+    clear: both;
+}
+
+/* Bold all content headings on every page */
+.bd-article h1,
+.bd-article h2,
+.bd-article h3,
+.bd-article h4,
+.bd-article h5,
+.bd-article h6 {
+    font-weight: 700;
 }

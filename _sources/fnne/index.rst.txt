@@ -5,87 +5,44 @@ Full-information NNE
 
 |
 
-This page describes the **full-information neural net estimator (full-information NNE)**, based on
-Wei and Jiang (2026), "Estimating and Assessing Identification of Structural Models via Deep Learning"
-(see `paper`_ below).
-
-Unlike the :ref:`original NNE <nne>`, which feeds the neural net a set of researcher-specified
-moments :math:`\boldsymbol{m}`, full-information NNE uses the **whole dataset** as input. It can
-automatically exploit variation in the data, and is thus useful not only for **estimating** a
-structural model but also for **assessing the identification** of the model.
-
-Below we give a brief overview of full-information NNE, and then provide the code we use to estimate:
-(i) a :ref:`mixed logit model <fnne_mixed_logit>`, and
-(ii) a :ref:`search model with unobserved consumer heterogeneity <fnne_consumer_search>`.
+We provide an overview and code for the full-information Neural Net Estimator (full-info NNE), based on `"Estimating and Assessing Identification of Structural Models via Deep Learning," Wei and Jiang 2026 <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6774178>`__. 
 
 |
 
 Overview
 --------
 
-Suppose that a structural econometric model specifies some outcome of interest :math:`\boldsymbol{y}_i`
-as a function of some observed attributes :math:`\boldsymbol{x}_i`, some unobserved shocks
-:math:`\boldsymbol{\varepsilon}_i`, and a parameter vector :math:`\boldsymbol{\theta}`. Examples are
-random utility maximization, consumer search, entry game, etc. A dataset is
-:math:`\mathcal{D} = \{\boldsymbol{y}_i, \boldsymbol{x}_i\}_{i=1}^{n}`, and we assume observations are
-i.i.d. across :math:`i` (e.g., cross-sectional or panel data). We train a neural net as follows.
+NNE is an approach to estimate structural econometric models (e.g., discrete choice, consumer search, games). Let the structural model's parameter vector be :math:`\boldsymbol{\theta}`. The basic idea is to train a neural net that can recognize the value of :math:`\boldsymbol{\theta}` from data. The :ref:`original NNE <nne>` uses researcher-specified moments as input to the neural net. In contrast, full-info NNE frees researchers from moment specification and *uses the entire dataset as input*.
 
-#. **Simulate data.** For each :math:`\ell`, draw :math:`\boldsymbol{\theta}^{(\ell)}` from a prior. Given :math:`\boldsymbol{\theta}^{(\ell)}`, use the structural model to simulate :math:`\boldsymbol{y}_i^{(\ell)}` given :math:`\boldsymbol{x}_i` for each :math:`i`. Let :math:`\mathcal{D}^{(\ell)} \equiv \{\boldsymbol{y}_i^{(\ell)}, \boldsymbol{x}_i\}_{i=1}^{n}`.
+The key challenge is that with a large input like an entire dataset, we typically must put a structure on the neural net architecture to make training feasible. Meanwhile, we want the architecture to be non-restrictive such that the neural net can still use all the information in data. It turns out that, assuming i.i.d. data (e.g., cross-sectional or panel), we can use an architecture  exploiting the i.i.d. structure to achieve these two goals.
 
-#. **Repeat.** Repeat the first step :math:`L` times to obtain :math:`\{\boldsymbol{\theta}^{(\ell)}, \mathcal{D}^{(\ell)}\}_{\ell=1}^{L}`.
+The full-information NNE is trained as follows.
 
-#. **Train a neural net** with the architecture below to predict :math:`\boldsymbol{\theta}^{(\ell)}` from :math:`\mathcal{D}^{(\ell)}`.
+#. Draw a value of :math:`\boldsymbol{\theta}` from a prior. Given this value and the real-data product/consumer attributes, use the structural model to simulate a dataset.
 
-The neural net uses a **two-part architecture** that exploits the i.i.d. data structure. The first
-part transforms each observation into a vector of features. The second part then maps the *averaged*
-features across :math:`i` into an estimate of :math:`\boldsymbol{\theta}`. This architecture is
-essential to make the training feasible. In implementation, the architecture can be coded as a
-convolutional neural net (CNN).
+#. Repeat the above step :math:`L` times to obtain :math:`L` pairs of values of :math:`\boldsymbol{\theta}` and datasets. These pairs are our training examples.
 
-.. figure:: architecture.svg
-   :width: 70%
+#. Use the :math:`L` examples to train a neural net with the "two-part architecture" to predict the value of :math:`\boldsymbol{\theta}` from a dataset.
+
+The "two-part architecture" first transforms each observation into a vector of features, and then uses the average features across observations to predict the value of :math:`\boldsymbol{\theta}`. The architecture is easy to implement because it can be conveniently coded as a convolutional neural net (CNN). In the paper, it is shown that this architecture is not restrictive, in the sense that the neural net converges to the *full-information* posterior mean of :math:`\boldsymbol{\theta}` as we increase :math:`L`. The paper also shows how to train a second neural net to learn the full-information posterior variance.
+
+.. figure:: diagram_net.png
+   :width: 80%
    :align: left
-   :target: ../_static/architecture-full.svg
-   :alt: Two-part architecture: each observation in the dataset is mapped to a feature vector f_(in), the features are averaged across observations, and the average is mapped by f_(out) to an estimate of theta.
-
-   The two-part architecture. Each observation :math:`i` in the dataset :math:`\mathcal{D}` is mapped
-   to a feature vector by :math:`\boldsymbol{f}_{(\mathrm{in})}`; the features are averaged across
-   :math:`i`; and the average is mapped by :math:`\boldsymbol{f}_{(\mathrm{out})}` to an estimate
-   :math:`\hat{\boldsymbol{\theta}}`.
-
-Importantly, this architecture is **not restrictive**: the trained neural net can still learn the
-full-information posterior :math:`\mathbb{E}(\boldsymbol{\theta} \mid \mathcal{D})`. In fact, the paper
-shows that the neural net converges to the full-information posterior as :math:`L` grows. The paper
-also shows how a second neural net can be trained to learn
-:math:`\mathrm{Var}(\boldsymbol{\theta} \mid \mathcal{D})`. Finally, the paper shows how to make use of
-full-information NNE to **assess the identification** of a structural model.
+   :target: ../_static/diagram_net-view.html
 
 |
 
 Applications
 ------------
 
-We provide Matlab code for two applications.
+We provide Matlab code for two examples: 
 
-.. list-table::
-   :widths: 28 72
-   :header-rows: 0
-   :class: table-header-centered
+* **A mixed logit model**. Because likelihood in mixed logit is relatively easy to simulate, full-info NNE shows no computational or accuracy advantages here, but the setting serves as a good example to show how full-info NNE works in practice.
 
-   * - :ref:`Mixed logit model <fnne_mixed_logit>`
-     - Likelihood is easy to simulate here, so full-information NNE does not really have an advantage over SMLE. But it offers a good setting to demonstrate and understand the method.
-   * - :ref:`Consumer search model <fnne_consumer_search>`
-     - A sequential search model with unobserved consumer heterogeneity.
+* **A search model with unobserved consumer heterogeneity**. This examples shows the computational and accuracy advantages of full-info NNE.
 
-|
-
-|
-
-Paper
------
-
-Wei and Jiang (2026). "Estimating and Assessing Identification of Structural Models via Deep Learning."
-`SSRN <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6774178>`__
+You can find the code at this `TBA <https://example.com/>`_, and code documentation at the :ref:`mixed logit model <fnne_mixed_logit>` page and the :ref:`search model <fnne_search>` page.
 
 |
 
@@ -93,5 +50,5 @@ Wei and Jiang (2026). "Estimating and Assessing Identification of Structural Mod
    :hidden:
 
    Overview <self>
-   Mixed Logit Model <mixed_logit>
-   Consumer Search <consumer_search>
+   Mixed Logit Model <fnne_mixed_logit>
+   Search Model <fnne_search>
