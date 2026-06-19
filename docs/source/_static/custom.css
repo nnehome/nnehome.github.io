@@ -93,17 +93,16 @@ collapse_header {
     justify-content: flex-start;
 }
 
-/* Landing page only: hide the right sidebar (its only TOC entry is "Contact")
-   while keeping its width as whitespace, so the content column matches the
-   other pages. */
-body:has(#family-home) .bd-sidebar-secondary {
-    visibility: hidden;
-}
-
 /* Bold the landing page title and section headings (e.g. Contact);
    the theme renders headings at normal weight. */
 body:has(#family-home) h1,
 body:has(#family-home) h2 {
+    font-weight: 700;
+}
+
+/* Bold the headings on the NNE (Limited-information) overview page */
+body:has(#nne) h1,
+body:has(#nne) h2 {
     font-weight: 700;
 }
 
