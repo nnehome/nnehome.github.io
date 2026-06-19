@@ -29,6 +29,7 @@ The "two-part architecture" first transforms each observation into a vector of f
 .. figure:: diagram_net.png
    :width: 80%
    :align: left
+   :target: ../_static/diagram_net-view.html
 
 |
 

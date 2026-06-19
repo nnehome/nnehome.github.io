@@ -360,6 +360,20 @@ ul.bd-breadcrumbs li.breadcrumb-item:not(.breadcrumb-home)::before {
     font-size: 1.2rem;
 }
 
+/* Cap the Full-information NNE architecture diagram so it does not enlarge
+   too much on wide browsers (it otherwise scales with the column at 80%). */
+body:has(#fnne) .bd-article figure img {
+    max-width: 700px;
+}
+
+/* basic.css floats "align: left" figures (float: left), which makes the
+   following section wrap to the right of the image. Keep such figures on
+   their own line (left-aligned block) so content flows below them. */
+.bd-article figure.align-left {
+    float: none;
+    clear: both;
+}
+
 /* Bold all content headings on every page */
 .bd-article h1,
 .bd-article h2,
