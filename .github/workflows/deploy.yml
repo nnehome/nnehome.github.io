@@ -27,6 +27,7 @@ jobs:
         name: html-docs
         path: docs/build/html/    
     - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'  # only publish from the main branch
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
