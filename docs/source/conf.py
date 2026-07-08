@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'NNE'
-copyright = "2023, Yanhao 'Max' Wei, Zhenling Jiang"
-author = "Yanhao 'Max' Wei, Zhenling Jiang"
+copyright = "2023, authors"
+author = "authors"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -37,21 +37,40 @@ html_css_files = [
 ]
 html_logo = '_static/logo.png'
 
+# No left sidebar anywhere: each section's pages are reached through the
+# navbar dropdowns (see _templates/navbar-nav.html), which frees the full
+# width for the main content.
 html_sidebars = {
-  "**": []
+    "**": [],
 }
 
 html_theme_options = {
-    "navbar_persistent":[],
+    "navbar_align": "content",
+    "navbar_persistent": ["search-button"],
     "logo": {
-        "link": "https://nnehome.github.io",
-        "text": "NNE"
+        "text": "NNE",
     },
-    "show_prev_next": False
+    "show_prev_next": False,
+    "show_nav_level": 1,
+    "show_toc_level": 2,
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/nnehome",
+            "icon": "fa-brands fa-github",
+        },
+    ],
 }
 
 html_show_sourcelink = False
 
 redirects = {
-     "home/home.html": "../index.html"
+    "home/home.html": "../index.html",
 }
+
+rst_prolog = """
+.. role:: note-text
+
+.. role:: raw-html(raw)
+   :format: html
+"""
