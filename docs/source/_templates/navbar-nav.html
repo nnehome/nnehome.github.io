@@ -1,28 +1,30 @@
 {# Custom navbar: each top-level method is a hover/click dropdown that lists
    the pages of that section (replacing the left "Section Navigation" sidebar). #}
 <nav class="navbar-nav">
+  <!--
   <p class="sidebar-header-items__title"
      role="heading"
      aria-level="1"
      aria-label="{{ _('Site Navigation') }}">
     {{ _("Site Navigation") }}
   </p>
+  -->
   <ul class="bd-navbar-elements navbar-nav">
     {% set sections = [
-        ('Original NNE', 'nne/index', [
-            ('Overview', 'nne/index'),
-            ('Search model', 'nne/nne_search'),
-            ('AR1 model', 'nne/nne_ar1')
+    	('Full-information NNE', 'fnne/index', [
+            ('Overview', 'fnne/index'),
+            ('Mixed logit model', 'fnne/fnne_mixed_logit'),
+            ('Search model', 'fnne/fnne_search')
         ]),
         ('Pretrained NNE', 'pnne/index', [
             ('Overview', 'pnne/index'),
             ('Code', 'pnne/pnne_code'),
             ('Data', 'pnne/pnne_data')
         ]),
-        ('Full-information NNE', 'fnne/index', [
-            ('Overview', 'fnne/index'),
-            ('Mixed logit model', 'fnne/fnne_mixed_logit'),
-            ('Search model', 'fnne/fnne_search')
+        ('Original NNE', 'nne/index', [
+            ('Overview', 'nne/index'),
+            ('Search model', 'nne/nne_search'),
+            ('AR1 model', 'nne/nne_ar1')
         ])
     ] %}
     {% for title, index, children in sections %}

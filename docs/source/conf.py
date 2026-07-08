@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'NNE'
-copyright = "2023, Yanhao 'Max' Wei, Zhenling Jiang"
-author = "Yanhao 'Max' Wei, Zhenling Jiang"
+copyright = "2023, authors"
+author = "authors"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

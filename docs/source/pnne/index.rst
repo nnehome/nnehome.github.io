@@ -5,33 +5,31 @@ Pre-trained NNE
 
 |
 
-This is the companion website for the pretrained Neural Net Estimator (pretrained NNE), based on `"Pretraining Estimators for Structural Models: Application to Consumer Search," Wei and Jiang 2025 <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856490>`__. 
+This is the companion website for the pretrained Neural Net Estimator (pretrained NNE), based on the paper :note-text:`"Pretraining Estimators for Structural Models\: Application to Consumer Search."` 
 
-|
 
-Overview
---------
+1. Overview
+--------------
 
 Here we provide a pretrained estimator for a consumer search model used in economics & marketing. The estimator is based on a neural net that can recognize the search model parameter from data patterns. The neural net is pretrained so *the estimation
 cost for users is negligible*. The approach to pretrain NNE is generally applicable to structural models, though here we focus on the search model.
 
 The Matlab (2024b) files for this pretrained NNE can be found at this `GitHub directory <https://github.com/pnnehome/code_matlab>`__ (:note-text:`last update on May 6, 2025`). Below is a brief guide of how to apply this pretrained NNE to your search data. Further documentation is given on the :ref:`code <pnne_code>` page. Example datasets to try are provided on the :ref:`data <pnne_data>` page.
 
-|
 
-Using This Pretrained NNE
---------------------------
+2. Using This Pretrained NNE
+-----------------------------
 
-What is the model to be estimated?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(a) What is the model to be estimated?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our pretrained NNE estimates a sequential search model. The model's exact specification is given
 in the paper. Here we give a high-level description. A consumer faces :math:`J` products plus an outside good, and decides which products to search and which product to buy. The first search is free (so the consumer searches at least once).
 There are *product attributes* that affect the consumer's utility for each product, and the effects are captured by :math:`\boldsymbol{\beta}`. There may be *consumer attributes* that affect the consumer's outside utility, and the effects are captured by :math:`\boldsymbol{\eta}`. There may also be *advertising attributes* that affect search costs (but not utility), and the effects are captured by :math:`\boldsymbol{\alpha}`. Parameters :math:`\eta_0` and :math:`\alpha_0` capture the baseline outside utility and search cost, respectively.
 
 
-How to run the estimation?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(b) How to run the estimation?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our pretrained NNE is written in Matlab. The main function to execute is ``nne_estimate.m``:
 
@@ -69,8 +67,8 @@ such as data sanity checks.
     "\beta_2"      -0.53811
 
 
-How to format your data?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(c) How to format your data?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our code assumes that the data are represented in five arrays as input to ``nne_estimate.m``. An example is given below. The example features :math:`n = 10{,}000` consumers and :math:`J = 15` products per consumer.
 
@@ -112,7 +110,7 @@ Our code assumes that the data are represented in five arrays as input to ``nne_
 
 More generally, simply let ``Xa = []`` or ``Xc = []`` if your data do not feature advertising or consumer attributes. ``Xp``, ``Xa``, and ``Xc`` need not be standardized. However, we recommend de-meaning them to make :math:`\alpha_0` and :math:`\eta_0` easier to interpret. We also recommend treating outliers (e.g., winsorizing, transformation) before using the pretrained NNE.
 
-Below list the data sizes currently accepted by our pretrained NNE (:note-text:`Note: these settings can be adjusted in the future if needed --- feel free to contact us`).
+Below are listed the data sizes currently accepted by our pretrained NNE (:note-text:`Note: these settings can be adjusted in the future if needed --- feel free to contact us`).
 
 
 * :math:`n` ≥ 1000 consumers (or search sessions);
@@ -134,8 +132,8 @@ In addition, the NNE is pretrained on data with the following summary statistics
 * *Average number of searches* per consumer is 1 ~ 6.
 
 
-How to get standard errors?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(d) How to get standard errors?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``nne_estimate.m`` function has standard error calculation built in. Simply add ``se = true``
 option as shown below. The output will include an additional column of standard errors. The

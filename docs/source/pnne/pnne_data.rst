@@ -7,9 +7,8 @@ Data
 
 |
 
-We share four datasets as examples for users to try out the pretrained NNE. You can find them (Matlab files) in the 'sample_data' folder at this `GitHub directory <https://github.com/pnnehome/code_matlab>`_. These datasets all come from public sources. More detailed descriptions of these datasets can be found in `the paper <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856490>`__.
+We share four datasets as examples for users to try out the pretrained NNE. You can find them (Matlab files) in the 'sample_data' folder at this `GitHub directory <https://github.com/pnnehome/code_matlab>`_. These datasets all come from public sources. More detailed descriptions of these datasets can be found in the paper.
 
-|
 
 Description of the datasets
 ---------------------------
@@ -22,7 +21,7 @@ This dataset comes from `a Kaggle contest <https://www.kaggle.com/competitions/e
 Expedia - destination 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This dataset includes the search sessions for the 2nd largest travel destination in the same Kaggle contest as above. There are :math:`n = 897` sessions, slightly below the current minimal requirement of :math:`n` the pretrained NNE (see :ref:`here <pnne>`). Despite this, the pretrained NNE seems to work well.
+This dataset includes the search sessions for the 2nd largest travel destination in the same Kaggle contest as above. There are :math:`n = 897` sessions, slightly below the current requirement of :math:`n` by the pretrained NNE (see :ref:`here <pnne>`). Despite this, the pretrained NNE seems to work well.
 
 Trivago - desktop channel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

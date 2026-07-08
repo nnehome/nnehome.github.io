@@ -7,23 +7,28 @@ Search with unobserved heterogeneity
 
 |
 
-Below is documentation for the Matlab code in "full_info_NNE_search" folder at this `GitHub repository <https://example.com>`__. The code uses full-info NNE to estimate a search model with unobserved consumer heterogeneity.
-|
+Below is documentation for the Matlab code in "full_info_NNE_search" folder at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__. The code uses full-info NNE to estimate a search model with unobserved consumer heterogeneity.
 
 Workflow
 ---------
 
-The following shows how to estimate the search model on a real dataset (in ``data.mat``).
+The following shows how to estimate the search model on a synthetic dataset (in ``data.mat``).
 
 .. code-block:: console
 
    >> nne_gen                 % generate the training examples
    >> nne_train               % train the neural net and apply it to the data
 
-|
 
 Description of each file
 ------------------------
+
+
+``data.mat``
+""""""""""""""""""""""
+
+This file is a simulated dataset that resembles the MSOM Research Challenge dataset used in the paper.
+
 
 ``search_ht_model.m``
 """"""""""""""""""""""
@@ -40,14 +45,13 @@ This function codes the search model with unobserved consumer heterogeneity.
   * ``par``: the search model parameter vector
   * ``curve``: lookup table for reservation utility, available from ``curve.mat``
   * ``X``: product attributes
-  * ``consumer_id``: indices of consumers (or search sessions)
+  * ``consumer_idx``: indices of consumers (or search sessions)
  
 * Outputs:
 
   * ``Y``: dummies indicating searches, purchases, first-search, and last-search
   * ``stat``: summary statistics
 
-|
 
 ``nne_gen.m``
 """"""""""""""
@@ -57,7 +61,6 @@ This script generates the training, validation, and test examples.
 * It uses ``search_ht_model.m`` to simulate the data.
 * It uses Matlab's built-in bit-to-integer encoding on ``Y`` to save memory, decoded later during training.
 
-|
 
 ``nne_train.m``
 """"""""""""""""
@@ -69,13 +72,12 @@ This script trains a neural net, using the examples from ``nne_gen.m``.
 * After training, it applies the neural net on ``data.mat``.
 * In the end, it saves the trained neural net to ``trained_nne.mat``.
 
-|
 
 ``learn.m``
 """"""""""""""""
 
 This function codes the training loop, and is used by ``nne_train.m``.
-This is a custom training loop based on Matlab's built-in back-propogation and adam algorithms.
+This is a custom training loop based on Matlab's built-in back-propagation and adam algorithms.
 
 .. code-block:: console
 

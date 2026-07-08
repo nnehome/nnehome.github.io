@@ -9,7 +9,6 @@ Code
 
 Below is documentation for the Matlab (2024b) files at this `GitHub directory <https://github.com/pnnehome/code_matlab>`__, which provide a pretrained NNE of a consumer search model. We suggest taking a look at the guide on the :ref:`home <pnne>` page before reading this documentation.
 
-|
 
 Description of files
 --------------------
@@ -63,7 +62,7 @@ neural net as input.
 ~~~~~~~~~~~~~~~
 
 This function runs ridge logit or multinomial-logit regressions and is used by ``moments.m``. It
-is faster than Matlab built-in regressions. The speedup substantially reduces the pretraining time (albeit is less
+is faster than Matlab built-in regressions. The speedup is substantial for the pretraining (though it is less
 noticeable when we apply the pretrained NNE).
 
 ``reg_linear.m``

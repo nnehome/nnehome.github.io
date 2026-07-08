@@ -7,7 +7,7 @@ Mixed logit model
 
 |
 
-Below is documentation for the Matlab code in "full_info_NNE_mixed_logit" folder at this `GitHub repository <https://example.com>`__. The code uses full-info NNE to estimate a mixed logit model. Full-info NNE shows no computational or accuracy advantages here, but it serves as a good example to illustrate that the two-part architecture works in practice.
+Below is documentation for the Matlab code in "full_info_NNE_mixed_logit" folder at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__. The code uses full-info NNE to estimate a mixed logit model. Full-info NNE shows no computational or accuracy advantages here, but it serves as a good example to illustrate that the two-part architecture works in practice.
 
 Workflow
 ---------
@@ -20,7 +20,6 @@ The following shows how to conduct a Monte Carlo experiment that estimates the m
    >> nne_gen                 % generate the training examples
    >> nne_train               % train a neural net and apply it to the data
 
-|
 
 Description of each file
 ------------------------
@@ -39,22 +38,28 @@ This function codes the mixed logit model.
   * ``rs``: a random stream (to control randomness)
   * ``par``: mixed logit model parameter vector
   * ``X``: product attributes
-  * ``consumer_id``: indices of consumers (or search sessions)
+  * ``consumer_idx``: indices of consumers
  
 * Outputs:
 
   * ``Y``: dummies indicating if products are bought
+  
+  
+``monte_carlo_data.m``
+"""""""""""""""""""""""
 
-|
+This script simulates a dataset using the mixed logit model under an assumed "true" parameter.
+
+* It uses ``model_mixed_logit.m`` to simulate the data.
+
 
 ``nne_gen.m``
 """"""""""""""
 
 This script generates the training, validation, and test examples.
 
-* It uses ``model_mixed_logit.m`` to simulate the data.
+* It uses ``model_mixed_logit.m`` to simulate the examples.
 
-|
 
 ``nne_train.m``
 """"""""""""""""
@@ -66,13 +71,12 @@ This script trains a neural net, using the examples from ``nne_gen.m``.
 * After training, it applies the neural net on ``data.mat``.
 * In the end, it saves the trained neural net to ``trained_nne.mat``.
 
-|
 
 ``learn.m``
 """"""""""""""""
 
 This function codes the training loop, and is used by ``nne_train.m``.
-This is a custom training loop based on Matlab's built-in back-propogation and adam algorithms.
+This is a custom training loop based on Matlab's built-in back-propagation and adam algorithms.
 
 .. code-block:: console
 
