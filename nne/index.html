@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to Neural Network Estimator (NNE) &#8212; NNE  documentation</title>
+    <title>NNE (Limited-information) &#8212; NNE  documentation</title>
   
   
   
@@ -20,34 +20,36 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=eff97390" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=eff97390" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
 
-    <script src="_static/documentation_options.js?v=8a448e45"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Full-information NNE" href="fnne/index.html" />
+    <script src="../_static/documentation_options.js?v=8a448e45"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nne/index';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Search model" href="nne_search.html" />
+    <link rel="prev" title="Data" href="../pnne/pnne_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -84,7 +86,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -113,7 +115,7 @@
       <div class="navbar-item">
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
@@ -123,8 +125,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
     <p class="title logo__title">NNE</p>
@@ -153,22 +155,22 @@
       
       
       <li class="nav-item nav-section">
-        <a class="nav-link nav-section-link" href="fnne/index.html">Full-information NNE</a>
+        <a class="nav-link nav-section-link" href="../fnne/index.html">Full-information NNE</a>
         <ul class="nav-section-menu">
           
             <li>
               <a class="nav-section-item"
-                 href="fnne/index.html">Overview</a>
+                 href="../fnne/index.html">Overview</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="fnne/fnne_mixed_logit.html">Mixed logit model</a>
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="fnne/fnne_search.html">Search model</a>
+                 href="../fnne/fnne_search.html">Search model</a>
             </li>
           
         </ul>
@@ -177,22 +179,22 @@
       
       
       <li class="nav-item nav-section">
-        <a class="nav-link nav-section-link" href="pnne/index.html">Pretrained NNE</a>
+        <a class="nav-link nav-section-link" href="../pnne/index.html">Pretrained NNE</a>
         <ul class="nav-section-menu">
           
             <li>
               <a class="nav-section-item"
-                 href="pnne/index.html">Overview</a>
+                 href="../pnne/index.html">Overview</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="pnne/pnne_code.html">Code</a>
+                 href="../pnne/pnne_code.html">Code</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="pnne/pnne_data.html">Data</a>
+                 href="../pnne/pnne_data.html">Data</a>
             </li>
           
         </ul>
@@ -200,23 +202,23 @@
     
       
       
-      <li class="nav-item nav-section">
-        <a class="nav-link nav-section-link" href="nne/index.html">Original NNE</a>
+      <li class="nav-item nav-section active">
+        <a class="nav-link nav-section-link" href="#">Original NNE</a>
         <ul class="nav-section-menu">
           
             <li>
-              <a class="nav-section-item"
-                 href="nne/index.html">Overview</a>
+              <a class="nav-section-item current"
+                 href="#">Overview</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="nne/nne_search.html">Search model</a>
+                 href="nne_search.html">Search model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="nne/nne_ar1.html">AR1 model</a>
+                 href="nne_ar1.html">AR1 model</a>
             </li>
           
         </ul>
@@ -322,22 +324,22 @@ document.write(`
       
       
       <li class="nav-item nav-section">
-        <a class="nav-link nav-section-link" href="fnne/index.html">Full-information NNE</a>
+        <a class="nav-link nav-section-link" href="../fnne/index.html">Full-information NNE</a>
         <ul class="nav-section-menu">
           
             <li>
               <a class="nav-section-item"
-                 href="fnne/index.html">Overview</a>
+                 href="../fnne/index.html">Overview</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="fnne/fnne_mixed_logit.html">Mixed logit model</a>
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="fnne/fnne_search.html">Search model</a>
+                 href="../fnne/fnne_search.html">Search model</a>
             </li>
           
         </ul>
@@ -346,22 +348,22 @@ document.write(`
       
       
       <li class="nav-item nav-section">
-        <a class="nav-link nav-section-link" href="pnne/index.html">Pretrained NNE</a>
+        <a class="nav-link nav-section-link" href="../pnne/index.html">Pretrained NNE</a>
         <ul class="nav-section-menu">
           
             <li>
               <a class="nav-section-item"
-                 href="pnne/index.html">Overview</a>
+                 href="../pnne/index.html">Overview</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="pnne/pnne_code.html">Code</a>
+                 href="../pnne/pnne_code.html">Code</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="pnne/pnne_data.html">Data</a>
+                 href="../pnne/pnne_data.html">Data</a>
             </li>
           
         </ul>
@@ -369,23 +371,23 @@ document.write(`
     
       
       
-      <li class="nav-item nav-section">
-        <a class="nav-link nav-section-link" href="nne/index.html">Original NNE</a>
+      <li class="nav-item nav-section active">
+        <a class="nav-link nav-section-link" href="#">Original NNE</a>
         <ul class="nav-section-menu">
           
             <li>
-              <a class="nav-section-item"
-                 href="nne/index.html">Overview</a>
+              <a class="nav-section-item current"
+                 href="#">Overview</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="nne/nne_search.html">Search model</a>
+                 href="nne_search.html">Search model</a>
             </li>
           
             <li>
               <a class="nav-section-item"
-                 href="nne/nne_ar1.html">AR1 model</a>
+                 href="nne_ar1.html">AR1 model</a>
             </li>
           
         </ul>
@@ -446,7 +448,33 @@ document.write(`
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">NNE (Limited-information)</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
               
               
@@ -454,47 +482,35 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="welcome-to-neural-network-estimator-nne">
-<span id="family-home"></span><h1>Welcome to Neural Network Estimator (NNE)<a class="headerlink" href="#welcome-to-neural-network-estimator-nne" title="Link to this heading">#</a></h1>
-<p>This website provides the code and documentation for the neural net estimator (NNE), a general
-approach that uses neural nets to estimate structural econometric models.</p>
-<p>Please select the type of NNE below.</p>
-<div class="method-cards">
-
-  <div class="method-card accent-fnne">
-    <h3>Full-information NNE</h3>
-    <p>Based on <span class="note-text">"Estimating and Assessing Identification of Structural Models via Deep
-       Learning."</span> This NNE uses an entire dataset
-       as input, and automatically exploits variation in data. It is useful for not only estimating but also assessing
-       the identification of a structural model.</p>
-    <span class="method-open">Open &rarr;</span>
-    <a class="card-stretch" href="fnne/index.html" aria-label="Open Full-information NNE"></a>
-  </div>
-
-  <div class="method-card accent-pnne">
-    <h3>Pretrained NNE</h3>
-    <p>Based on <span class="note-text">"Pre-Training Estimators for Structural Models: Application to Consumer
-       Search."</span> This NNE pretrains a neural net
-       for a given structural model, so users can estimate the structural model
-       at negligible cost &mdash; as easy as running a reduced-form regression.</p>
-    <span class="method-open">Open &rarr;</span>
-    <a class="card-stretch" href="pnne/index.html" aria-label="Open Pre-trained NNE"></a>
-  </div>
-
-  <div class="method-card accent-nne">
-    <h3>Original NNE (limited-information)</h3>
-    <p>Based on <span class="note-text">"Estimating Parameters of Structural Models Using Neural Nets."</span>
-       This NNE uses researcher-specified moments as input to the neural net.</p>
-    <span class="method-open">Open &rarr;</span>
-    <a class="card-stretch" href="nne/index.html" aria-label="Open Original NNE"></a>
-  </div>
-
-</div><div class="line-block">
+  <section id="nne-limited-information">
+<span id="nne"></span><span id="home"></span><h1>NNE (Limited-information)<a class="headerlink" href="#nne-limited-information" title="Link to this heading">#</a></h1>
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
-<section id="contact">
-<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading">#</a></h2>
-<p>To be added …</p>
+<p id="top">We provide an overview and code for the Neural Net Estimator (NNE), based on the paper <span class="note-text">“Estimating Parameters of Structural Models Using Neural Nets.”</span></p>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>NNE is an approach to estimate structural econometric models (e.g., discrete choice, consumer search, games). Suppose that the structural model’s parameter vector is <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. The basic idea is to train a neural net that can recognize the value of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from a vector of data moments (or more broadly, any data statistics). These moments are specified by researchers. The training examples for the neural net come from datasets simulated using the structural model. Specifically,</p>
+<ol class="arabic simple">
+<li><p>Draw a value of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from a prior. Given this value and the real-data product/consumer attributes, use the structural model to simulate a dataset. Compute the specified moment vector for this dataset.</p></li>
+<li><p>Repeat the above step <span class="math notranslate nohighlight">\(L\)</span> times to obtain <span class="math notranslate nohighlight">\(L\)</span> pairs of values of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> and moment vectors. These pairs are our training examples.</p></li>
+<li><p>Use the <span class="math notranslate nohighlight">\(L\)</span> examples to train a neural net that predicts the value of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from moment vector.</p></li>
+</ol>
+<p>Finally, we plug the real-data moment vector into the trained neural net to obtain an estimate of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. Thus, NNE does not require evaluating likelihood or moment function. So, it is particularly useful for estimating structural models where: (i) likelihood/moment function has no closed form and is difficult to simulate accurately, or (ii) the simulated likelihood/moment function is difficult to optimize. Further, this NNE does not require i.i.d. data — it works for time-series, network data, etc.</p>
+<p>In the paper, it is shown that as we increase <span class="math notranslate nohighlight">\(L\)</span>, the neural net converges to the Bayesian posterior mean of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> given the specified moments (i.e., a limited-information posterior). The paper also shows how we can train the neural net to estimate the posterior variance.</p>
+<p>This NNE is most useful when we know a set of candidate moments that could identify <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. When this is not the case, one should try <a class="reference external" href="https://nnehome.github.io/fnne/index.html" rel="noopener noreferrer" target="_blank">full-information NNE</a>. However, full-info NNE requires i.i.d. structure in data.</p>
+</section>
+<section id="applications">
+<h2>2. Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h2>
+<p>We provide Matlab code for two examples:</p>
+<ul class="simple">
+<li><p><strong>An AR1 model</strong>. This is a toy example to illustrate how NNE works.</p></li>
+<li><p><strong>A consumer search model</strong>. This example shows the computational and accuracy advantages of NNE.</p></li>
+</ul>
+<p>You can find the code at this <a class="reference external" href="https://github.com/nnehome/nne-matlab-code" rel="noopener noreferrer" target="_blank">GitHub directory</a>, and code documentation at the <a class="reference internal" href="nne_ar1.html#nne-ar1"><span class="std std-ref">AR1 model</span></a> page and the <a class="reference internal" href="nne_search.html#nne-search"><span class="std std-ref">search model</span></a> page.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -519,7 +535,8 @@ approach that uses neural nets to estimate structural econometric models.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">2. Applications</a></li>
 </ul>
   </nav></div>
 
@@ -536,8 +553,8 @@ approach that uses neural nets to estimate structural econometric models.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
 
 <footer class="bd-footer">
   <div class="bd-footer__inner bd-page-width">

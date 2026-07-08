@@ -1,0 +1,680 @@
+
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pre-trained NNE &#8212; NNE  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=eff97390" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script src="../_static/documentation_options.js?v=8a448e45"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pnne/index';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code" href="pnne_code.html" />
+    <link rel="prev" title="Search with unobserved heterogeneity" href="../fnne/fnne_search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">NNE</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <!--
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  -->
+  <ul class="bd-navbar-elements navbar-nav">
+    
+    
+      
+      
+      <li class="nav-item nav-section">
+        <a class="nav-link nav-section-link" href="../fnne/index.html">Full-information NNE</a>
+        <ul class="nav-section-menu">
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../fnne/index.html">Overview</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../fnne/fnne_search.html">Search model</a>
+            </li>
+          
+        </ul>
+      </li>
+    
+      
+      
+      <li class="nav-item nav-section active">
+        <a class="nav-link nav-section-link" href="#">Pretrained NNE</a>
+        <ul class="nav-section-menu">
+          
+            <li>
+              <a class="nav-section-item current"
+                 href="#">Overview</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="pnne_code.html">Code</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="pnne_data.html">Data</a>
+            </li>
+          
+        </ul>
+      </li>
+    
+      
+      
+      <li class="nav-item nav-section">
+        <a class="nav-link nav-section-link" href="../nne/index.html">Original NNE</a>
+        <ul class="nav-section-menu">
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../nne/index.html">Overview</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../nne/nne_search.html">Search model</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../nne/nne_ar1.html">AR1 model</a>
+            </li>
+          
+        </ul>
+      </li>
+    
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/nnehome" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <!--
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  -->
+  <ul class="bd-navbar-elements navbar-nav">
+    
+    
+      
+      
+      <li class="nav-item nav-section">
+        <a class="nav-link nav-section-link" href="../fnne/index.html">Full-information NNE</a>
+        <ul class="nav-section-menu">
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../fnne/index.html">Overview</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../fnne/fnne_mixed_logit.html">Mixed logit model</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../fnne/fnne_search.html">Search model</a>
+            </li>
+          
+        </ul>
+      </li>
+    
+      
+      
+      <li class="nav-item nav-section active">
+        <a class="nav-link nav-section-link" href="#">Pretrained NNE</a>
+        <ul class="nav-section-menu">
+          
+            <li>
+              <a class="nav-section-item current"
+                 href="#">Overview</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="pnne_code.html">Code</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="pnne_data.html">Data</a>
+            </li>
+          
+        </ul>
+      </li>
+    
+      
+      
+      <li class="nav-item nav-section">
+        <a class="nav-link nav-section-link" href="../nne/index.html">Original NNE</a>
+        <ul class="nav-section-menu">
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../nne/index.html">Overview</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../nne/nne_search.html">Search model</a>
+            </li>
+          
+            <li>
+              <a class="nav-section-item"
+                 href="../nne/nne_ar1.html">AR1 model</a>
+            </li>
+          
+        </ul>
+      </li>
+    
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/nnehome" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Pre-trained NNE</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="pre-trained-nne">
+<span id="pnne"></span><h1>Pre-trained NNE<a class="headerlink" href="#pre-trained-nne" title="Link to this heading">#</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This is the companion website for the pretrained Neural Net Estimator (pretrained NNE), based on the paper <span class="note-text">“Pretraining Estimators for Structural Models: Application to Consumer Search.”</span></p>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Here we provide a pretrained estimator for a consumer search model used in economics &amp; marketing. The estimator is based on a neural net that can recognize the search model parameter from data patterns. The neural net is pretrained so <em>the estimation
+cost for users is negligible</em>. The approach to pretrain NNE is generally applicable to structural models, though here we focus on the search model.</p>
+<p>The Matlab (2024b) files for this pretrained NNE can be found at this <a class="reference external" href="https://github.com/pnnehome/code_matlab" rel="noopener noreferrer" target="_blank">GitHub directory</a> (<span class="note-text">last update on May 6, 2025</span>). Below is a brief guide of how to apply this pretrained NNE to your search data. Further documentation is given on the <a class="reference internal" href="pnne_code.html#pnne-code"><span class="std std-ref">code</span></a> page. Example datasets to try are provided on the <a class="reference internal" href="pnne_data.html#pnne-data"><span class="std std-ref">data</span></a> page.</p>
+</section>
+<section id="using-this-pretrained-nne">
+<h2>2. Using This Pretrained NNE<a class="headerlink" href="#using-this-pretrained-nne" title="Link to this heading">#</a></h2>
+<section id="a-what-is-the-model-to-be-estimated">
+<h3>(a) What is the model to be estimated?<a class="headerlink" href="#a-what-is-the-model-to-be-estimated" title="Link to this heading">#</a></h3>
+<p>Our pretrained NNE estimates a sequential search model. The model’s exact specification is given
+in the paper. Here we give a high-level description. A consumer faces <span class="math notranslate nohighlight">\(J\)</span> products plus an outside good, and decides which products to search and which product to buy. The first search is free (so the consumer searches at least once).
+There are <em>product attributes</em> that affect the consumer’s utility for each product, and the effects are captured by <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>. There may be <em>consumer attributes</em> that affect the consumer’s outside utility, and the effects are captured by <span class="math notranslate nohighlight">\(\boldsymbol{\eta}\)</span>. There may also be <em>advertising attributes</em> that affect search costs (but not utility), and the effects are captured by <span class="math notranslate nohighlight">\(\boldsymbol{\alpha}\)</span>. Parameters <span class="math notranslate nohighlight">\(\eta_0\)</span> and <span class="math notranslate nohighlight">\(\alpha_0\)</span> capture the baseline outside utility and search cost, respectively.</p>
+</section>
+<section id="b-how-to-run-the-estimation">
+<h3>(b) How to run the estimation?<a class="headerlink" href="#b-how-to-run-the-estimation" title="Link to this heading">#</a></h3>
+<p>Our pretrained NNE is written in Matlab. The main function to execute is <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Input <code class="docutils literal notranslate"><span class="pre">nne</span></code> stores the trained neural net and some pre-defined settings, available from the file <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>.</p></li>
+<li><p>Inputs <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, <code class="docutils literal notranslate"><span class="pre">Xc</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code> are your data (more explanation below).</p></li>
+<li><p>Output <code class="docutils literal notranslate"><span class="pre">result</span></code> is a table with the parameter estimate for the search model.</p></li>
+</ul>
+<p>Below shows an example. The total execution time on a laptop is 0.78 seconds, which also include overheads
+such as data sanity checks.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; load(&#39;trained_nne.mat&#39;, &#39;nne&#39;)</span>
+<span class="go">&gt;&gt; tic</span>
+<span class="go">result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx);</span>
+<span class="go">toc</span>
+<span class="go">Elapsed time is 0.784314 seconds.</span>
+<span class="go">&gt;&gt; result</span>
+<span class="go">result = 8×2 table</span>
+<span class="go">    name           val</span>
+<span class="go"> ----------      -------</span>
+<span class="go"> &quot;\alpha_0&quot;      -6.4546</span>
+<span class="go"> &quot;\alpha_1&quot;     -0.11333</span>
+<span class="go"> &quot;\eta_0&quot;          5.929</span>
+<span class="go"> &quot;\eta_1&quot;      -0.048687</span>
+<span class="go"> &quot;\eta_2&quot;        0.22004</span>
+<span class="go"> &quot;\eta_3&quot;       0.052894</span>
+<span class="go"> &quot;\beta_1&quot;       0.25836</span>
+<span class="go"> &quot;\beta_2&quot;      -0.53811</span>
+</pre></div>
+</div>
+</section>
+<section id="c-how-to-format-your-data">
+<h3>(c) How to format your data?<a class="headerlink" href="#c-how-to-format-your-data" title="Link to this heading">#</a></h3>
+<p>Our code assumes that the data are represented in five arrays as input to <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code>. An example is given below. The example features <span class="math notranslate nohighlight">\(n = 10{,}000\)</span> consumers and <span class="math notranslate nohighlight">\(J = 15\)</span> products per consumer.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;  table(consumer_idx, Y, Xp, Xa)</span>
+<span class="go">ans = 150000×4 table</span>
+<span class="go"> consumer_idx      Y             Xp          Xa</span>
+<span class="go"> ____________    ______    ______________    __</span>
+<span class="go">        1        1    0    4      0.67743    1</span>
+<span class="go">        1        0    0    5       1.1052    1</span>
+<span class="go">        1        1    1    1     -0.24542    1</span>
+<span class="go">        1        0    0    5      0.78452    0</span>
+<span class="go">        1        0    0    4      0.10519    0</span>
+<span class="go">        1        0    0    5     0.068463    0</span>
+<span class="go">        1        0    0    4      0.35691    0</span>
+<span class="go">        1        1    0    5      0.61307    0</span>
+<span class="go">        1        0    0    3       1.1809    0</span>
+<span class="go">        1        0    0    5      0.91391    0</span>
+<span class="go">        1        0    0    5     0.054537    0</span>
+<span class="go">        1        0    0    3       1.0015    0</span>
+<span class="go">        1        0    0    5      0.73938    0</span>
+<span class="go">        1        0    0    3    -0.020808    0</span>
+<span class="go">        1        0    0    5      0.23587    0</span>
+<span class="go">        2        0    0    3      0.72159    1</span>
+<span class="go">        2        1    0    5     -0.39847    1</span>
+<span class="go">        2        0    0    5      0.73669    1</span>
+<span class="go">      :            :             :           :</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code>: a column vector with <span class="math notranslate nohighlight">\(nJ\)</span> rows, showing consumer indices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: two binary columns indicating searches and purchases, respectively. In this example, the first consumer searched the 1st, 3rd, and 8th products, and bought the 3rd product.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>: product attributes. This example features two product attributes: a 1-5 review rating and log price.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code>: advertising attributes. This example features a single advertising attribute indicating whether the product is highlighted by the seller.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>: consumer attributes (not shown in the example). Unlike the other four arrays, it should have <span class="math notranslate nohighlight">\(n\)</span> instead of <span class="math notranslate nohighlight">\(nJ\)</span> rows.</p></li>
+</ul>
+<p>More generally, simply let <code class="docutils literal notranslate"><span class="pre">Xa</span> <span class="pre">=</span> <span class="pre">[]</span></code> or <code class="docutils literal notranslate"><span class="pre">Xc</span> <span class="pre">=</span> <span class="pre">[]</span></code> if your data do not feature advertising or consumer attributes. <code class="docutils literal notranslate"><span class="pre">Xp</span></code>, <code class="docutils literal notranslate"><span class="pre">Xa</span></code>, and <code class="docutils literal notranslate"><span class="pre">Xc</span></code> need not be standardized. However, we recommend de-meaning them to make <span class="math notranslate nohighlight">\(\alpha_0\)</span> and <span class="math notranslate nohighlight">\(\eta_0\)</span> easier to interpret. We also recommend treating outliers (e.g., winsorizing, transformation) before using the pretrained NNE.</p>
+<p>Below are listed the data sizes currently accepted by our pretrained NNE (<span class="note-text">Note: these settings can be adjusted in the future if needed — feel free to contact us</span>).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> ≥ 1000 consumers (or search sessions);</p></li>
+<li><p>15 ≤ <span class="math notranslate nohighlight">\(J\)</span> ≤ 35;</p></li>
+<li><p>Number of <em>product attributes</em> ≥ 2 and ≤ 8;</p></li>
+<li><p>Number of <em>consumer attributes</em> ≤ 5;</p></li>
+<li><p>Number of <em>advertising attributes</em> ≤ 2.</p></li>
+</ul>
+<p>In addition, the NNE is pretrained on data with the following summary statistics. If your data fall outside these ranges, the pretrained NNE may not work as intended.</p>
+<ul class="simple">
+<li><p><em>Buy rate</em> (fraction of consumers who bought inside good) is 0.5% ~ 70%.</p></li>
+<li><p><em>Search rate</em> (fraction of consumers who went beyond free search) is 1% ~ 80%.</p></li>
+<li><p><em>Average number of searches</em> per consumer is 1 ~ 6.</p></li>
+</ul>
+</section>
+<section id="d-how-to-get-standard-errors">
+<h3>(d) How to get standard errors?<a class="headerlink" href="#d-how-to-get-standard-errors" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code> function has standard error calculation built in. Simply add <code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">=</span> <span class="pre">true</span></code>
+option as shown below. The output will include an additional column of standard errors. The
+calculation bootstraps 50 samples so execution time will be a bit longer, but it can take advantage
+of parallel computing toolbox if installed.</p>
+<p>In this example, <span class="math notranslate nohighlight">\(\alpha_1\)</span> is negative, indicating that the highlighted products enjoy a
+lower search cost. We see that <span class="math notranslate nohighlight">\(\beta_1\)</span> is positive, indicating that consumer utility increases with
+the review rating.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; result = nne_estimate(nne, Y, Xp, Xa, Xc, consumer_idx, se = true)</span>
+<span class="go">result = 8×3 table</span>
+
+<span class="go">   name          val          se</span>
+<span class="go">______________    _______    _______</span>
+<span class="go">&quot;\alpha_0&quot;      -6.4546    0.071848</span>
+<span class="go">&quot;\alpha_1&quot;     -0.11333    0.044997</span>
+<span class="go">&quot;\eta_0&quot;          5.929    0.061318</span>
+<span class="go">&quot;\eta_1&quot;      -0.048687    0.011513</span>
+<span class="go">&quot;\eta_2&quot;        0.22004    0.029282</span>
+<span class="go">&quot;\eta_3&quot;       0.052894    0.023437</span>
+<span class="go">&quot;\beta_1&quot;       0.25836    0.004951</span>
+<span class="go">&quot;\beta_2&quot;      -0.53811    0.011032</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">1. Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-this-pretrained-nne">2. Using This Pretrained NNE</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-what-is-the-model-to-be-estimated">(a) What is the model to be estimated?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-how-to-run-the-estimation">(b) How to run the estimation?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-how-to-format-your-data">(c) How to format your data?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-how-to-get-standard-errors">(d) How to get standard errors?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+<footer class="bd-footer">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">    
+        <div class="footer-item">
+          <p>© Copyright 2026</p>
+        </div>                        
+    </div>                      
+  </div>
+</footer>
+
+  </body>
+</html>
