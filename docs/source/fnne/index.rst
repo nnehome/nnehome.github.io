@@ -13,7 +13,7 @@ We provide an overview and code for the full-information Neural Net Estimator (f
 
 NNE is an approach to estimate structural econometric models (e.g., discrete choice, consumer search, games). Let the structural model's parameter vector be :math:`\boldsymbol{\theta}`. The basic idea is to train a neural net that can recognize the value of :math:`\boldsymbol{\theta}` from data. The :ref:`original NNE <nne>` uses researcher-specified moments as input to the neural net. In contrast, full-info NNE frees researchers from specifying moments and *uses the entire dataset as input*.
 
-The key challenge is that with a large input like an entire dataset, we typically must put a structure on the neural net architecture to make training feasible. Meanwhile, we want this architecture to be non-restrictive such that the neural net can still use all the information in data. It turns out that, when data have i.i.d. structure (e.g., cross-sectional or panel), there is an architecture that allows us to achieve these two goals.
+The key challenge is that with a large input like an entire dataset, we typically must put a structure on the neural net architecture to make training feasible. Meanwhile, we want this architecture to be non-restrictive such that the neural net can still use all the information in data. It turns out that, when data have an i.i.d. structure (e.g., cross-sectional or panel), there is an architecture that allows us to achieve these two goals.
 
 The full-information NNE is trained as follows.
 
@@ -36,9 +36,9 @@ The "two-part architecture" first transforms each observation into a vector of f
 
 We provide Matlab code for two examples: 
 
-* **A mixed logit model**. Because likelihood in mixed logit is relatively easy to simulate, full-info NNE shows no computational or accuracy advantages here, but the setting serves as a good example to show how full-info NNE works in practice.
+* **A mixed logit model**. Because the likelihood for mixed logit is relatively easy to simulate, full-info NNE shows no advantages in accuracy or computation here. But this setting serves as a good example to illustrate how full-info NNE works in practice.
 
-* **A search model with unobserved consumer heterogeneity**. This example shows the computational and accuracy advantages of full-info NNE.
+* **A search model with unobserved consumer heterogeneity**. This example shows the advantages of full-info NNE in accuracy and computation.
 
 You can find the code at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__, and code documentation at the :ref:`mixed logit model <fnne_mixed_logit>` page and the :ref:`search model <fnne_search>` page.
 

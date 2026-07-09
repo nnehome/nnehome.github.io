@@ -7,12 +7,12 @@ Mixed logit model
 
 |
 
-Below is documentation for the Matlab code in "full_info_NNE_mixed_logit" folder at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__. The code uses full-info NNE to estimate a mixed logit model. Full-info NNE shows no computational or accuracy advantages here, but it serves as a good example to illustrate that the two-part architecture works in practice.
+Below is documentation for the Matlab code in "mixed_logit" folder at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__. The code uses full-info NNE to estimate a mixed logit model. Because the likelihood for mixed logit is relatively easy to simulate, full-info NNE shows no advantages in accuracy or computation here. But this setting is a good example to illustrate how full-info NNE works in practice.
 
 Workflow
 ---------
 
-The following shows how to conduct a Monte Carlo experiment that estimates the mixed logit model on a simulated dataset.
+The following commands run a Monte Carlo experiment that estimates the mixed logit model on a simulated dataset.
 
 .. code-block:: console
 
@@ -48,17 +48,13 @@ This function codes the mixed logit model.
 ``monte_carlo_data.m``
 """""""""""""""""""""""
 
-This script simulates a dataset using the mixed logit model under an assumed "true" parameter.
-
-* It uses ``model_mixed_logit.m`` to simulate the data.
+This script simulates a dataset using the mixed logit model under an assumed "true" parameter. It uses ``model_mixed_logit.m`` to simulate the data.
 
 
 ``nne_gen.m``
 """"""""""""""
 
-This script generates the training, validation, and test examples.
-
-* It uses ``model_mixed_logit.m`` to simulate the examples.
+This script generates the training, validation, and test examples. It uses ``model_mixed_logit.m`` to simulate the examples.
 
 
 ``nne_train.m``
@@ -66,10 +62,10 @@ This script generates the training, validation, and test examples.
 
 This script trains a neural net, using the examples from ``nne_gen.m``.
 
-* Validation loss is reported. You can use it to choose neural net hyperparameters, such as the numbers of hidden nodes.
-* After training, it draws parameter recovery plots using the test examples.
-* After training, it applies the neural net on ``data.mat``.
-* In the end, it saves the trained neural net to ``trained_nne.mat``.
+* Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., numbers of hidden nodes).
+* It draws the parameter recovery plots using the test examples.
+* It applies the trained neural net on ``data.mat``.
+* It saves the trained neural net to ``trained_nne.mat``.
 
 
 ``learn.m``

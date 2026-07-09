@@ -13,7 +13,7 @@ Below is documentation for the Matlab code in "NNE_search" folder at this `GitHu
 Workflow
 ----------
 
-The following shows how to conduct a Monte Carlo experiment that estimates the search model from a simulated dataset.
+The following commands run a Monte Carlo experiment that estimates the search model from a simulated dataset.
 
 .. code-block:: console
 
@@ -93,8 +93,8 @@ This script trains a shallow neural net.
 
 * It loads the training and validation examples from ``nne_training.mat`` (saved by ``nne_gen.m``).
 * It uses ``normalRegressionLayer.m`` for the cross-entropy loss.
-* Validation loss is reported. You can use it to choose neural net hyperparameters, such as the number of hidden nodes.
-* After training, it applies the neural net to the data in ``data.mat``.
+* Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., the number of hidden nodes).
+* It applies the trained neural net to the data in ``data.mat``.
 
 |
 

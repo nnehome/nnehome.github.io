@@ -7,12 +7,12 @@ Search with unobserved heterogeneity
 
 |
 
-Below is documentation for the Matlab code in "full_info_NNE_search" folder at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__. The code uses full-info NNE to estimate a search model with unobserved consumer heterogeneity.
+Below is documentation for the Matlab code in "search_het" folder at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__. The code uses full-info NNE to estimate a search model with unobserved consumer heterogeneity.
 
 Workflow
 ---------
 
-The following shows how to estimate the search model on a synthetic dataset (in ``data.mat``).
+The following commands estimate the search model on a synthetic dataset (in ``data.mat``).
 
 .. code-block:: console
 
@@ -59,7 +59,7 @@ This function codes the search model with unobserved consumer heterogeneity.
 This script generates the training, validation, and test examples.
 
 * It uses ``search_ht_model.m`` to simulate the data.
-* It uses Matlab's built-in bit-to-integer encoding on ``Y`` to save memory, decoded later during training.
+* It uses Matlab's built-in bit2int encoding on ``Y`` to save memory.
 
 
 ``nne_train.m``
@@ -67,10 +67,10 @@ This script generates the training, validation, and test examples.
 
 This script trains a neural net, using the examples from ``nne_gen.m``.
 
-* Validation loss is reported. You can use it to choose neural net hyperparameters, such as the numbers of hidden nodes.
-* After training, it draws parameter recovery plots using the test examples.
-* After training, it applies the neural net on ``data.mat``.
-* In the end, it saves the trained neural net to ``trained_nne.mat``.
+* Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., numbers of hidden nodes).
+* It draws the parameter recovery plots using the test examples.
+* It applies the trained neural net on ``data.mat``.
+* It saves the trained neural net to ``trained_nne.mat``.
 
 
 ``learn.m``
