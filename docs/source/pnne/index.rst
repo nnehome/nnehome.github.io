@@ -11,10 +11,10 @@ This is the companion website for the pretrained Neural Net Estimator (pretraine
 1. Overview
 --------------
 
-Here we provide a pretrained estimator for a consumer search model used in economics & marketing. The estimator is based on a neural net that can recognize the search model parameter from data patterns. The neural net is pretrained so *the estimation
+We provide a pretrained estimator for a consumer search model used in economics & marketing. The estimator is based on a neural net that can recognize the search model parameter from data patterns. The neural net is pretrained so *the estimation
 cost for users is negligible*. The approach to pretrain NNE is generally applicable to structural models, though here we focus on the search model.
 
-The Matlab (2024b) files for this pretrained NNE can be found at this `GitHub directory <https://github.com/pnnehome/code_matlab>`__ (:note-text:`last update on May 6, 2025`). Below is a brief guide of how to apply this pretrained NNE to your search data. Further documentation is given on the :ref:`code <pnne_code>` page. Example datasets to try are provided on the :ref:`data <pnne_data>` page.
+The Matlab (2024b) files for this pretrained NNE can be found at this `GitHub directory <https://github.com/pnnehome/code_matlab>`__ (:note-text:`last update on May 6, 2025`). Below is a guide of how to apply this pretrained NNE to your search data. Further documentation is given on the :ref:`code <pnne_code>` page. Example datasets are provided on the :ref:`data <pnne_data>` page.
 
 
 2. Using This Pretrained NNE
@@ -25,7 +25,7 @@ The Matlab (2024b) files for this pretrained NNE can be found at this `GitHub di
 
 Our pretrained NNE estimates a sequential search model. The model's exact specification is given
 in the paper. Here we give a high-level description. A consumer faces :math:`J` products plus an outside good, and decides which products to search and which product to buy. The first search is free (so the consumer searches at least once).
-There are *product attributes* that affect the consumer's utility for each product, and the effects are captured by :math:`\boldsymbol{\beta}`. There may be *consumer attributes* that affect the consumer's outside utility, and the effects are captured by :math:`\boldsymbol{\eta}`. There may also be *advertising attributes* that affect search costs (but not utility), and the effects are captured by :math:`\boldsymbol{\alpha}`. Parameters :math:`\eta_0` and :math:`\alpha_0` capture the baseline outside utility and search cost, respectively.
+There are *product attributes* that affect the consumer's utility for each product, and these effects are captured by :math:`\boldsymbol{\beta}`. There may be *consumer attributes* that affect the consumer's outside utility, and these effects are captured by :math:`\boldsymbol{\eta}`. There may also be *advertising attributes* that affect search costs (but not utility), and these effects are captured by :math:`\boldsymbol{\alpha}`. Parameters :math:`\eta_0` and :math:`\alpha_0` capture the baseline outside utility and search cost, respectively.
 
 
 (b) How to run the estimation?
@@ -41,10 +41,9 @@ Our pretrained NNE is written in Matlab. The main function to execute is ``nne_e
 
 * Inputs ``Xp``, ``Xa``, ``Xc``, ``Y``, and ``consumer_idx`` are your data (more explanation below).
 
-* Output ``result`` is a table with the parameter estimate for the search model.
+* Output ``result`` is a table with the estimate for the search model parameter.
 
-Below shows an example. The total execution time on a laptop is 0.78 seconds, which also include overheads
-such as data sanity checks.
+Below is an example. The total execution time, including overheads such as data sanity checks, is 0.78 second on a laptop.
 
 .. code-block:: console
 
@@ -70,7 +69,7 @@ such as data sanity checks.
 (c) How to format your data?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Our code assumes that the data are represented in five arrays as input to ``nne_estimate.m``. An example is given below. The example features :math:`n = 10{,}000` consumers and :math:`J = 15` products per consumer.
+The function ``nne_estimate.m`` assumes that your data are represented in a certain way. An example is given below. This example features :math:`n = 10{,}000` consumers and :math:`J = 15` products per consumer.
 
 .. code-block:: console
 
@@ -98,38 +97,38 @@ Our code assumes that the data are represented in five arrays as input to ``nne_
            2        0    0    5      0.73669    1
          :            :             :           :
 
-* ``consumer_idx``: a column vector with :math:`nJ` rows, showing consumer indices.
+* ``consumer_idx``: a column vector with :math:`nJ` rows, listing consumer indices.
 
-* ``Y``: two binary columns indicating searches and purchases, respectively. In this example, the first consumer searched the 1st, 3rd, and 8th products, and bought the 3rd product.
+* ``Y``: two binary columns indicating searches and purchases, respectively. In the example, the first consumer searched the 1st, 3rd, and 8th products, and bought the 3rd product.
 
-* ``Xp``: product attributes. This example features two product attributes: a 1-5 review rating and log price.
+* ``Xp``: product attributes. The example features two product attributes: a 1-5 review rating and log price.
 
-* ``Xa``: advertising attributes. This example features a single advertising attribute indicating whether the product is highlighted by the seller.
+* ``Xa``: advertising attributes. The example features a single advertising attribute indicating whether the product is highlighted by the seller.
 
-* ``Xc``: consumer attributes (not shown in the example). Unlike the other four arrays, it should have :math:`n` instead of :math:`nJ` rows.
+* ``Xc``: consumer attributes (not shown in the example). Unlike the other data arrays, it has :math:`n` instead of :math:`nJ` rows.
 
-More generally, simply let ``Xa = []`` or ``Xc = []`` if your data do not feature advertising or consumer attributes. ``Xp``, ``Xa``, and ``Xc`` need not be standardized. However, we recommend de-meaning them to make :math:`\alpha_0` and :math:`\eta_0` easier to interpret. We also recommend treating outliers (e.g., winsorizing, transformation) before using the pretrained NNE.
+More generally, you may let ``Xa = []`` or ``Xc = []`` if your data do not feature advertising or consumer attributes. ``Xp``, ``Xa``, and ``Xc`` need not be standardized. Nevertheless, we recommend mean-centering to make the interpretation of :math:`\alpha_0` and :math:`\eta_0` easier. We also recommend treating outliers (e.g., winsorizing, transformation) before using the pretrained NNE.
 
-Below are listed the data sizes currently accepted by our pretrained NNE (:note-text:`Note: these settings can be adjusted in the future if needed --- feel free to contact us`).
+Below we list the data sizes currently accepted by our pretrained NNE (:note-text:`Note: these settings can be adjusted in the future if needed --- feel free to contact us`).
 
 
 * :math:`n` ≥ 1000 consumers (or search sessions);
 
 * 15 ≤ :math:`J` ≤ 35;
 
-* Number of *product attributes* ≥ 2 and ≤ 8;
+* Number of product attributes ≥ 2 and ≤ 8;
 
-* Number of *consumer attributes* ≤ 5;
+* Number of consumer attributes ≤ 5;
 
-* Number of *advertising attributes* ≤ 2.
+* Number of advertising attributes ≤ 2.
 
 In addition, the NNE is pretrained on data with the following summary statistics. If your data fall outside these ranges, the pretrained NNE may not work as intended.
 
-* *Buy rate* (fraction of consumers who bought inside good) is 0.5% ~ 70%.
+* Buy rate (fraction of consumers who bought inside good) is 0.5% ~ 70%.
 
-* *Search rate* (fraction of consumers who went beyond free search) is 1% ~ 80%.
+* Search rate (fraction of consumers who went beyond free search) is 1% ~ 80%.
 
-* *Average number of searches* per consumer is 1 ~ 6.
+* Average number of searches per consumer is 1 ~ 6.
 
 
 (d) How to get standard errors?
@@ -137,11 +136,11 @@ In addition, the NNE is pretrained on data with the following summary statistics
 
 The ``nne_estimate.m`` function has standard error calculation built in. Simply add ``se = true``
 option as shown below. The output will include an additional column of standard errors. The
-calculation bootstraps 50 samples so execution time will be a bit longer, but it can take advantage
+calculation bootstraps 50 samples, so execution time will be a bit longer, but it can take advantage
 of parallel computing toolbox if installed.
 
-In this example, :math:`\alpha_1` is negative, indicating that the highlighted products enjoy a
-lower search cost. We see that :math:`\beta_1` is positive, indicating that consumer utility increases with
+In this example, the estimate of :math:`\alpha_1` is negative, indicating that the highlighted products enjoy a
+lower search cost. The estimate of :math:`\beta_1` is positive, indicating that utility increases with
 the review rating.
 
 .. code-block:: console
