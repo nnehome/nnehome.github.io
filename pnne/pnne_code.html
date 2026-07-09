@@ -509,7 +509,7 @@ document.write(`
 <p>Inputs:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nne</span></code>: already described above, available from <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: <span class="math notranslate nohighlight">\(nJ\)</span> by 2 matrix. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row corresponds to product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>. The two values in each row indicate if <span class="math notranslate nohighlight">\(j\)</span> is searched and if <span class="math notranslate nohighlight">\(j\)</span> is bought, respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: <span class="math notranslate nohighlight">\(nJ\)</span> by 2 matrix. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row corresponds to product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>. The two values in each row indicate whether the product is: (1) searched and (2) bought, respectively.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>: a matrix with <span class="math notranslate nohighlight">\(nJ\)</span> rows. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row stores the product attributes of product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code>: a matrix with <span class="math notranslate nohighlight">\(nJ\)</span> rows. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row stores the advertising attributes of product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>: a matrix with <span class="math notranslate nohighlight">\(n\)</span> rows. The <span class="math notranslate nohighlight">\(i\)</span>-th row stores the consumer attributes of consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
@@ -531,8 +531,8 @@ neural net as input.</p>
 <section id="reg-logit-m">
 <h3><code class="docutils literal notranslate"><span class="pre">reg_logit.m</span></code><a class="headerlink" href="#reg-logit-m" title="Link to this heading">#</a></h3>
 <p>This function runs ridge logit or multinomial-logit regressions and is used by <code class="docutils literal notranslate"><span class="pre">moments.m</span></code>. It
-is faster than Matlab built-in regressions. The speedup is substantial for the pretraining (though it is less
-noticeable when we apply the pretrained NNE).</p>
+is faster than Matlab built-in regressions. The speedup is substantial during pretraining (though it is less
+noticeable when applying the pretrained NNE).</p>
 </section>
 <section id="reg-linear-m">
 <h3><code class="docutils literal notranslate"><span class="pre">reg_linear.m</span></code><a class="headerlink" href="#reg-linear-m" title="Link to this heading">#</a></h3>
@@ -541,7 +541,7 @@ noticeable when we apply the pretrained NNE).</p>
 <section id="data-checks-m">
 <h3><code class="docutils literal notranslate"><span class="pre">data_checks.m</span></code><a class="headerlink" href="#data-checks-m" title="Link to this heading">#</a></h3>
 <p>This function is used by <code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code> to run some basic sanity checks on data. For example,
-every consumer can buy at most one option; every consumer should conduct the free search.</p>
+every consumer can buy at most one option; every consumer should conduct at least one (free) search.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>

@@ -33,7 +33,7 @@ Inputs:
 
 * ``nne``: already described above, available from ``trained_nne.mat``.
 
-* ``Y``: :math:`nJ` by 2 matrix. The :math:`((i-1)J+j)`-th row corresponds to product :math:`j` for consumer :math:`i`. The two values in each row indicate if :math:`j` is searched and if :math:`j` is bought, respectively.
+* ``Y``: :math:`nJ` by 2 matrix. The :math:`((i-1)J+j)`-th row corresponds to product :math:`j` for consumer :math:`i`. The two values in each row indicate whether the product is: (1) searched and (2) bought, respectively.
 
 * ``Xp``: a matrix with :math:`nJ` rows. The :math:`((i-1)J+j)`-th row stores the product attributes of product :math:`j` for consumer :math:`i`.
 
@@ -62,8 +62,8 @@ neural net as input.
 ~~~~~~~~~~~~~~~
 
 This function runs ridge logit or multinomial-logit regressions and is used by ``moments.m``. It
-is faster than Matlab built-in regressions. The speedup is substantial for the pretraining (though it is less
-noticeable when we apply the pretrained NNE).
+is faster than Matlab built-in regressions. The speedup is substantial during pretraining (though it is less
+noticeable when applying the pretrained NNE).
 
 ``reg_linear.m``
 ~~~~~~~~~~~~~~~~
@@ -74,7 +74,7 @@ This function runs ridge linear regression and is used by ``moments.m``.
 ~~~~~~~~~~~~~~~~~
 
 This function is used by ``nne_estimate.m`` to run some basic sanity checks on data. For example,
-every consumer can buy at most one option; every consumer should conduct the free search.
+every consumer can buy at most one option; every consumer should conduct at least one (free) search.
 
 |
 

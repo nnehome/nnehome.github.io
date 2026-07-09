@@ -491,7 +491,7 @@ document.write(`
 <section id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>NNE is an approach to estimate structural econometric models (e.g., discrete choice, consumer search, games). Let the structural model’s parameter vector be <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. The basic idea is to train a neural net that can recognize the value of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from data. The <a class="reference internal" href="../nne/index.html#nne"><span class="std std-ref">original NNE</span></a> uses researcher-specified moments as input to the neural net. In contrast, full-info NNE frees researchers from specifying moments and <em>uses the entire dataset as input</em>.</p>
-<p>The key challenge is that with a large input like an entire dataset, we typically must put a structure on the neural net architecture to make training feasible. Meanwhile, we want this architecture to be non-restrictive such that the neural net can still use all the information in data. It turns out that, when data have i.i.d. structure (e.g., cross-sectional or panel), there is an architecture that allows us to achieve these two goals.</p>
+<p>The key challenge is that with a large input like an entire dataset, we typically must put a structure on the neural net architecture to make training feasible. Meanwhile, we want this architecture to be non-restrictive such that the neural net can still use all the information in data. It turns out that, when data have an i.i.d. structure (e.g., cross-sectional or panel), there is an architecture that allows us to achieve these two goals.</p>
 <p>The full-information NNE is trained as follows.</p>
 <ol class="arabic simple">
 <li><p>Draw a value of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> from a prior. Given this value and the real-data product/consumer attributes, use the structural model to simulate a dataset.</p></li>
@@ -507,8 +507,8 @@ document.write(`
 <h2>2. Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h2>
 <p>We provide Matlab code for two examples:</p>
 <ul class="simple">
-<li><p><strong>A mixed logit model</strong>. Because likelihood in mixed logit is relatively easy to simulate, full-info NNE shows no computational or accuracy advantages here, but the setting serves as a good example to show how full-info NNE works in practice.</p></li>
-<li><p><strong>A search model with unobserved consumer heterogeneity</strong>. This example shows the computational and accuracy advantages of full-info NNE.</p></li>
+<li><p><strong>A mixed logit model</strong>. Because the likelihood for mixed logit is relatively easy to simulate, full-info NNE shows no advantages in accuracy or computation here. But this setting serves as a good example to illustrate how full-info NNE works in practice.</p></li>
+<li><p><strong>A search model with unobserved consumer heterogeneity</strong>. This example shows the advantages of full-info NNE in accuracy and computation.</p></li>
 </ul>
 <p>You can find the code at this <a class="reference external" href="https://github.com/nnehome/fnne-matlab-code" rel="noopener noreferrer" target="_blank">GitHub directory</a>, and code documentation at the <a class="reference internal" href="fnne_mixed_logit.html#fnne-mixed-logit"><span class="std std-ref">mixed logit model</span></a> page and the <a class="reference internal" href="fnne_search.html#fnne-search"><span class="std std-ref">search model</span></a> page.</p>
 <div class="line-block">

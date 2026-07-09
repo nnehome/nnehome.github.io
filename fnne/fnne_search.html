@@ -489,10 +489,10 @@ document.write(`
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Below is documentation for the Matlab code in “full_info_NNE_search” folder at this <a class="reference external" href="https://github.com/nnehome/fnne-matlab-code" rel="noopener noreferrer" target="_blank">GitHub directory</a>. The code uses full-info NNE to estimate a search model with unobserved consumer heterogeneity.</p>
+<p>Below is documentation for the Matlab code in “search_het” folder at this <a class="reference external" href="https://github.com/nnehome/fnne-matlab-code" rel="noopener noreferrer" target="_blank">GitHub directory</a>. The code uses full-info NNE to estimate a search model with unobserved consumer heterogeneity.</p>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
-<p>The following shows how to estimate the search model on a synthetic dataset (in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>).</p>
+<p>The following commands estimate the search model on a synthetic dataset (in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; nne_gen                 % generate the training examples</span>
 <span class="go">&gt;&gt; nne_train               % train the neural net and apply it to the data</span>
 </pre></div>
@@ -533,17 +533,17 @@ document.write(`
 <p>This script generates the training, validation, and test examples.</p>
 <ul class="simple">
 <li><p>It uses <code class="docutils literal notranslate"><span class="pre">search_ht_model.m</span></code> to simulate the data.</p></li>
-<li><p>It uses Matlab’s built-in bit-to-integer encoding on <code class="docutils literal notranslate"><span class="pre">Y</span></code> to save memory, decoded later during training.</p></li>
+<li><p>It uses Matlab’s built-in bit2int encoding on <code class="docutils literal notranslate"><span class="pre">Y</span></code> to save memory.</p></li>
 </ul>
 </section>
 <section id="nne-train-m">
 <h3><code class="docutils literal notranslate"><span class="pre">nne_train.m</span></code><a class="headerlink" href="#nne-train-m" title="Link to this heading">#</a></h3>
 <p>This script trains a neural net, using the examples from <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>.</p>
 <ul class="simple">
-<li><p>Validation loss is reported. You can use it to choose neural net hyperparameters, such as the numbers of hidden nodes.</p></li>
-<li><p>After training, it draws parameter recovery plots using the test examples.</p></li>
-<li><p>After training, it applies the neural net on <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p></li>
-<li><p>In the end, it saves the trained neural net to <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>.</p></li>
+<li><p>Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., numbers of hidden nodes).</p></li>
+<li><p>It draws the parameter recovery plots using the test examples.</p></li>
+<li><p>It applies the trained neural net on <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p></li>
+<li><p>It saves the trained neural net to <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>.</p></li>
 </ul>
 </section>
 <section id="learn-m">

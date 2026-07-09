@@ -492,7 +492,7 @@ document.write(`
 <p>Below is documentation for the Matlab code in “NNE_search” folder at this <a class="reference external" href="https://github.com/nnehome/nne-matlab-code" rel="noopener noreferrer" target="_blank">GitHub repository</a>. The code uses NNE to estimate a consumer search model. You are welcome to modify the code to estimate your own structural model.</p>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h2>
-<p>The following shows how to conduct a Monte Carlo experiment that estimates the search model from a simulated dataset.</p>
+<p>The following commands run a Monte Carlo experiment that estimates the search model from a simulated dataset.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&gt;&gt; monte_carlo_data         % simulate a dataset and save it in data.mat</span>
 <span class="go">&gt;&gt; nne_gen                  % generate the training examples for NNE and save them in nne_training.mat</span>
 <span class="go">&gt;&gt; nne_train                % train a neural net and then apply it on data.mat</span>
@@ -561,8 +561,8 @@ document.write(`
 <ul class="simple">
 <li><p>It loads the training and validation examples from <code class="docutils literal notranslate"><span class="pre">nne_training.mat</span></code> (saved by <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>).</p></li>
 <li><p>It uses <code class="docutils literal notranslate"><span class="pre">normalRegressionLayer.m</span></code> for the cross-entropy loss.</p></li>
-<li><p>Validation loss is reported. You can use it to choose neural net hyperparameters, such as the number of hidden nodes.</p></li>
-<li><p>After training, it applies the neural net to the data in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p></li>
+<li><p>Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., the number of hidden nodes).</p></li>
+<li><p>It applies the trained neural net to the data in <code class="docutils literal notranslate"><span class="pre">data.mat</span></code>.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
