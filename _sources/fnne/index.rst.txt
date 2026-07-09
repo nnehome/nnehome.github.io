@@ -38,7 +38,7 @@ We provide Matlab code for two examples:
 
 * **A mixed logit model**. Because the likelihood for mixed logit is relatively easy to simulate, full-info NNE shows no advantages in accuracy or computation here. But this setting serves as a good example to illustrate how full-info NNE works in practice.
 
-* **A search model with unobserved consumer heterogeneity**. This example shows the advantages of full-info NNE in accuracy and computation.
+* **A search model with unobserved consumer heterogeneity**. This example shows the accuracy and computational advantages of full-info NNE.
 
 You can find the code at this `GitHub directory <https://github.com/nnehome/fnne-matlab-code>`__, and code documentation at the :ref:`mixed logit model <fnne_mixed_logit>` page and the :ref:`search model <fnne_search>` page.
 
