@@ -7,7 +7,7 @@ Simple AR1 model
 
 |
 
-Below is documentation for the Matlab code in "NNE_AR1" folder at this `GitHub repository <https://github.com/nnehome/nne-matlab-code>`_. The code uses NNE to estimate a simple AR1 model: :math:`y_{i}={\beta}y_{i-1}+\epsilon_{i}`. This is a toy example where we don't see computational or accuracy gains from NNE. But the simplicity allows NNE to be more easily understood.
+Below is the documentation for the Matlab code in "NNE_AR1" folder at this `GitHub repository <https://github.com/nnehome/nne-matlab-code>`_. The code uses NNE to estimate a simple AR1 model: :math:`y_{i}={\beta}y_{i-1}+\epsilon_{i}`. This is a toy example where we don't see computational or accuracy gains from NNE. But the simplicity allows NNE to be easily understood.
 
 
 Workflow
@@ -35,7 +35,7 @@ This function codes the simple AR1 model.
     y = model(beta)
 
 * Input ``beta``:  the coefficient in the AR1 model.
-* Output ``y``: simulated time series collected in a vector.
+* Output ``y``: a vector containing the simulated time series.
 
 
 ``moments.m``
@@ -55,7 +55,7 @@ This function summarizes data into a set of moment(s).
 ``monte_carlo_data.m``
 """"""""""""""""""""""""""
 
-This script simulates an AR1 time series under a "true" value of  :math:`\beta`, for the purpose of Monte Carlo experiments. It uses ``model.m`` and saves the time series into ``data.mat``.
+This script creates a time series for Monte Carlo experiment. It uses ``model.m`` to simulate the time series under a "true" value of  :math:`\beta`, and then saves the time series into ``data.mat``.
 
 
 ``nne_gen.m``
@@ -75,7 +75,7 @@ This script trains a shallow neural net.
 
 * It loads the training and validation examples from ``nne_training.mat`` (saved by ``nne_gen.m``).
 * Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., the number of hidden nodes).
-* It applies the trained neural net on ``data.mat``.
+* It applies the trained neural net to ``data.mat``.
 
 |
 

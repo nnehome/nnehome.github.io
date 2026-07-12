@@ -48,7 +48,7 @@ This function codes the mixed logit model.
 ``monte_carlo_data.m``
 """""""""""""""""""""""
 
-This script simulates a dataset using the mixed logit model under an assumed "true" parameter. It uses ``model_mixed_logit.m`` to simulate the data.
+This script creates a dataset for Monte Carlo experiment. It uses ``model_mixed_logit.m`` to simulate the dataset under a "true" parameter vector, and then saves the dataset in ``data.mat``.
 
 
 ``nne_gen.m``
@@ -82,7 +82,8 @@ This is a custom training loop based on Matlab's built-in back-propagation and a
 * Inputs:
 
   * ``net``: the initial neural net
-  * ``opt``: options including batch size, number of iterations, etc.
+  * ``opt``: training options such as batch size, number of iterations, etc.
+  * ``nne``: a structure storing some settings of NNE, created by ``nne_gen.m``.
   * ``train_dataY``, ``train_label``: training examples
   * ``val_dataY``, ``val_label``: validation examples
   * ``test_dataY``:  test examples

@@ -7,7 +7,7 @@ Code
 
 |
 
-Below is documentation for the Matlab (2024b) files at this `GitHub directory <https://github.com/pnnehome/code_matlab>`__, which provide a pretrained NNE of a consumer search model. We suggest taking a look at the guide on the :ref:`home <pnne>` page before reading this documentation.
+Below is the documentation for the Matlab (2024b) files at this `GitHub directory <https://github.com/pnnehome/code_matlab>`__, which provide a pretrained NNE of a consumer search model. We suggest taking a look at the guide on the :ref:`home <pnne>` page before reading this documentation.
 
 
 Description of files
@@ -16,9 +16,7 @@ Description of files
 ``trained_nne.mat``
 ~~~~~~~~~~~~~~~~~~~~
 
-This file stores the pretrained neural net as well as some pre-defined settings.
-
-* ``nne``: a structure that stores the trained neural net, as well as some settings used in training, such as the range of data sizes and the prior of the search model parameter.
+This file contains a structure, ``nne``, that stores the pretrained neural net as well as some pre-defined settings, such as the prior of the search model parameter and the range of data sizes used in pretraining.
 
 ``nne_estimate.m``
 ~~~~~~~~~~~~~~~~~~
@@ -35,11 +33,11 @@ Inputs:
 
 * ``Y``: :math:`nJ` by 2 matrix. The :math:`((i-1)J+j)`-th row corresponds to product :math:`j` for consumer :math:`i`. The two values in each row indicate whether the product is: (1) searched and (2) bought, respectively.
 
-* ``Xp``: a matrix with :math:`nJ` rows. The :math:`((i-1)J+j)`-th row stores the product attributes of product :math:`j` for consumer :math:`i`.
+* ``Xp``: a matrix with :math:`nJ` rows. The :math:`((i-1)J+j)`-th row contains the product attributes of product :math:`j` for consumer :math:`i`.
 
-* ``Xa``: a matrix with :math:`nJ` rows. The :math:`((i-1)J+j)`-th row stores the advertising attributes of product :math:`j` for consumer :math:`i`.
+* ``Xa``: a matrix with :math:`nJ` rows. The :math:`((i-1)J+j)`-th row contains the advertising attributes of product :math:`j` for consumer :math:`i`.
 
-* ``Xc``: a matrix with :math:`n` rows. The :math:`i`-th row stores the consumer attributes of consumer :math:`i`.
+* ``Xc``: a matrix with :math:`n` rows. The :math:`i`-th row contains the consumer attributes of consumer :math:`i`.
 
 * ``consumer_idx``: a column vector with :math:`nJ` values. The :math:`((i-1)J+j)`-th value equals :math:`i`.
 
@@ -83,8 +81,8 @@ every consumer can buy at most one option; every consumer should conduct at leas
 ``curve.mat``
 ~~~~~~~~~~~~~
 
-This file stores a lookup table of the relation between search cost and reservation utility. This
-relation is used for computing the optimal consumer choices in the sequential search model.
+This file contains a lookup table for the relation between search cost and reservation utility. This
+relation is used for computing optimal consumer choices in the sequential search model.
 
 ``search_model.m``
 ~~~~~~~~~~~~~~~~~~
@@ -105,7 +103,7 @@ Inputs:
 
 Outputs:
 
-* ``Y``: searches and purchases, formatted as described before.
+* ``Y``: searches and purchases, as described before.
 
 ``winsorize.m``
 ~~~~~~~~~~~~~~~

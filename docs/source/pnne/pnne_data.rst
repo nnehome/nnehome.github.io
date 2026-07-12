@@ -16,7 +16,7 @@ Description of the datasets
 Expedia - destination 1
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This dataset comes from `a Kaggle contest <https://www.kaggle.com/competitions/expedia-personalized-sort/overview>`_ based on Expedia.com search and booking data. The data are used in several papers to study consumer online search behaviors. This dataset here focuses on the search sessions for the largest travel destination in this contest. There are :math:`n = 1258` sessions, 3 product attributes, 2 consumer attributes, and 1 advertising attribute.
+This dataset comes from `a Kaggle contest <https://www.kaggle.com/competitions/expedia-personalized-sort/overview>`_ based on Expedia.com data (which have been used by several papers to study consumer online search behaviors). This dataset here focuses on the search sessions for the largest travel destination in this contest. There are :math:`n = 1258` sessions, 3 product attributes, 2 consumer attributes, and 1 advertising attribute.
 
 Expedia - destination 2
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26,7 +26,7 @@ This dataset includes the search sessions for the 2nd largest travel destination
 Trivago - desktop channel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This dataset comes from the `ACM RecSys Challenge <https://recsys.acm.org/recsys19/challenge/>`_ based on user session data on Trivago.com. This dataset here includes the search sessions made on the desktop channel.
+This dataset comes from the `ACM RecSys Challenge <https://recsys.acm.org/recsys19/challenge/>`_ based on the user data from Trivago.com. This dataset here includes the search sessions made on the desktop channel.
 
 Trivago - mobile channel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
