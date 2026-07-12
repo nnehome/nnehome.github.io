@@ -24,8 +24,10 @@ The Matlab (2024b) files for this pretrained NNE can be found at this `GitHub di
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our pretrained NNE estimates a sequential search model. The model's exact specification is given
-in the paper. Here we give a high-level description. A consumer faces :math:`J` products plus an outside good, and decides which products to search and which product to buy. The first search is free (so the consumer searches at least once).
-There are *product attributes* that affect the consumer's utility for each product, and these effects are captured by :math:`\boldsymbol{\beta}`. There may be *consumer attributes* that affect the consumer's outside utility, and these effects are captured by :math:`\boldsymbol{\eta}`. There may also be *advertising attributes* that affect search costs (but not utility), and these effects are captured by :math:`\boldsymbol{\alpha}`. Parameters :math:`\eta_0` and :math:`\alpha_0` capture the baseline outside utility and search cost, respectively.
+in the paper. The following is a high-level description.
+
+A consumer faces :math:`J` products plus an outside good, and decides which products to search and which product to buy. The first search is free (so the consumer searches at least once).
+There are *product attributes* that affect the consumer's utility for each product, and these effects are captured by :math:`\boldsymbol{\beta}`. In addition, there may be *consumer attributes* that affect the consumer's outside utility, and these effects are captured by :math:`\boldsymbol{\eta}`. There may also be *advertising attributes* that affect search costs (but not utility), and these effects are captured by :math:`\boldsymbol{\alpha}`. Parameters :math:`\eta_0` and :math:`\alpha_0` capture the baseline outside utility and search cost, respectively.
 
 
 (b) How to run the estimation?
@@ -105,7 +107,7 @@ The function ``nne_estimate.m`` assumes that your data are represented in a cert
 
 * ``Xa``: advertising attributes. The example features a single advertising attribute indicating whether the product is highlighted by the seller.
 
-* ``Xc``: consumer attributes (not shown in the example). Unlike the other data arrays, it has :math:`n` instead of :math:`nJ` rows.
+* ``Xc``: consumer attributes (not shown in the example). This matrix has :math:`n` instead of :math:`nJ` rows.
 
 More generally, you may let ``Xa = []`` or ``Xc = []`` if your data do not feature advertising or consumer attributes. ``Xp``, ``Xa``, and ``Xc`` need not be standardized. Nevertheless, we recommend mean-centering to make the interpretation of :math:`\alpha_0` and :math:`\eta_0` easier. We also recommend treating outliers (e.g., winsorizing, transformation) before using the pretrained NNE.
 
@@ -134,8 +136,8 @@ In addition, the NNE is pretrained on data with the following summary statistics
 (d) How to get standard errors?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``nne_estimate.m`` function has standard error calculation built in. Simply add ``se = true``
-option as shown below. The output will include an additional column of standard errors. The
+The ``nne_estimate.m`` has built-in standard error calculation. Simply add ``se = true``
+option as shown below, and the output will include an additional column of standard errors. The
 calculation bootstraps 50 samples, so execution time will be a bit longer, but it can take advantage
 of parallel computing toolbox if installed.
 

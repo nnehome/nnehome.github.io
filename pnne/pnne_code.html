@@ -490,15 +490,12 @@ document.write(`
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>Below is documentation for the Matlab (2024b) files at this <a class="reference external" href="https://github.com/pnnehome/code_matlab" rel="noopener noreferrer" target="_blank">GitHub directory</a>, which provide a pretrained NNE of a consumer search model. We suggest taking a look at the guide on the <a class="reference internal" href="index.html#pnne"><span class="std std-ref">home</span></a> page before reading this documentation.</p>
+<p>Below is the documentation for the Matlab (2024b) files at this <a class="reference external" href="https://github.com/pnnehome/code_matlab" rel="noopener noreferrer" target="_blank">GitHub directory</a>, which provide a pretrained NNE of a consumer search model. We suggest taking a look at the guide on the <a class="reference internal" href="index.html#pnne"><span class="std std-ref">home</span></a> page before reading this documentation.</p>
 <section id="description-of-files">
 <h2>Description of files<a class="headerlink" href="#description-of-files" title="Link to this heading">#</a></h2>
 <section id="trained-nne-mat">
 <h3><code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code><a class="headerlink" href="#trained-nne-mat" title="Link to this heading">#</a></h3>
-<p>This file stores the pretrained neural net as well as some pre-defined settings.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">nne</span></code>: a structure that stores the trained neural net, as well as some settings used in training, such as the range of data sizes and the prior of the search model parameter.</p></li>
-</ul>
+<p>This file contains a structure, <code class="docutils literal notranslate"><span class="pre">nne</span></code>, that stores the pretrained neural net as well as some pre-defined settings, such as the prior of the search model parameter and the range of data sizes used in pretraining.</p>
 </section>
 <section id="nne-estimate-m">
 <h3><code class="docutils literal notranslate"><span class="pre">nne_estimate.m</span></code><a class="headerlink" href="#nne-estimate-m" title="Link to this heading">#</a></h3>
@@ -510,9 +507,9 @@ document.write(`
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nne</span></code>: already described above, available from <code class="docutils literal notranslate"><span class="pre">trained_nne.mat</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: <span class="math notranslate nohighlight">\(nJ\)</span> by 2 matrix. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row corresponds to product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>. The two values in each row indicate whether the product is: (1) searched and (2) bought, respectively.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>: a matrix with <span class="math notranslate nohighlight">\(nJ\)</span> rows. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row stores the product attributes of product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code>: a matrix with <span class="math notranslate nohighlight">\(nJ\)</span> rows. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row stores the advertising attributes of product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>: a matrix with <span class="math notranslate nohighlight">\(n\)</span> rows. The <span class="math notranslate nohighlight">\(i\)</span>-th row stores the consumer attributes of consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xp</span></code>: a matrix with <span class="math notranslate nohighlight">\(nJ\)</span> rows. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row contains the product attributes of product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xa</span></code>: a matrix with <span class="math notranslate nohighlight">\(nJ\)</span> rows. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th row contains the advertising attributes of product <span class="math notranslate nohighlight">\(j\)</span> for consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xc</span></code>: a matrix with <span class="math notranslate nohighlight">\(n\)</span> rows. The <span class="math notranslate nohighlight">\(i\)</span>-th row contains the consumer attributes of consumer <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">consumer_idx</span></code>: a column vector with <span class="math notranslate nohighlight">\(nJ\)</span> values. The <span class="math notranslate nohighlight">\(((i-1)J+j)\)</span>-th value equals <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">se</span> <span class="pre">=</span> <span class="pre">false</span></code>: optional input. Set it to “true” to calculate bootstrap standard errors.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">checks</span> <span class="pre">=</span> <span class="pre">true</span></code>: optional input. Set it to “false” to omit all sanity checks.</p></li>
@@ -549,8 +546,8 @@ every consumer can buy at most one option; every consumer should conduct at leas
 </section>
 <section id="curve-mat">
 <h3><code class="docutils literal notranslate"><span class="pre">curve.mat</span></code><a class="headerlink" href="#curve-mat" title="Link to this heading">#</a></h3>
-<p>This file stores a lookup table of the relation between search cost and reservation utility. This
-relation is used for computing the optimal consumer choices in the sequential search model.</p>
+<p>This file contains a lookup table for the relation between search cost and reservation utility. This
+relation is used for computing optimal consumer choices in the sequential search model.</p>
 </section>
 <section id="search-model-m">
 <h3><code class="docutils literal notranslate"><span class="pre">search_model.m</span></code><a class="headerlink" href="#search-model-m" title="Link to this heading">#</a></h3>
@@ -566,7 +563,7 @@ relation is used for computing the optimal consumer choices in the sequential se
 </ul>
 <p>Outputs:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: searches and purchases, formatted as described before.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: searches and purchases, as described before.</p></li>
 </ul>
 </section>
 <section id="winsorize-m">

@@ -522,7 +522,7 @@ document.write(`
 </li>
 <li><p>Outputs:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: dummies indicating searches, purchases, first-search, and last-search</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>: dummies indicating searches, purchases, first-searches, and last-searches</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stat</span></code>: summary statistics</p></li>
 </ul>
 </li>
@@ -558,7 +558,8 @@ This is a custom training loop based on Matlab’s built-in back-propagation and
 <li><p>Inputs:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">net</span></code>: the initial neural net</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">opt</span></code>: options including batch size, number of iterations, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opt</span></code>: training options such as batch size, number of iterations, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nne</span></code>: a structure storing some settings of NNE, created by <code class="docutils literal notranslate"><span class="pre">nne_gen.m</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">train_dataY</span></code>, <code class="docutils literal notranslate"><span class="pre">train_label</span></code>: training examples</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">val_dataY</span></code>, <code class="docutils literal notranslate"><span class="pre">val_label</span></code>: validation examples</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_dataY</span></code>:  test examples</p></li>

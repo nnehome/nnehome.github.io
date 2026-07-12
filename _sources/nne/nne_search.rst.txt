@@ -7,7 +7,7 @@ Search model
 
 |
 
-Below is documentation for the Matlab code in "NNE_search" folder at this `GitHub repository <https://github.com/nnehome/nne-matlab-code>`_. The code uses NNE to estimate a consumer search model. You are welcome to modify the code to estimate your own structural model.
+Below is the documentation for the Matlab code in "NNE_search" folder at this `GitHub repository <https://github.com/nnehome/nne-matlab-code>`_. The code uses NNE to estimate a consumer search model. You are welcome to modify the code to estimate your own structural model.
 
 
 Workflow
@@ -40,7 +40,7 @@ This function codes a sequential search model.
   * ``z``: other product attributes (e.g., review rating, price)
   * ``consumer_id``: indices of consumers
   * ``theta``: search model parameter vector
-  * ``curve``: lookup table for reservation utility, available from ``curve_seq_search.csv``
+  * ``curve``: lookup table between reservation utility and search cost, available from ``curve_seq_search.csv``
  
 * Outputs:
 
@@ -72,7 +72,7 @@ This file codes the cross-entropy loss. This custom loss function is needed if w
 ``monte_carlo_data.m``
 """"""""""""""""""""""""""
 
-This script generates a dataset of consumer search under a "true" value of the search model parameter, for the purpose of Monte Carlo experiments. It uses the function ``model_seq_search.m`` and saves the simulated data to ``data.mat``.
+This script creates a dataset for Monte Carlo experiment. It uses ``model_seq_search.m`` to simulate the dataset under a "true" search model parameter vector, and then saves the dataset to ``data.mat``.
 
 
 ``nne_gen.m``
@@ -94,7 +94,7 @@ This script trains a shallow neural net.
 * It loads the training and validation examples from ``nne_training.mat`` (saved by ``nne_gen.m``).
 * It uses ``normalRegressionLayer.m`` for the cross-entropy loss.
 * Validation loss is reported. We can use this loss to choose neural net hyperparameters (e.g., the number of hidden nodes).
-* It applies the trained neural net to the data in ``data.mat``.
+* It applies the trained neural net to ``data.mat``.
 
 |
 

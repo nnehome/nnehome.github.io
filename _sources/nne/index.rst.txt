@@ -26,7 +26,7 @@ Finally, we plug the real-data moment vector into the trained neural net to obta
 
 In the paper, it is shown that as we increase :math:`L`, the neural net converges to the Bayesian posterior mean of :math:`\boldsymbol{\theta}` given the specified moments (i.e., a limited-information posterior). The paper also shows how we can train the neural net to estimate the posterior variance.
 
-This NNE is most useful when we know a set of candidate moments that could identify :math:`\boldsymbol{\theta}`. When this is not the case, one should try `full-information NNE <https://nnehome.github.io/fnne/index.html>`_. However, full-info NNE requires i.i.d. structure in data.
+This NNE is most useful when we know a set of candidate moments that could identify :math:`\boldsymbol{\theta}`. When this is not the case, one should try `full-information NNE <https://nnehome.github.io/fnne/index.html>`_. However, full-info NNE requires an i.i.d. structure in data.
 
 
 2. Applications

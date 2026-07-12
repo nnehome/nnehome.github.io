@@ -49,7 +49,7 @@ This function codes the search model with unobserved consumer heterogeneity.
  
 * Outputs:
 
-  * ``Y``: dummies indicating searches, purchases, first-search, and last-search
+  * ``Y``: dummies indicating searches, purchases, first-searches, and last-searches
   * ``stat``: summary statistics
 
 
@@ -87,7 +87,8 @@ This is a custom training loop based on Matlab's built-in back-propagation and a
 * Inputs:
 
   * ``net``: the initial neural net
-  * ``opt``: options including batch size, number of iterations, etc.
+  * ``opt``: training options such as batch size, number of iterations, etc.
+  * ``nne``: a structure storing some settings of NNE, created by ``nne_gen.m``.
   * ``train_dataY``, ``train_label``: training examples
   * ``val_dataY``, ``val_label``: validation examples
   * ``test_dataY``:  test examples
